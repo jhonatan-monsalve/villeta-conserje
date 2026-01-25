@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
+import { FloatingWhatsApp } from "@/components/ui/buttons/FloatingWhatsApp";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
         <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
             <body className="font-sans antialiased bg-background text-foreground">
                 {children}
+                <FloatingWhatsApp />
             </body>
         </html>
     );

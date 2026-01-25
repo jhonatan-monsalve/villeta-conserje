@@ -50,17 +50,7 @@ export function Header() {
 
                     {/* Actions */}
                     <div className="flex items-center gap-4">
-                        <a
-                            href={SITE_CONFIG.links.whatsapp_general}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden sm:flex"
-                        >
-                            <Button size="sm" className="gap-2">
-                                <HiChat className="text-xl" />
-                                WhatsApp
-                            </Button>
-                        </a>
+
 
                         {/* Mobile Menu Toggle */}
                         <button
@@ -86,17 +76,7 @@ export function Header() {
                                     {link.label}
                                 </Link>
                             ))}
-                            <a
-                                href={SITE_CONFIG.links.whatsapp_general}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full"
-                            >
-                                <Button fullWidth size="sm" className="gap-2">
-                                    <HiChat className="text-xl" />
-                                    WhatsApp
-                                </Button>
-                            </a>
+
                         </nav>
                     </div>
                 )}

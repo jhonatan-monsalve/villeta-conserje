@@ -36,7 +36,7 @@ export function Services() {
         <section className="py-16 bg-white dark:bg-zinc-900 border-y border-border dark:border-white/5" id="features">
             <Container>
                 <div className="flex flex-col md:flex-row gap-12 items-start">
-                    <div className="md:w-1/3 sticky top-24">
+                    <div className="md:w-1/3 md:sticky md:top-24">
                         <h2 className="text-3xl font-display font-bold text-text-main dark:text-white mb-4 leading-tight">
                             Características de Gestión Premium
                         </h2>
