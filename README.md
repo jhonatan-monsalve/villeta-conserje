@@ -15,7 +15,7 @@ Sitio web profesional para la gestión de propiedades de lujo en Villeta, Cundin
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone [url-del-repo]
+   git clone [[url-del-repo]](https://github.com/jhonatan-monsalve/villeta-conserje.git)
    ```
 
 2. **Instalar dependencias**:
