@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
-import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import { HiMenu, HiX, HiChat } from "react-icons/hi";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const NAV_LINKS = [
     { href: "/#comparison", label: "Comparativa" },
@@ -22,17 +21,10 @@ export function Header() {
     return (
         <div className="sticky top-0 z-50 w-full bg-surface-light/95 backdrop-blur-md border-b border-border dark:bg-surface-dark/95 dark:border-white/10">
             <Container>
-                <header className="flex items-center justify-between h-16">
+                <header className="flex items-center justify-between h-24">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 cursor-pointer">
-                        <Image
-                            src="/logotipo.png"
-                            alt={SITE_CONFIG.name}
-                            width={150}
-                            height={48}
-                            className="h-12 w-auto"
-                            priority
-                        />
+                    <Link href="/" className="flex items-center cursor-pointer py-1">
+                        <Logo className="h-20 w-auto" />
                     </Link>
 
                     {/* Desktop Nav */}

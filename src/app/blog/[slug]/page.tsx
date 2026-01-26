@@ -14,6 +14,12 @@ interface Props {
     };
 }
 
+export async function generateStaticParams() {
+    return BLOG_POSTS.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = BLOG_POSTS.find((p) => p.slug === params.slug);
     if (!post) return { title: "Artículo no encontrado" };

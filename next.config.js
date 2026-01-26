@@ -1,31 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async headers() {
-        return [
-            {
-                source: '/(.*)',
-                headers: [
-                    {
-                        key: 'X-Frame-Options',
-                        value: 'DENY',
-                    },
-                    {
-                        key: 'X-Content-Type-Options',
-                        value: 'nosniff',
-                    },
-                    {
-                        key: 'Referrer-Policy',
-                        value: 'strict-origin-when-cross-origin',
-                    },
-                    {
-                        key: 'Permissions-Policy',
-                        value: 'camera=(), microphone=(), geolocation=()',
-                    },
-                ],
-            },
-        ];
-    },
+    output: 'export',
     images: {
+        unoptimized: true,
         remotePatterns: [
             {
                 protocol: 'https',
@@ -35,6 +12,14 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'www.transparenttextures.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'a0.muscache.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            }
         ],
     },
 };

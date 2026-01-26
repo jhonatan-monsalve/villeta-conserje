@@ -1,19 +1,19 @@
 import { Container } from "@/components/layout/Container";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import { MdVilla } from "react-icons/md";
+import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
 
 export function Footer() {
     return (
-        <footer className="bg-surface-light dark:bg-zinc-950 border-t border-border dark:border-white/5 py-12">
+        <footer className="bg-surface-light dark:bg-zinc-950 border-t border-border dark:border-white/5 pt-4 pb-8 md:py-12">
             <Container>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <span className="font-bold text-sm text-text-main dark:text-white uppercase tracking-tight">{SITE_CONFIG.name}</span>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-[10px] md:gap-6">
+                    <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+                        <Logo className="h-20 w-auto md:h-20 md:origin-left" />
                     </Link>
 
-                    <div className="text-sm text-text-sub dark:text-gray-500">
-                        <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. Todos los derechos reservados.</p>
+                    <div className="text-xs md:text-sm text-text-sub dark:text-gray-500 text-center">
+                        <p className="whitespace-nowrap">© {new Date().getFullYear()} {SITE_CONFIG.name}. Todos los derechos reservados.</p>
                     </div>
 
                     <div className="flex gap-6 text-sm">
