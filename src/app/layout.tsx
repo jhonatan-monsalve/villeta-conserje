@@ -18,12 +18,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://www.villetaconserje.com'),
     title: {
         default: `${SITE_CONFIG.name} | Administración de Fincas en Airbnb Villeta`,
         template: `%s | ${SITE_CONFIG.name}`
     },
     description: "Gestión integral de fincas de lujo en Villeta, Cundinamarca. Especialistas en Airbnb, maximizamos tu rentabilidad con estándar de Superanfitrión.",
     keywords: ["administración de fincas villeta", "airbnb villeta", "gestión propiedades lujo", "superanfitrión airbnb colombia", "turismo villeta"],
+    alternates: {
+        canonical: '/',
+    },
+    openGraph: {
+        title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo`,
+        description: "Maximizamos la rentabilidad de tu propiedad en Villeta con gestión de Superhost profesional.",
+        url: 'https://www.villetaconserje.com',
+        siteName: SITE_CONFIG.name,
+        locale: 'es_CO',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: SITE_CONFIG.name,
+        description: SITE_CONFIG.description,
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function RootLayout({
