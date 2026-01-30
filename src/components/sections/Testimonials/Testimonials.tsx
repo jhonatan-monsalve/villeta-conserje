@@ -4,25 +4,37 @@ import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { HiStar } from "react-icons/hi";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
+import { useState } from "react";
 
-const TESTIMONIALS = [
+interface Testimonial {
+    quote: string;
+    author: string;
+    location: string;
+    image: string;
+    meta?: string;
+}
+
+const TESTIMONIALS: Testimonial[] = [
     {
-        quote: "La casa es increíble, un verdadero retiro Zen. Ideal para desconectarse y disfrutar de la naturaleza en familia. La atención de Yenifer fue impecable desde el primer momento.",
-        author: "Claudia P.",
-        location: "Huésped de Airbnb",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRjjL7Cdk-IV18_r8TK9XkOTb9hZCNFhm8t1sISMuPP927XS_S7faGsGzP0yCbXHBSrG31xDU0OhSm2shWJGxFk22TNOvVR_m8ZKVOU_y4gl9HrSl93qLfs_4tj5wa9p5wMBehbAXG36blrT_mCvMBYrMX_ko2oYha6LP3ggXdo8yBnu1BKJCmnhU49kV4xe9Fh4bJjJ9M15OgwRyDvIwop_CHtlfw_3wTDTRbiIZmECDpDH8wdhp3qBwOGUxczYRvh-spWozeG_o"
+        quote: "Es un lugar increíble, la mejor opción para desconectarse del ruido y muy cerca del río, hace la experiencia aún más acogedora, espero volver en algún momento a este lugar soñado, tiene una atención al detalle única,Jennifer es increíblemente amable y fue muy fácil la comunicación ante cualquier duda respuestas al instante.",
+        author: "Andrea",
+        location: "Bogotá, Colombia",
+        image: "https://a0.muscache.com/im/pictures/user/e8dc9158-b088-4bf7-9dde-ce84e1310c5e.jpg?im_w=240",
+        meta: "Hace 2 semanas · En grupo"
     },
     {
-        quote: "Experiencia de check-in excepcional. Todo estaba impecable, los jardines de frutales y el área de yoga son un plus que no encuentras en cualquier lado. ¡Volveremos!",
-        author: "Mauricio G.",
-        location: "Huésped de Airbnb",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCHdG6bnkeE-td5ydeo3tT3zYThuYfB5k_1uhXRgwGcdyDFMQ8P7CTKH0_8IHNHlO7GP85SPOiC3hNjGXfuhizNJsz8iodcC1qmd7fKpelaB2lGeaEjgtO5dW9Cu96mvTfheAPvn4PMhNmYvXMHexUVLkQ1fnc-0vHiXFLyYuHJ_R25jWc4Pn7Qf136L59o9L38wvBWlVN2SkOzUhP7pRc0vmdsoZTItpz6BZMdDDbWjQzcx6MqTZel76-iCpxDnrpSEHlOity_A80"
+        quote: "Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna..\n\nCabe destacar que la persona de la cocina  muy limpia y cocina delicioso.\n\nSúper mega recomendados",
+        author: "Deivy",
+        location: "Bogotá, Colombia",
+        image: "https://a0.muscache.com/im/pictures/user/User-522374719/original/65c83cd4-9188-47de-855a-03a2ee2d08ff.jpeg?im_w=240",
+        meta: "Hace 2 semanas · En grupo"
     },
     {
-        quote: "La mejor decisión para nuestro retiro de yoga. El jacuzzi bajo las estrellas y la conexión con el bosque hicieron que todos saliéramos renovados. Gracias por la excelente gestión.",
-        author: "Adriana L.",
-        location: "Huésped de Airbnb",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDS6-kzikRfoqz3hy9jwmTNGJqcSDKRCPSnGyeZ9UjusskAvqT6k27CO-S73LuNvb_czTqWGAlWYHy8dyQeN_QE01Vzpf_Iy44MgU0_hUwwZc-xEJemdF3jZ1NvS8RaXpC4C-BWqktTRAh8cdT1H9Cn4cRBKHfGMBWQJCNBPOGoju4v8rWZASCg-L0-7rwoWYWcadc4X58Px4McHPh8vcY-LKed-m3GTkBzwXppOaRaBKSgYSvsLG3KCOKRmlOrr4rXStJ7xQ35x3I"
+        quote: "Es una casa hermosa, decorada con el mejor gusto, en un sitio inmejorable en medio de la naturaleza. Ideal para cualquier plan desde el descanso y la desconexión hasta la diversión con familia o amigos. El servicio de Yennifer es impecable, personalizado y lleno de detalles, permitiendo que los huespedes se puedan desentender de todos los temas logísticos para poderse concentrar en disfrutar de un buen descanso. El servicio de alimentación con Mayo también es un punto muy positivo en calidad y servicio.",
+        author: "Karen",
+        location: "Bogotá, Colombia",
+        image: "https://a0.muscache.com/im/pictures/user/User-119767582/original/184cd811-b1d4-4882-bf8c-62aeca9948e1.jpeg?im_w=240",
+        meta: "noviembre de 2025 · Con niños"
     }
 ];
 
@@ -39,41 +51,7 @@ export function Testimonials() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                     {TESTIMONIALS.map((testimonial, index) => (
-                        <a
-                            key={index}
-                            href={SITE_CONFIG.links.airbnb_listing}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group h-full"
-                        >
-                            <Card className="flex flex-col h-full relative p-8 hover:border-primary/50 transition-all hover:shadow-lg">
-                                <span className="text-4xl text-primary/10 absolute top-6 right-6 font-serif">"</span>
-
-                                <div className="flex items-center gap-1 text-gold mb-6">
-                                    {[...Array(5)].map((_, i) => (
-                                        <HiStar key={i} className="text-lg fill-current" />
-                                    ))}
-                                </div>
-
-                                <p className="text-text-main dark:text-gray-200 mb-6 flex-grow italic leading-relaxed">
-                                    "{testimonial.quote}"
-                                </p>
-
-                                <div className="flex items-center gap-4 border-t border-border dark:border-border-dark pt-6">
-                                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 relative">
-                                        <img
-                                            src={testimonial.image}
-                                            alt={`Portrait of ${testimonial.author}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-text-main dark:text-white group-hover:text-primary transition-colors">{testimonial.author}</p>
-                                        <p className="text-xs text-text-sub font-semibold">{testimonial.location}</p>
-                                    </div>
-                                </div>
-                            </Card>
-                        </a>
+                        <TestimonialCard key={index} testimonial={testimonial} />
                     ))}
                 </div>
 
@@ -103,5 +81,67 @@ export function Testimonials() {
         }
       `}</style>
         </section>
+    );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    return (
+        <div
+            className="h-full"
+            onMouseLeave={() => setIsExpanded(false)} // Vuelve al estado inicial al sacar el mouse
+        >
+            <Card className={`flex flex-col h-full relative p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${isExpanded ? 'h-auto z-10' : ''}`}>
+                <span className="text-4xl text-primary/10 absolute top-6 right-6 font-serif">"</span>
+
+                {/* Info del Autor en la parte superior */}
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative shrink-0 border-2 border-primary/5">
+                        <img
+                            src={testimonial.image}
+                            alt={`Portrait of ${testimonial.author}`}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div>
+                        <p className="font-bold text-lg text-text-main dark:text-white group-hover:text-primary transition-colors">{testimonial.author}</p>
+                        <p className="text-xs text-text-sub font-semibold tracking-wide uppercase">{testimonial.location}</p>
+                    </div>
+                </div>
+
+                {/* Estrellas y Meta */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <div className="flex text-gold">
+                        {[...Array(5)].map((_, i) => (
+                            <HiStar key={i} className="text-lg fill-current" />
+                        ))}
+                    </div>
+                    {testimonial.meta && (
+                        <span className="text-sm font-medium text-text-sub dark:text-gray-400">
+                            · {testimonial.meta}
+                        </span>
+                    )}
+                </div>
+
+                {/* Texto del Testimonio */}
+                <div className="relative flex-grow">
+                    <p className={`text-text-main dark:text-gray-200 italic leading-relaxed transition-all duration-300 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-6'}`}>
+                        "{testimonial.quote}"
+                    </p>
+                    {!isExpanded && testimonial.quote.length > 150 && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsExpanded(true);
+                            }}
+                            className="mt-2 text-sm font-bold text-primary hover:text-primary-dark underline decoration-2 underline-offset-4 focus:outline-none"
+                        >
+                            Leer más
+                        </button>
+                    )}
+                </div>
+            </Card>
+        </div>
     );
 }

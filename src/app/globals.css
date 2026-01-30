@@ -5,14 +5,24 @@
 :root {
   --background: #F8F6F3;
   --foreground: #3A3A3A;
+  --font-primary: var(--font-playfair);
+  --font-secondary: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Manual dark mode check needed if strict class strategy used, 
-       but keeping system variables for fallback */
-    /* --background: #10221a;
-    --foreground: #ededed; */
+@layer base {
+  body {
+    font-family: var(--font-secondary);
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    letter-spacing: 0.5px;
+  }
+
+  /* Apply secondary font to form elements */
+  input, textarea, select {
+    font-family: var(--font-secondary);
   }
 }
 
@@ -25,4 +35,3 @@ body {
     overflow-x: hidden;
 }
 
-/* Material Symbols - Fallback if we don't import via link in layout (we used react-icons instead for scalable arch) */

@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
-import { BLOG_POSTS } from "@/lib/blogData";
+import { getSortedPostsData } from "@/lib/blog";
 import Link from "next/link";
 import { HiArrowRight, HiClock } from "react-icons/hi";
 import { Metadata } from "next";
@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+    const posts = getSortedPostsData();
+
     return (
         <main className="min-h-screen bg-background">
             <Header />
@@ -33,7 +35,7 @@ export default function BlogPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                        {BLOG_POSTS.map((post) => (
+                        {posts.map((post) => (
                             <article key={post.slug} className="group cursor-pointer">
                                 <Link href={`/blog/${post.slug}`}>
                                     <div className="relative aspect-video rounded-2xl overflow-hidden mb-6 shadow-lg">

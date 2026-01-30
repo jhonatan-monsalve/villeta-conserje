@@ -1,12 +1,13 @@
 import { Container } from "@/components/layout/Container";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
-import { BLOG_POSTS } from "@/lib/blogData";
 import { notFound } from "next/navigation";
 import { HiClock, HiCalendar, HiUser, HiArrowLeft } from "react-icons/hi";
 import Link from "next/link";
 import { Button } from "@/components/ui/buttons/Button";
 import { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/config/siteConfig";
+import { getPostData, getAllPostSlugs } from "@/lib/blog";
 
 interface Props {
     params: {
@@ -15,21 +16,26 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    return BLOG_POSTS.map((post) => ({
-        slug: post.slug,
-    }));
+    const paths = getAllPostSlugs();
+    return paths.map(p => ({ slug: p.params.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+    const post = await getPostData(params.slug);
     if (!post) return { title: "Artículo no encontrado" };
+
+    const url = `${SITE_CONFIG.url}/blog/${post.slug}`;
 
     return {
         title: `${post.title} | Villeta Conserje`,
         description: post.excerpt,
+        alternates: {
+            canonical: url,
+        },
         openGraph: {
             title: post.title,
             description: post.excerpt,
+            url: url,
             images: [post.image],
             type: "article",
             publishedTime: post.date,
@@ -38,8 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export default function BlogPostDetail({ params }: Props) {
-    const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPostDetail({ params }: Props) {
+    const post = await getPostData(params.slug);
 
     if (!post) {
         notFound();
@@ -124,7 +130,7 @@ export default function BlogPostDetail({ params }: Props) {
                             <p className="text-text-sub dark:text-gray-400 mb-8 max-w-lg mx-auto">
                                 No deje su inversión al azar. Permítanos auditar su finca y diseñar una estrategia de Superanfitrión a su medida.
                             </p>
-                            <Link href="/#audit">
+                            <Link href="/#auditoria">
                                 <Button variant="primary" size="lg" className="px-10">
                                     Solicitar Mi Auditoría Gratuita
                                 </Button>

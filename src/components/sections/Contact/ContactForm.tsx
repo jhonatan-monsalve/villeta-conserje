@@ -105,7 +105,7 @@ export function ContactForm() {
     };
 
     return (
-        <section className="py-16 sm:py-24 bg-surface-dark relative overflow-hidden" id="audit">
+        <section className="py-16 sm:py-24 bg-surface-dark relative overflow-hidden" id="auditoria">
             {/* Background Effect */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
 

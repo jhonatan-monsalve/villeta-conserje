@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { BLOG_POSTS } from '@/lib/blogData'
+import { getSortedPostsData } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.villetaconserje.com'
@@ -13,9 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
 
     // Blog posts
-    const blogPosts = BLOG_POSTS.map((post) => ({
+    const blogPosts = getSortedPostsData().map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(),
+        lastModified: new Date(post.date),
         changeFrequency: 'weekly' as const,
         priority: 0.6,
     }))

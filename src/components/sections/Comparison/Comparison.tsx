@@ -30,7 +30,7 @@ const ROWS = [
 
 export function Comparison() {
     return (
-        <section className="py-16 sm:py-24 bg-surface-light dark:bg-background-dark" id="comparison">
+        <section className="py-16 sm:py-24 bg-surface-light dark:bg-background-dark" id="comparativa">
             <Container>
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-3xl sm:text-4xl font-bold text-text-main dark:text-white mb-4">

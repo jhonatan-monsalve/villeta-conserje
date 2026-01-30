@@ -1,12 +1,12 @@
 import { Container } from "@/components/layout/Container";
-import { BLOG_POSTS } from "@/lib/blogData";
+import { getSortedPostsData } from "@/lib/blog";
 import Link from "next/link";
 import { HiArrowRight, HiClock } from "react-icons/hi";
 import { Button } from "@/components/ui/buttons/Button";
 
 export function BlogPreview() {
     // Only show the 2 most recent posts
-    const posts = BLOG_POSTS.slice(0, 2);
+    const posts = getSortedPostsData().slice(0, 2);
 
     return (
         <section className="py-16 sm:py-24 bg-zinc-50 dark:bg-zinc-950/50" id="blog-preview">

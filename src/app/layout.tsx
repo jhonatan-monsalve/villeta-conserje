@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
@@ -11,9 +11,10 @@ const playfair = Playfair_Display({
     display: "swap",
 });
 
-const inter = Inter({
+const montserrat = Montserrat({
     subsets: ["latin"],
-    variable: "--font-inter",
+    weight: ["400", "600"],
+    variable: "--font-montserrat",
     display: "swap",
 });
 
@@ -27,6 +28,9 @@ export const metadata: Metadata = {
     keywords: ["administración de fincas villeta", "airbnb villeta", "gestión propiedades lujo", "superanfitrión airbnb colombia", "turismo villeta"],
     alternates: {
         canonical: '/',
+    },
+    verification: {
+        google: "aOAqPOHglnypYv-LclPxyqTcszJpAiG2z-he6FdhGsg",
     },
     openGraph: {
         title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo`,
@@ -53,7 +57,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
+        <html lang="es" className={`${playfair.variable} ${montserrat.variable}`}>
             <body className="font-sans antialiased bg-background text-foreground">
                 {/* Google Tag Manager (noscript) */}
                 <noscript>

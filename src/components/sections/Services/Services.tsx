@@ -33,7 +33,7 @@ const SERVICES = [
 
 export function Services() {
     return (
-        <section className="py-16 bg-white dark:bg-zinc-900 border-y border-border dark:border-white/5" id="features">
+        <section className="py-16 bg-white dark:bg-zinc-900 border-y border-border dark:border-white/5" id="servicios">
             <Container>
                 <div className="flex flex-col md:flex-row gap-12 items-start">
                     <div className="md:w-1/3 md:sticky md:top-24">
@@ -44,7 +44,7 @@ export function Services() {
                             Manejamos las complejidades del alquiler a corto plazo para que usted disfrute de ingresos pasivos.
                         </p>
                         <a
-                            href="#audit"
+                            href="#auditoria"
                             className="text-primary font-bold hover:underline inline-flex items-center gap-1"
                         >
                             Obtenga su estimación de ingresos

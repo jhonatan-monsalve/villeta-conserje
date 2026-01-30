@@ -46,13 +46,15 @@ export function Solution() {
                                 <div className="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 border-4 border-surface-light relative z-10 shadow-lg group-hover:scale-110 transition-transform">
                                     {index + 1}
                                 </div>
-                                <h3 className="text-xl font-bold text-center mb-4 text-text-main dark:text-white">
-                                    {step.title}
+                                <div className="flex items-center justify-center gap-2">
+                                    <h3 className="text-xl font-bold text-text-main dark:text-white">
+                                        {step.title}
+                                    </h3>
                                     {step.badge && (
-                                        <span className="text-xs bg-gold text-white px-2 py-0.5 rounded-full ml-1 align-top">{step.badge}</span>
+                                        <span className="text-xs bg-gold text-white px-2 py-0.5 rounded-full -translate-y-2">{step.badge}</span>
                                     )}
-                                </h3>
-                                <ul className="space-y-3 text-sm text-text-sub dark:text-gray-400">
+                                </div>
+                                <ul className="space-y-3 text-sm text-text-sub dark:text-gray-400 mt-4">
                                     {step.items.map((item, i) => (
                                         <li key={i} className="flex items-start gap-2">
                                             <MdCheck className="text-primary text-base shrink-0" />
