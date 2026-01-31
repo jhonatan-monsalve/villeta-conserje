@@ -24,10 +24,10 @@ export function Footer() {
                     <div className="flex flex-col gap-6">
                         <h4 className="font-display text-zinc-900 text-lg font-medium italic">Navegación</h4>
                         <nav className="flex flex-col gap-3 text-sm font-medium">
-                            <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
-                            <Link href="/comparativa" className="hover:text-primary transition-colors">Comparativa</Link>
-                            <Link href="/servicios" className="hover:text-primary transition-colors">Nuestros Servicios</Link>
-                            <Link href="/testimonios" className="hover:text-primary transition-colors">Testimonios Reales</Link>
+                            <Link href="/#home" className="hover:text-primary transition-colors">Inicio</Link>
+                            <Link href="/#comparativa" className="hover:text-primary transition-colors">Comparativa</Link>
+                            <Link href="/#servicios" className="hover:text-primary transition-colors">Nuestros Servicios</Link>
+                            <Link href="/#reviews" className="hover:text-primary transition-colors">Testimonios Reales</Link>
                         </nav>
                     </div>
 
