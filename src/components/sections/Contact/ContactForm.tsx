@@ -111,13 +111,10 @@ export function ContactForm() {
 
             <Container className="relative z-10">
                 <div className="text-center max-w-2xl mx-auto">
-                    <div className="inline-block px-4 py-1.5 bg-red-500/20 text-red-200 rounded-full text-xs font-bold uppercase tracking-wide mb-6 border border-red-500/30">
-                        Solo quedan 3 cupos para Marzo
-                    </div>
-
                     <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
                         Agenda Tu Auditoría Gratuita Ahora
                     </h2>
+
 
                     <p className="text-gray-300 mb-8 text-lg">
                         Reclame su auditoría de ingresos gratuita. Limitamos esto a 15 propietarios por mes para asegurar la máxima calidad.

@@ -1,12 +1,9 @@
 import { Container } from "@/components/layout/Container";
-import { Header } from "@/components/layout/Header/Header";
-import { Footer } from "@/components/layout/Footer/Footer";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 
 export default function TermsOfService() {
     return (
-        <main className="min-h-screen bg-background">
-            <Header />
+        <main className="min-h-screen bg-background text-zinc-800">
             <div className="py-20 lg:py-32">
                 <Container>
                     <div className="max-w-3xl mx-auto bg-white dark:bg-zinc-900 p-8 sm:p-12 rounded-2xl shadow-sm border border-border dark:border-white/5">
@@ -73,7 +70,6 @@ export default function TermsOfService() {
                     </div>
                 </Container>
             </div>
-            <Footer />
         </main>
     );
 }

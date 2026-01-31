@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { HiMenu, HiX } from "react-icons/hi";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
     { href: "/#home", label: "Inicio", id: "home" },
@@ -18,34 +19,57 @@ const NAV_LINKS = [
 ];
 
 export function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
     const [activeSection, setActiveSection] = useState("home");
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '-30% 0px -30% 0px', // More permissive margin
-            threshold: [0, 0.1, 0.2]
-        };
+        // Si estamos en una ruta de blog, marcar el ítem de Blog como activo
+        if (pathname === "/blog" || pathname.startsWith("/blog/")) {
+            setActiveSection("blog-preview");
+            return;
+        }
 
-        const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.intersectionRatio > 0) {
-                    setActiveSection(entry.target.id);
+        // Si es el Home, iniciar Scroll Spy
+        if (pathname === "/") {
+            const handleScroll = () => {
+                if (window.scrollY < 100) {
+                    setActiveSection("home");
                 }
+            };
+
+            window.addEventListener("scroll", handleScroll);
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -40% 0px',
+                threshold: 0.1
+            };
+
+            const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+            const sectionIds = ["home", "comparativa", "servicios", "reviews", "blog-preview", "faq"];
+            sectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) observer.observe(el);
             });
-        };
 
-        const observer = new IntersectionObserver(handleIntersection, observerOptions);
+            handleScroll();
 
-        const sectionIds = ["home", "comparativa", "servicios", "reviews", "blog-preview", "faq"];
-        sectionIds.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) observer.observe(el);
-        });
-
-        return () => observer.disconnect();
-    }, []);
+            return () => {
+                observer.disconnect();
+                window.removeEventListener("scroll", handleScroll);
+            };
+        }
+    }, [pathname]);
 
     const handleLinkClick = (id: string) => {
         setActiveSection(id);
@@ -53,11 +77,11 @@ export function Header() {
     };
 
     return (
-        <div className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-surface-light/95 backdrop-blur-lg">
+        <div className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-surface-light/95 backdrop-blur-lg shadow-sm">
             <Container>
                 <header className="flex items-center justify-between h-24">
                     {/* Logo con sus colores originales */}
-                    <Link href="/" className="flex items-center cursor-pointer py-1">
+                    <Link href="/#home" onClick={() => handleLinkClick("home")} className="flex items-center cursor-pointer py-1">
                         <Logo className="h-20 w-auto" />
                     </Link>
 

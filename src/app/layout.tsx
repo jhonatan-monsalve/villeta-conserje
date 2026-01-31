@@ -4,6 +4,8 @@ import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { FloatingWhatsApp } from "@/components/ui/buttons/FloatingWhatsApp";
+import { Header } from "@/components/layout/Header/Header";
+import { Footer } from "@/components/layout/Footer/Footer";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
         canonical: '/',
     },
     verification: {
-        google: "aOAqPOHglnypYv-LclPxyqTcszJpAiG2z-he6FdhGsg",
+        google: "UCf8Je8y8pqqSOtVJ8bhPV-kCRYGLB02Bd4_iu7kTP0",
     },
     openGraph: {
         title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo`,
@@ -82,7 +84,9 @@ export default function RootLayout({
                     }}
                 />
 
+                <Header />
                 {children}
+                <Footer />
                 <FloatingWhatsApp />
             </body>
         </html>

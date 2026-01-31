@@ -1,6 +1,4 @@
 import { Container } from "@/components/layout/Container";
-import { Header } from "@/components/layout/Header/Header";
-import { Footer } from "@/components/layout/Footer/Footer";
 import { getSortedPostsData } from "@/lib/blog";
 import Link from "next/link";
 import { HiArrowRight, HiClock } from "react-icons/hi";
@@ -22,7 +20,6 @@ export default function BlogPage() {
 
     return (
         <main className="min-h-screen bg-background">
-            <Header />
             <div className="py-20 lg:py-32">
                 <Container>
                     <div className="text-center max-w-3xl mx-auto mb-16">
@@ -76,7 +73,6 @@ export default function BlogPage() {
                     </div>
                 </Container>
             </div>
-            <Footer />
         </main>
     );
 }

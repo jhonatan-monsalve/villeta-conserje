@@ -2,8 +2,8 @@ import { Container } from "@/components/layout/Container";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
-import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
-import { FaWhatsapp } from "react-icons/fa";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 export function Footer() {
     return (
@@ -39,20 +39,23 @@ export function Footer() {
                                 href={SITE_CONFIG.links.whatsapp_general}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-3 hover:text-primary transition-colors"
+                                className="flex items-center gap-3 hover:text-primary transition-colors group"
                             >
-                                <FaWhatsapp className="text-xl text-primary" />
+                                <FaWhatsapp className="text-xl text-gold" />
                                 <span>+(57) {SITE_CONFIG.whatsapp}</span>
                             </a>
                             <a
                                 href={`mailto:${SITE_CONFIG.email}`}
-                                className="flex items-center gap-3 hover:text-primary transition-colors"
+                                className="flex items-center gap-3 hover:text-primary transition-colors group"
+                                title="Enviar un correo electrónico"
                             >
-                                <HiOutlineMail className="text-xl text-primary" />
-                                <span>{SITE_CONFIG.email}</span>
+                                <FaEnvelope color="#C9A961" size={20} className="shrink-0" />
+                                <span className="border-b border-transparent group-hover:border-primary transition-all">
+                                    {SITE_CONFIG.email}
+                                </span>
                             </a>
-                            <div className="flex items-center gap-3 opacity-80">
-                                <HiOutlineLocationMarker className="text-xl text-primary" />
+                            <div className="flex items-center gap-3 opacity-80 group">
+                                <HiOutlineLocationMarker className="text-xl text-gold" />
                                 <span>Villeta, Cundinamarca</span>
                             </div>
                         </div>

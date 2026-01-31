@@ -1,6 +1,4 @@
 import { Container } from "@/components/layout/Container";
-import { Header } from "@/components/layout/Header/Header";
-import { Footer } from "@/components/layout/Footer/Footer";
 import { notFound } from "next/navigation";
 import { HiClock, HiCalendar, HiUser, HiArrowLeft } from "react-icons/hi";
 import Link from "next/link";
@@ -78,7 +76,6 @@ export default async function BlogPostDetail({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <Header />
             <article className="py-20 lg:py-32">
                 <Container>
                     <div className="max-w-3xl mx-auto">
@@ -139,7 +136,6 @@ export default async function BlogPostDetail({ params }: Props) {
                     </div>
                 </Container>
             </article>
-            <Footer />
         </main>
     );
 }
