@@ -129,6 +129,19 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                     <p className={`text-text-main dark:text-gray-200 italic leading-relaxed transition-all duration-300 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-6'}`}>
                         "{testimonial.quote}"
                     </p>
+                    {isExpanded && (
+                        <div className="mt-4">
+                            <a
+                                href="https://www.airbnb.com.co/users/profile/1470722789148483549?previous_page_name=PdpHomeMarketplace"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-bold text-[#FF385C] hover:underline flex items-center gap-1"
+                            >
+                                leer en Airbnb
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'currentcolor', height: '12px', width: '12px' }}><path d="m26.71 10.21 1.06 1.06a1 1 0 0 1 0 1.41l-14.85 14.86a3 3 0 0 1 -2.13.88l-6.52.01a1 1 0 0 1 -1.01-1.02l.02-6.5a3 3 0 0 1 .88-2.12l14.85-14.86a1 1 0 0 1 1.41 0l1.06 1.06a1 1 0 0 1 0 1.41l-12.33 12.33a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l12.33-12.33a1 1 0 0 1 2.31 -.01zm-13.44 6.31 4.24 4.24 8.49-8.49-4.24-4.24z"></path></svg>
+                            </a>
+                        </div>
+                    )}
                     {!isExpanded && testimonial.quote.length > 150 && (
                         <button
                             onClick={(e) => {

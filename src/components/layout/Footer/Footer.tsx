@@ -64,15 +64,20 @@ export function Footer() {
                     {/* Col 4: Status / Badge */}
                     <div className="flex flex-col gap-6">
                         <h4 className="font-display text-zinc-900 text-lg font-medium italic">Reconocimientos</h4>
-                        <div className="p-4 bg-white border border-zinc-200 rounded-lg shadow-sm">
+                        <a
+                            href="https://www.airbnb.com.co/users/profile/1470722789148483549?previous_page_name=PdpHomeMarketplace"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block p-4 bg-white border border-zinc-200 rounded-lg shadow-sm hover:border-primary transition-all group"
+                        >
                             <div className="flex items-center gap-2 mb-2 text-gold">
                                 {[...Array(5)].map((_, i) => (
                                     <span key={i}>★</span>
                                 ))}
                             </div>
-                            <p className="text-xs uppercase tracking-widest text-zinc-900 font-bold mb-1">Superanfitrión Airbnb</p>
-                            <p className="text-[10px] opacity-60">14 Reservas atendidas con calificación perfecta.</p>
-                        </div>
+                            <p className="text-xs uppercase tracking-widest text-zinc-900 font-bold mb-1 group-hover:text-primary transition-colors">Superanfitrión Airbnb</p>
+                            <p className="text-[11px] opacity-60 mb-3">14 Reservas atendidas con calificación perfecta.</p>
+                        </a>
                     </div>
                 </div>
 

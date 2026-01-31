@@ -59,15 +59,15 @@ export function Comparison() {
                     {ROWS.map((row, i) => (
                         <div key={i} className="grid grid-cols-12 border-b border-border dark:border-white/5 last:border-0 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                             <div className="col-span-4 p-4 sm:p-6 flex items-center gap-2 text-sm sm:text-base font-medium text-text-main dark:text-gray-200">
-                                <row.icon className="text-text-sub text-lg" />
+                                <row.icon className="text-primary text-xl sm:text-2xl shrink-0" />
                                 {row.label}
                             </div>
                             <div className="col-span-4 p-4 sm:p-6 flex items-center gap-2 text-sm text-text-sub dark:text-gray-400 border-l border-border dark:border-white/10">
-                                <MdClose className="text-red-400 text-lg" />
+                                <MdClose className="text-red-400 text-xl shrink-0" />
                                 {row.traditional}
                             </div>
                             <div className="col-span-4 p-4 sm:p-6 flex items-center gap-2 text-sm font-medium text-text-main dark:text-white border-l border-border dark:border-white/10 bg-primary/5">
-                                <MdCheckCircle className="text-primary text-lg" />
+                                <MdCheckCircle className="text-primary text-xl shrink-0" />
                                 {row.villeta}
                             </div>
                         </div>
