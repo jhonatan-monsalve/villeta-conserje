@@ -10,12 +10,12 @@ import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-    { href: "/#home", label: "Inicio", id: "home" },
-    { href: "/#comparativa", label: "Comparativa", id: "comparativa" },
-    { href: "/#servicios", label: "Servicios", id: "servicios" },
-    { href: "/#reviews", label: "Testimonios", id: "reviews" },
-    { href: "/#blog-preview", label: "Blog", id: "blog-preview" },
-    { href: "/#faq", label: "Preguntas", id: "faq" },
+    { href: "/", label: "Inicio", id: "home" },
+    { href: "/comparativa", label: "Comparativa", id: "comparativa" },
+    { href: "/servicios", label: "Servicios", id: "servicios" },
+    { href: "/testimonios", label: "Testimonios", id: "reviews" },
+    { href: "/blog", label: "Blog", id: "blog-preview" },
+    { href: "/preguntas", label: "Preguntas", id: "faq" },
 ];
 
 export function Header() {

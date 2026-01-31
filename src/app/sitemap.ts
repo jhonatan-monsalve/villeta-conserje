@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.villetaconserje.com'
 
     // Base pages
-    const routes = ['', '/blog', '/privacidad', '/terminos'].map((route) => ({
+    const routes = ['', '/blog', '/privacidad', '/terminos', '/servicios', '/comparativa', '/testimonios', '/preguntas'].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
