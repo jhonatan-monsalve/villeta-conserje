@@ -5,10 +5,11 @@ Sitio web profesional para la gestión de propiedades de lujo en Villeta, Cundin
 ## 🚀 Tecnologías Principales
 
 - **Frontend**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
+- **Despliegue**: Exportación Estática (Static HTML)
+- **Optimización de Imágenes**: `next-image-export-optimizer`
+- **Seguridad**: Cloudflare (TLS 1.2+ & CSP Headers)
 - **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animaciones**: [Framer Motion](https://www.framer.com/motion/) & CSS Transitions
-- **Iconos**: [React Icons](https://react-icons.github.io/react-icons/)
 - **Integraciones**: [EmailJS](https://www.emailjs.com/) para gestión de formularios
 
 ## 🛠️ Instalación y Desarrollo
@@ -20,32 +21,33 @@ Sitio web profesional para la gestión de propiedades de lujo en Villeta, Cundin
 
 2. **Instalar dependencias**:
    ```bash
-   npm install
+   # MUY IMPORTANTE: Usar este flag para evitar conflictos de versiones
+   npm install --legacy-peer-deps
    ```
 
-3. **Configurar variables de entorno**:
-   Crea un archivo `.env.local` en la raíz con las credenciales de EmailJS:
-   ```env
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=tu_service_id
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=tu_template_id
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=tu_public_key
-   ```
-
-4. **Ejecutar en desarrollo**:
+3. **Ejecutar en desarrollo**:
    ```bash
    npm run dev
    ```
    El sitio estará disponible en [http://localhost:3000](http://localhost:3000)
 
+4. **Construir para producción (Build)**:
+   ```bash
+   npm run build
+   ```
+   Este comando genera los archivos estáticos y optimiza todas las imágenes automáticamente.
+
 ## 📁 Estructura del Proyecto
 
-- `src/app`: Rutas del sitio (Home, Privacidad, Términos).
+- `src/app`: Rutas del sitio y páginas principales.
 - `src/components`: Componentes organizados por `layout`, `sections` y `ui`.
-- `src/lib`: Configuración centralizada, servicios API y utilidades.
-- `src/styles`: Configuraciones globales de diseño.
+- `src/lib`: Configuración centralizada (`siteConfig.ts`) y servicios.
+- `public/images`: Almacenamiento de fotos locales para optimización automática.
 
-## 📄 Documentación Técnica
-Para una comprensión profunda de las funcionalidades personalizadas (validaciones, carruseles, lógica de negocio), consulte el [MANUAL_DESARROLLADOR.md](./MANUAL_DESARROLLADOR.md).
+## 📄 Documentación Detallada
+
+Para mantenimiento técnico, configuración de Cloudflare o gestión de servidores, consulte el:
+👉 [**MANUAL_DESARROLLADOR.md**](./MANUAL_DESARROLLADOR.md)
 
 ---
 **Desarrollado por**: [Tech de Todos](https://techdetodos.com)
