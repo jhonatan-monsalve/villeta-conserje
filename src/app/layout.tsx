@@ -6,6 +6,7 @@ import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { FloatingWhatsApp } from "@/components/ui/buttons/FloatingWhatsApp";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
                 {children}
                 <Footer />
                 <FloatingWhatsApp />
+                <CookieConsent />
             </body>
         </html>
     );
