@@ -26,7 +26,11 @@
   # 4. Política de Referencia
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-  # 5. Política de Seguridad de Contenido (CSP)
+  # 5. Política de Permisos (Permissions-Policy)
+  # Desactiva funciones del navegador que no necesitamos para mayor privacidad
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+  # 6. Política de Seguridad de Contenido (CSP)
   # Permite scripts de Google, imágenes externas y estilos inline necesarios para Next.js
   Header always set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';"
 </IfModule>
