@@ -1,17 +1,19 @@
+import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import { HiArrowRight } from "react-icons/hi";
 
 export function Hero() {
     return (
         <section id="home" className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden bg-stone-900">
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
-                <img
+                <ExportedImage
+                    src="images/hero-bg.jpg"
                     alt="Luxury villa with pool at sunset in Villeta"
-                    className="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUSiEQMMdj2hIvoBFXAwgIm7CqEEMWtPkSLbC6Rzw0thcy1w9hraFe9jNzKwTvMxuEGXW2VJBGf9b02EQwxFPJ4mp0K1uBKvRCSyPA1XYz9smjhKo0PDwFI0kurL7tZ7PRZ7f6kPLHOts_0hqgmBQOwibkFLMPmt_sILqt_TFLEY-lM8gPBknuQUQkpP2OECsbdOz_nISwBVhUrZH1NAS5H6_6zRtYZg6mnCIVcDTjip16MioeryXAKh8uhikKAi0qdWXK04RdlO8"
+                    fill
+                    className="object-cover"
+                    priority
                 />
                 {/* Gradient Overlay: Darker at top for header visibility and bottom for text contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80"></div>
