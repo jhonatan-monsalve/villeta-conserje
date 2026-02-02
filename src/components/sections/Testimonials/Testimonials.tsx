@@ -1,5 +1,6 @@
 "use client";
 
+import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { HiStar } from "react-icons/hi";
@@ -19,21 +20,21 @@ const TESTIMONIALS: Testimonial[] = [
         quote: "Es un lugar increíble, la mejor opción para desconectarse del ruido y muy cerca del río, hace la experiencia aún más acogedora, espero volver en algún momento a este lugar soñado, tiene una atención al detalle única,Jennifer es increíblemente amable y fue muy fácil la comunicación ante cualquier duda respuestas al instante.",
         author: "Andrea",
         location: "Bogotá, Colombia",
-        image: "https://a0.muscache.com/im/pictures/user/e8dc9158-b088-4bf7-9dde-ce84e1310c5e.jpg?im_w=240",
+        image: "images/testimonial-1.jpg",
         meta: "Hace 2 semanas · En grupo"
     },
     {
         quote: "Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna..\n\nCabe destacar que la persona de la cocina  muy limpia y cocina delicioso.\n\nSúper mega recomendados",
         author: "Deivy",
         location: "Bogotá, Colombia",
-        image: "https://a0.muscache.com/im/pictures/user/User-522374719/original/65c83cd4-9188-47de-855a-03a2ee2d08ff.jpeg?im_w=240",
+        image: "images/testimonial-2.jpg",
         meta: "Hace 2 semanas · En grupo"
     },
     {
         quote: "Es una casa hermosa, decorada con el mejor gusto, en un sitio inmejorable en medio de la naturaleza. Ideal para cualquier plan desde el descanso y la desconexión hasta la diversión con familia o amigos. El servicio de Yennifer es impecable, personalizado y lleno de detalles, permitiendo que los huespedes se puedan desentender de todos los temas logísticos para poderse concentrar en disfrutar de un buen descanso. El servicio de alimentación con Mayo también es un punto muy positivo en calidad y servicio.",
         author: "Karen",
         location: "Bogotá, Colombia",
-        image: "https://a0.muscache.com/im/pictures/user/User-119767582/original/184cd811-b1d4-4882-bf8c-62aeca9948e1.jpeg?im_w=240",
+        image: "images/testimonial-3.jpg",
         meta: "noviembre de 2025 · Con niños"
     }
 ];
@@ -98,9 +99,11 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                 {/* Info del Autor en la parte superior */}
                 <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative shrink-0 border-2 border-primary/5">
-                        <img
+                        <ExportedImage
                             src={testimonial.image}
-                            alt={`Portrait of ${testimonial.author}`}
+                            alt={`Retrato de ${testimonial.author}`}
+                            width={56}
+                            height={56}
                             className="w-full h-full object-cover"
                         />
                     </div>

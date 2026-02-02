@@ -1,5 +1,6 @@
 "use client";
 
+import ExportedImage from "next-image-export-optimizer";
 import { useState, useEffect } from "react";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
@@ -9,26 +10,22 @@ import { HiStar, HiArrowRight, HiOutlineSparkles } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
 
 // Real images extracted from the Airbnb listing for Casa Bambú
+// Colección de imágenes locales para garantizar carga rápida y conversión a WebP mediante next-image-export-optimizer.
 const PROPERTY_IMAGES = [
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/0202cb98-7976-489c-a781-7928cb5fb071.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/0828f80e-18a6-4404-8d84-d80976e69f1b.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/1a518207-f3aa-4352-bddb-0a13ac8913d4.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/1cbec290-0181-4003-8784-b07a8d61bbab.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/1f2ffd67-0d76-4fc9-839d-2190d03eeaaf.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/209a8b2d-8904-488d-8f16-9335138558ca.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/255201b6-d64e-424b-9c05-99579d9054d0.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/28912b3d-92e3-4455-a43d-340dd780c94b.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/2cfa6692-3288-4456-9402-f4d40ad046cf.jpeg?im_w=1200",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-1402264507691687773/original/2f77363c-006e-4643-84cf-d94163b4494f.jpeg?im_w=1200"
+    "images/casa-bambu/bambu-1.jpg",
+    "images/casa-bambu/bambu-2.jpg",
+    "images/casa-bambu/bambu-3.jpg",
+    "images/casa-bambu/bambu-4.jpg",
 ];
 
 export function FeaturedProperty() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
+        // Temporizador para el cambio automático de imágenes cada 2 segundos.
         const timer = setInterval(() => {
             setCurrentImageIndex((prev) => (prev + 1) % PROPERTY_IMAGES.length);
-        }, 2000); // Strictly 2 seconds as requested
+        }, 2000);
 
         return () => clearInterval(timer);
     }, []);
@@ -62,11 +59,13 @@ export function FeaturedProperty() {
                                     className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${idx === currentImageIndex ? "opacity-100" : "opacity-0"
                                         }`}
                                 >
-                                    <img
+                                    {/* Componente optimizado que sirve imágenes en formato moderno y tamaño adaptable */}
+                                    <ExportedImage
                                         src={img}
-                                        alt={`Casa Bambú Villeta Photo ${idx + 1}`}
-                                        className="w-full h-full object-cover"
-                                        loading={idx === 0 ? "eager" : "lazy"}
+                                        alt={`Casa Bambú Villeta Foto ${idx + 1}`}
+                                        fill
+                                        className="object-cover"
+                                        priority={idx === 0} // Precarga la primera imagen del carrusel
                                     />
                                     {/* Subtle Gradient Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
@@ -79,6 +78,7 @@ export function FeaturedProperty() {
                                     <button
                                         key={idx}
                                         onClick={() => setCurrentImageIndex(idx)}
+                                        aria-label={`Ver foto ${idx + 1} de la propiedad`}
                                         className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentImageIndex
                                             ? "w-6 bg-white shadow-md"
                                             : "w-1.5 bg-white/40 hover:bg-white/60"

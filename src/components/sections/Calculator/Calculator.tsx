@@ -33,11 +33,12 @@ export function Calculator() {
                         <div className="p-8 bg-surface-light/50 dark:bg-zinc-800/20 space-y-8">
                             {/* Rooms Slider */}
                             <div>
-                                <label className="text-sm font-bold text-text-main dark:text-white mb-2 flex justify-between">
+                                <label htmlFor="rooms-range" className="text-sm font-bold text-text-main dark:text-white mb-2 flex justify-between">
                                     Número de Habitaciones
                                     <span className="text-primary text-lg">{rooms}</span>
                                 </label>
                                 <input
+                                    id="rooms-range"
                                     type="range"
                                     min="2"
                                     max="6"
@@ -80,7 +81,9 @@ export function Calculator() {
                                 </label>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input
+                                        id="pool-toggle"
                                         type="checkbox"
+                                        aria-label="¿Tiene piscina?"
                                         checked={hasPool}
                                         onChange={(e) => setHasPool(e.target.checked)}
                                         className="sr-only peer"

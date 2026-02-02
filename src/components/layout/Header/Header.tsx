@@ -117,6 +117,7 @@ export function Header() {
                         <button
                             className="md:hidden p-2 text-zinc-800"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                         >
                             {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
                         </button>

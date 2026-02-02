@@ -8,6 +8,8 @@ import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 
+// Configuración de fuentes de Google para optimizar el rendimiento visual.
+// 'display: swap' asegura que el texto sea legible antes de que se cargue la fuente personalizada.
 const playfair = Playfair_Display({
     subsets: ["latin"],
     variable: "--font-playfair",
@@ -54,6 +56,10 @@ export const metadata: Metadata = {
     },
 };
 
+/**
+ * RootLayout: Componente que envuelve toda la aplicación.
+ * Gestiona el SEO global, scripts de analíticas y la estructura base del DOM.
+ */
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -68,14 +74,18 @@ export default function RootLayout({
                         src="https://www.googletagmanager.com/ns.html?id=GTM-5HFRPSX4"
                         height="0"
                         width="0"
+                        title="Google Tag Manager"
                         style={{ display: "none", visibility: "hidden" }}
                     />
                 </noscript>
 
-                {/* Google Tag Manager */}
+                {/* 
+                  Google Tag Manager: Se carga con estrategia 'lazyOnload' para priorizar 
+                  el renderizado visual de la página (LCP) antes de cargar analíticas.
+                */}
                 <Script
                     id="gtm-script"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

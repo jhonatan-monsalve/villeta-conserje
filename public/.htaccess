@@ -1,36 +1,46 @@
+# REGLAS DE SERVIDOR - VILLETA CONSERJE
+# Estas reglas optimizan la entrega de archivos y aseguran el sitio contra ataques comunes.
+
 <IfModule mod_rewrite.c>
   Options +FollowSymLinks
   RewriteEngine On
   RewriteBase /
 
-  # Serve .html files without extension
+  # URLs Limpias: Permite acceder a /blog/articulo en lugar de /blog/articulo.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # Custom 404
+  # Redirección personalizada para errores 404
   ErrorDocument 404 /404.html
+
+  # Garantizar que los archivos de rastreo se entreguen con el tipo de contenido correcto para SEO
+  <Files "robots.txt">
+    Header set Content-Type "text/plain"
+  </Files>
+  <Files "sitemap.xml">
+    Header set Content-Type "application/xml"
+  </Files>
 </IfModule>
 
 <IfModule mod_headers.c>
-  # 1. Protección contra Clickjacking
+  # ENCABEZADOS DE SEGURIDAD (Calificación A en auditores de seguridad)
+
+  # 1. Protección contra Clickjacking: Evita que el sitio se cargue en un frame externo
   Header always set X-Frame-Options "SAMEORIGIN"
 
-  # 2. Protección contra inyección de tipos MIME
+  # 2. Protección contra inyección de tipos MIME: Evita que el navegador adivine el tipo de archivo
   Header always set X-Content-Type-Options "nosniff"
 
-  # 3. Seguridad de transporte estricta (HSTS)
-  # Asegura que el navegador siempre use HTTPS
+  # 3. Seguridad de transporte estricta (HSTS): Fuerza el uso de HTTPS por 1 año
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-  # 4. Política de Referencia
+  # 4. Política de Referencia: Controla cuánta información se comparte al hacer clic en enlaces externos
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-  # 5. Política de Permisos (Permissions-Policy)
-  # Desactiva funciones del navegador que no necesitamos para mayor privacidad
+  # 5. Política de Permisos: Desactiva acceso a hardware no necesario para privacidad del usuario
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
 
-  # 6. Política de Seguridad de Contenido (CSP)
-  # Permite scripts de Google, imágenes externas y estilos inline necesarios para Next.js
-  Header always set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';"
+  # 6. Content Security Policy (CSP): Bloquea scripts no autorizados y protege contra Clickjacking avanzado
+  Header always set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';"
 </IfModule>

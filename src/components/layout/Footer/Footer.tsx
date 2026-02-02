@@ -76,7 +76,7 @@ export function Footer() {
                                 ))}
                             </div>
                             <p className="text-xs uppercase tracking-widest text-zinc-900 font-bold mb-1 group-hover:text-primary transition-colors">Superanfitrión Airbnb</p>
-                            <p className="text-[11px] opacity-60 mb-3">14 Reservas atendidas con calificación perfecta.</p>
+                            <p className="text-[11px] opacity-60 mb-3">15 Reservas atendidas con calificación perfecta.</p>
                         </a>
                     </div>
                 </div>

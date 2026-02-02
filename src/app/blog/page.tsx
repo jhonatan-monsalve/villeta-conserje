@@ -1,3 +1,4 @@
+import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { getSortedPostsData } from "@/lib/blog";
 import Link from "next/link";
@@ -36,9 +37,11 @@ export default function BlogPage() {
                             <article key={post.slug} className="group cursor-pointer">
                                 <Link href={`/blog/${post.slug}`}>
                                     <div className="relative aspect-video rounded-2xl overflow-hidden mb-6 shadow-lg">
-                                        <img
+                                        <ExportedImage
                                             src={post.image}
                                             alt={post.title}
+                                            width={600}
+                                            height={400}
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                         <div className="absolute top-4 left-4">

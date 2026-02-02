@@ -31,8 +31,8 @@ const config: Config = {
           dark: "#10221a",
         },
         text: {
-          main: "#3A3A3A",
-          sub: "#4c9a79",
+          main: "#1A1A1A",
+          sub: "#225243",
           light: "#F8F6F3",
         },
         border: {

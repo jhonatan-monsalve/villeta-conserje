@@ -13,8 +13,10 @@ export function Logo({ className = "" }: LogoProps) {
         <div className={`flex items-center justify-center ${className}`}>
             <img
                 src="/logotipo_villeta_conserje.svg"
-                alt="Villeta Conserje Logo"
+                alt="Villeta Conserje - Gestión Premium de Fincas en Airbnb"
                 className="w-full h-auto"
+                width={180}
+                height={60}
                 style={{ maxHeight: '100%' }}
             />
         </div>

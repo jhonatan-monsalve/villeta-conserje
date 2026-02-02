@@ -1,3 +1,4 @@
+import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { notFound } from "next/navigation";
 import { HiClock, HiCalendar, HiUser, HiArrowLeft } from "react-icons/hi";
@@ -108,10 +109,13 @@ export default async function BlogPostDetail({ params }: Props) {
                         </header>
 
                         <div className="aspect-video w-full rounded-3xl overflow-hidden mb-12 shadow-2xl">
-                            <img
+                            <ExportedImage
                                 src={post.image}
                                 alt={post.title}
+                                width={1200}
+                                height={675}
                                 className="w-full h-full object-cover"
+                                priority
                             />
                         </div>
 

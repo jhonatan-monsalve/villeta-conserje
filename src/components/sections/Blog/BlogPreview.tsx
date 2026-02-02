@@ -1,3 +1,4 @@
+import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { getSortedPostsData } from "@/lib/blog";
 import Link from "next/link";
@@ -30,9 +31,11 @@ export function BlogPreview() {
                         <article key={post.slug} className="group bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-border dark:border-white/5">
                             <Link href={`/blog/${post.slug}`} className="flex flex-col sm:flex-row h-full">
                                 <div className="sm:w-2/5 relative h-48 sm:h-auto overflow-hidden">
-                                    <img
+                                    <ExportedImage
                                         src={post.image}
                                         alt={post.title}
+                                        width={400}
+                                        height={250}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute top-3 left-3">
