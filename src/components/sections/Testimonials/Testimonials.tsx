@@ -43,7 +43,7 @@ export function Testimonials() {
         <section className="py-16 sm:py-24 bg-surface-light dark:bg-surface-dark" id="reviews">
             <Container>
                 <h2 className="text-center text-3xl sm:text-4xl font-display font-bold text-text-main dark:text-white mb-4">
-                    14 Reservas Atendidas.<br />14 Calificaciones de 5 Estrellas.
+                    15 Reservas Atendidas.<br />15 Calificaciones de 5 Estrellas.
                 </h2>
                 <p className="text-center text-text-sub dark:text-gray-400 mb-12 max-w-2xl mx-auto">
                     No gestionamos volumen, gestionamos excelencia. Descubre por qué somos Superanfitriones preferidos en Villeta.
