@@ -42,6 +42,14 @@ export const metadata: Metadata = {
         description: "Maximizamos la rentabilidad de tu propiedad en Villeta con gestión de Superhost profesional.",
         url: 'https://www.villetaconserje.com',
         siteName: SITE_CONFIG.name,
+        images: [
+            {
+                url: '/images/hero-bg.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Villeta Conserje - Gestión de Fincas de Lujo en Villeta',
+            }
+        ],
         locale: 'es_CO',
         type: 'website',
     },
@@ -49,6 +57,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: SITE_CONFIG.name,
         description: SITE_CONFIG.description,
+        images: ['/images/hero-bg.jpg'],
     },
     robots: {
         index: true,
