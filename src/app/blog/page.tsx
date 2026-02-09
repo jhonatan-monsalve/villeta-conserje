@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Blog de Gestión de Propiedades en Airbnb | Villeta Conserje",
         description: "Maximiza la rentabilidad de tu finca en Villeta con nuestros consejos expertos.",
-        url: 'https://www.villetaconserje.com/blog',
+        url: 'https://villetaconserje.com/blog',
         images: [
             {
                 url: '/images/hero-bg.jpg',

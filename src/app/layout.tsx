@@ -24,7 +24,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://www.villetaconserje.com'),
+    metadataBase: new URL('https://villetaconserje.com'),
     title: {
         default: `${SITE_CONFIG.name} | Administración de Fincas en Airbnb Villeta`,
         template: `%s | ${SITE_CONFIG.name}`
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo`,
         description: "Maximizamos la rentabilidad de tu propiedad en Villeta con gestión de Superhost profesional.",
-        url: 'https://www.villetaconserje.com',
+        url: 'https://villetaconserje.com',
         siteName: SITE_CONFIG.name,
         images: [
             {

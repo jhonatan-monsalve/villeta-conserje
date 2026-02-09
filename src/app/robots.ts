@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: '/private/',
             },
         ],
-        sitemap: 'https://www.villetaconserje.com/sitemap.xml',
+        sitemap: 'https://villetaconserje.com/sitemap.xml',
     }
 }

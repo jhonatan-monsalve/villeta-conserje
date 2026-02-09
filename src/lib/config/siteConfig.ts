@@ -5,7 +5,7 @@
 export const SITE_CONFIG = {
     name: "Villeta Conserje",
     description: "Administración de Propiedades de Lujo en Airbnb - Villeta",
-    url: "https://www.villetaconserje.com",
+    url: "https://villetaconserje.com",
     whatsapp: "573204325845",
     email: "gerencia@villetaconserje.com",
 
