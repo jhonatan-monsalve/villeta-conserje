@@ -15,6 +15,7 @@ const NAV_LINKS = [
     { href: "/#servicios", label: "Servicios", id: "servicios" },
     { href: "/#reviews", label: "Testimonios", id: "reviews" },
     { href: "/#blog-preview", label: "Blog", id: "blog-preview" },
+    { href: "/#auditoria", label: "Auditoría", id: "auditoria" },
     { href: "/#faq", label: "Preguntas", id: "faq" },
 ];
 
@@ -56,7 +57,7 @@ export function Header() {
 
             const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
-            const sectionIds = ["home", "comparativa", "servicios", "reviews", "blog-preview", "faq"];
+            const sectionIds = ["home", "comparativa", "servicios", "reviews", "blog-preview", "auditoria", "faq"];
             sectionIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) observer.observe(el);
@@ -107,11 +108,11 @@ export function Header() {
 
                     {/* Actions */}
                     <div className="flex items-center gap-4">
-                        <a href={SITE_CONFIG.links.whatsapp_audit} target="_blank" rel="noopener noreferrer" className="hidden md:block">
+                        <Link href="/auditoria" className="hidden md:block">
                             <Button className="font-sans text-xs font-bold uppercase tracking-[0.15em] bg-primary text-white px-6 py-3 rounded-[4px] hover:bg-gold hover:text-white hover:-translate-y-0.5 transition-all duration-300 shadow-md">
                                 Auditoría
                             </Button>
-                        </a>
+                        </Link>
 
                         {/* Mobile Menu Toggle */}
                         <button
@@ -139,11 +140,11 @@ export function Header() {
                                     {link.label}
                                 </Link>
                             ))}
-                            <a href={SITE_CONFIG.links.whatsapp_audit} target="_blank" rel="noopener noreferrer" className="mt-2 text-center">
+                            <Link href="/auditoria" className="mt-2 text-center" onClick={() => setIsMenuOpen(false)}>
                                 <Button className="w-full font-sans text-xs font-bold uppercase tracking-[0.15em] bg-primary text-white px-6 py-3 rounded-[4px]">
                                     Solicitar Auditoría
                                 </Button>
-                            </a>
+                            </Link>
                         </nav>
                     </div>
                 )}

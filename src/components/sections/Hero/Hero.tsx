@@ -2,6 +2,7 @@ import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
+import Link from "next/link";
 
 export function Hero() {
     return (
@@ -37,11 +38,11 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
-                        <a href={SITE_CONFIG.links.whatsapp_audit} target="_blank" rel="noopener noreferrer">
+                        <Link href="/#auditoria">
                             <Button className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] bg-[#10221a] text-white px-10 py-5 rounded-[4px] hover:bg-gold hover:text-white hover:-translate-y-1 transition-all duration-500 shadow-xl border border-white/10 text-sm">
                                 Solicitar Auditoría
                             </Button>
-                        </a>
+                        </Link>
                         <a href="#servicios">
                             <Button variant="ghost" className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] text-white bg-transparent border border-white/30 px-10 py-5 rounded-[4px] hover:bg-white hover:text-black hover:-translate-y-1 transition-all duration-500 backdrop-blur-sm text-sm">
                                 Ver Cómo Funciona

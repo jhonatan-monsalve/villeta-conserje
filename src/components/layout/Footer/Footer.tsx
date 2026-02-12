@@ -28,6 +28,7 @@ export function Footer() {
                             <Link href="/#comparativa" className="hover:text-primary transition-colors">Comparativa</Link>
                             <Link href="/#servicios" className="hover:text-primary transition-colors">Nuestros Servicios</Link>
                             <Link href="/#reviews" className="hover:text-primary transition-colors">Testimonios Reales</Link>
+                            <Link href="/auditoria" className="hover:text-primary transition-colors">Auditoría Gratuita</Link>
                         </nav>
                     </div>
 
