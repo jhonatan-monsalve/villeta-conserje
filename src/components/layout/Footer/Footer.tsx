@@ -7,7 +7,7 @@ import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 export function Footer() {
     return (
-        <footer className="bg-surface-light border-t border-zinc-200 pt-16 pb-12 text-zinc-600" style={{ colorScheme: 'light' }}>
+        <footer className="bg-surface-light border-t border-zinc-200 pt-16 pb-12 text-[#1B4D3E]" style={{ colorScheme: 'light' }}>
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* Col 1: Brand */}
@@ -22,7 +22,7 @@ export function Footer() {
 
                     {/* Col 2: Navigation */}
                     <div className="flex flex-col gap-6">
-                        <h4 className="font-display text-zinc-900 text-lg font-medium italic">Navegación</h4>
+                        <h4 className="font-display text-[#064e3b] text-lg font-medium italic">Navegación</h4>
                         <nav className="flex flex-col gap-3 text-sm font-medium">
                             <Link href="/#home" className="hover:text-primary transition-colors">Inicio</Link>
                             <Link href="/#comparativa" className="hover:text-primary transition-colors">Comparativa</Link>
@@ -34,7 +34,7 @@ export function Footer() {
 
                     {/* Col 3: Contact */}
                     <div className="flex flex-col gap-6">
-                        <h4 className="font-display text-zinc-900 text-lg font-medium italic">Contacto</h4>
+                        <h4 className="font-display text-[#064e3b] text-lg font-medium italic">Contacto</h4>
                         <div className="flex flex-col gap-4 text-sm font-medium">
                             <a
                                 href={SITE_CONFIG.links.whatsapp_general}
@@ -64,7 +64,7 @@ export function Footer() {
 
                     {/* Col 4: Status / Badge */}
                     <div className="flex flex-col gap-6">
-                        <h4 className="font-display text-zinc-900 text-lg font-medium italic">Reconocimientos</h4>
+                        <h4 className="font-display text-[#064e3b] text-lg font-medium italic">Reconocimientos</h4>
                         <a
                             href="https://www.airbnb.com.co/users/profile/1470722789148483549?previous_page_name=PdpHomeMarketplace"
                             target="_blank"
@@ -76,7 +76,7 @@ export function Footer() {
                                     <span key={i}>★</span>
                                 ))}
                             </div>
-                            <p className="text-xs uppercase tracking-widest text-zinc-900 font-bold mb-1 group-hover:text-primary transition-colors">Superanfitrión Airbnb</p>
+                            <p className="text-xs uppercase tracking-widest text-[#064e3b] font-bold mb-1 group-hover:text-primary transition-colors">Superanfitrión Airbnb</p>
                             <p className="text-[11px] opacity-60 mb-3">15 Reservas atendidas con calificación perfecta.</p>
                         </a>
                     </div>
