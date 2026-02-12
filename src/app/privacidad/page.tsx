@@ -1,6 +1,15 @@
 import { Container } from "@/components/layout/Container";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Política de Privacidad | Villeta Conserje",
+    alternates: {
+        canonical: '/privacidad',
+    },
+};
+
 export default function PrivacyPolicy() {
     return (
         <main className="min-h-screen bg-background text-zinc-800">

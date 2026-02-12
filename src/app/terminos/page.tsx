@@ -1,6 +1,15 @@
 import { Container } from "@/components/layout/Container";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Términos y Condiciones | Villeta Conserje",
+    alternates: {
+        canonical: '/terminos',
+    },
+};
+
 export default function TermsOfService() {
     return (
         <main className="min-h-screen bg-background text-zinc-800">

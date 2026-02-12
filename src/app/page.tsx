@@ -11,6 +11,14 @@ import { FeaturedProperty } from "@/components/sections/FeaturedProperty/Feature
 import { BlogPreview } from "@/components/sections/Blog/BlogPreview";
 import { ScrollReveal } from "@/components/ui/animations/ScrollReveal";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    alternates: {
+        canonical: '/',
+    },
+};
+
 export default function Home() {
     return (
         <main className="min-h-screen bg-background">
