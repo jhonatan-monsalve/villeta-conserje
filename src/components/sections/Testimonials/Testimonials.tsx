@@ -105,6 +105,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                             width={56}
                             height={56}
                             className="w-full h-full object-cover"
+                            loading="lazy"
                         />
                     </div>
                     <div>

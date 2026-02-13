@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import dynamic from 'next/dynamic';
 import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import { FloatingWhatsApp } from "@/components/ui/buttons/FloatingWhatsApp";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
-import { CookieConsent } from "@/components/ui/CookieConsent";
+
+// Dynamic imports for non-critical UI components
+const FloatingWhatsApp = dynamic(() => import("@/components/ui/buttons/FloatingWhatsApp").then(mod => ({ default: mod.FloatingWhatsApp })), {
+    ssr: false,
+});
+
+const CookieConsent = dynamic(() => import("@/components/ui/CookieConsent").then(mod => ({ default: mod.CookieConsent })), {
+    ssr: false,
+});
 
 // Configuración de fuentes de Google para optimizar el rendimiento visual.
 // 'display: swap' asegura que el texto sea legible antes de que se cargue la fuente personalizada.
@@ -74,6 +82,14 @@ export default function RootLayout({
     return (
         <html lang="es" className={`${playfair.variable} ${montserrat.variable}`}>
             <head>
+                {/* Preload critical hero image for faster LCP */}
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/images/hero-bg.jpg"
+                    fetchPriority="high"
+                />
+
                 {/* Preconnect to external domains for faster resource loading */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

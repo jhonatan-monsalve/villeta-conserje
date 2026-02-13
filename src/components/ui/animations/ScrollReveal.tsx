@@ -36,8 +36,8 @@ export function ScrollReveal({
             }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{
-                duration: 1.2,
-                delay: delay,
+                duration: 0.6,
+                delay: delay * 0.5,
                 ease: [0.16, 1, 0.3, 1]
             }}
             style={{ width }}

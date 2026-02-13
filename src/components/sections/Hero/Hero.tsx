@@ -15,6 +15,7 @@ export function Hero() {
                     fill
                     className="object-cover"
                     priority
+                    fetchPriority="high"
                 />
                 {/* Gradient Overlay: Darker at top for header visibility and bottom for text contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80"></div>

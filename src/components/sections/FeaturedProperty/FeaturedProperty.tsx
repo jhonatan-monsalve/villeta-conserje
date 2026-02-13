@@ -66,6 +66,7 @@ export function FeaturedProperty() {
                                         fill
                                         className="object-cover"
                                         priority={idx === 0} // Precarga la primera imagen del carrusel
+                                        loading={idx === 0 ? undefined : "lazy"}
                                     />
                                     {/* Subtle Gradient Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
