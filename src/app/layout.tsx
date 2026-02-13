@@ -101,6 +101,40 @@ export default function RootLayout({
                     }}
                 />
 
+                {/* Schema Markup para SEO Local - Define el área de servicio en Google Maps */}
+                <Script
+                    id="local-business-schema"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": SITE_CONFIG.name,
+                            "description": SITE_CONFIG.description,
+                            "url": "https://villetaconserje.com",
+                            "telephone": `+${SITE_CONFIG.whatsapp}`,
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Villeta",
+                                "addressRegion": "Cundinamarca",
+                                "addressCountry": "CO"
+                            },
+                            "areaServed": [
+                                { "@type": "City", "name": "Villeta" },
+                                { "@type": "Place", "name": "Vereda Salitre Negro" },
+                                { "@type": "Place", "name": "Vereda Cune" },
+                                { "@type": "Place", "name": "Vereda Maní" },
+                                { "@type": "Place", "name": "Vereda Bagazal" },
+                                { "@type": "Place", "name": "Vereda Salitre Blanco" },
+                                { "@type": "Place", "name": "Vereda Payandé" },
+                                { "@type": "Place", "name": "Conjunto Campestre Los Cámbulos" },
+                                { "@type": "Place", "name": "Conjunto Residencial Hacienda Dos Maderos" }
+                            ],
+                            "knowsAbout": ["Mantenimiento de fincas", "Conserjería", "Cuidado de casas de recreo", "Villeta Cundinamarca"]
+                        })
+                    }}
+                />
+
                 <Header />
                 {children}
                 <Footer />

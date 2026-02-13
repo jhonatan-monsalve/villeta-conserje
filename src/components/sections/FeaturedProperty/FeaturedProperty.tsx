@@ -108,7 +108,7 @@ export function FeaturedProperty() {
                                     <div className="flex items-center gap-0.5 text-[#C9A961] mb-1">
                                         {[...Array(5)].map((_, i) => <HiStar key={i} size={16} className="fill-current" />)}
                                     </div>
-                                    <p className="text-[11px] font-black tracking-tighter text-text-main dark:text-gray-300">14/14 RESEÑAS 5★</p>
+                                    <p className="text-[11px] font-black tracking-tighter text-text-main dark:text-gray-300">15/15 RESEÑAS 5★</p>
                                 </div>
                             </div>
 
