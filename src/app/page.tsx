@@ -1,15 +1,33 @@
+import dynamic from 'next/dynamic';
 import { Hero } from "@/components/sections/Hero/Hero";
 import { Services } from "@/components/sections/Services/Services";
 import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
-import { Calculator } from "@/components/sections/Calculator/Calculator";
-import { ContactForm } from "@/components/sections/Contact/ContactForm";
 import { Problem } from "@/components/sections/Problem/Problem";
 import { Solution } from "@/components/sections/Solution/Solution";
 import { Comparison } from "@/components/sections/Comparison/Comparison";
-import { FAQ } from "@/components/sections/FAQ/FAQ";
 import { FeaturedProperty } from "@/components/sections/FeaturedProperty/FeaturedProperty";
-import { BlogPreview } from "@/components/sections/Blog/BlogPreview";
 import { ScrollReveal } from "@/components/ui/animations/ScrollReveal";
+
+// Dynamic imports for below-the-fold components to reduce initial bundle size
+const Calculator = dynamic(() => import("@/components/sections/Calculator/Calculator").then(mod => ({ default: mod.Calculator })), {
+    ssr: false,
+    loading: () => <div className="min-h-[400px]" />
+});
+
+const ContactForm = dynamic(() => import("@/components/sections/Contact/ContactForm").then(mod => ({ default: mod.ContactForm })), {
+    ssr: false,
+    loading: () => <div className="min-h-[500px]" />
+});
+
+const FAQ = dynamic(() => import("@/components/sections/FAQ/FAQ").then(mod => ({ default: mod.FAQ })), {
+    ssr: false,
+    loading: () => <div className="min-h-[400px]" />
+});
+
+const BlogPreview = dynamic(() => import("@/components/sections/Blog/BlogPreview").then(mod => ({ default: mod.BlogPreview })), {
+    ssr: false,
+    loading: () => <div className="min-h-[400px]" />
+});
 
 import { Metadata } from "next";
 
