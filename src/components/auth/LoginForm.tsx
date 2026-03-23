@@ -236,17 +236,6 @@ export function LoginForm() {
                         Contáctanos para gestionar tu finca
                     </Link>
                 </p>
-                <div className="mt-4">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                        </svg>
-                        Volver al inicio
-                    </Link>
-                </div>
             </div>
         </div>
     );
