@@ -44,7 +44,7 @@ export function Services() {
                             Manejamos las complejidades del alquiler a corto plazo para que usted disfrute de ingresos pasivos.
                         </p>
                         <a
-                            href="#auditoria"
+                            href="#valoracion"
                             className="text-primary font-bold hover:underline inline-flex items-center gap-1"
                         >
                             Obtenga su estimación de ingresos

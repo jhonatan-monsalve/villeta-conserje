@@ -5,8 +5,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Términos y Condiciones | Villeta Conserje",
+    description: "Conoce los términos y condiciones del servicio de gestión de fincas de Villeta Conserje en Villeta, Cundinamarca.",
     alternates: {
         canonical: '/terminos',
+    },
+    robots: {
+        index: true,
+        follow: false,
     },
 };
 
@@ -22,20 +27,20 @@ export default function TermsOfService() {
 
                         <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none text-text-sub dark:text-gray-300 space-y-6 text-justify">
                             <p>
-                                Bienvenidos a <strong>{SITE_CONFIG.name}</strong>. Al acceder a nuestro sitio web y utilizar nuestros servicios de auditoría y gestión de propiedades en Airbnb, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones.
+                                Bienvenidos a <strong>{SITE_CONFIG.name}</strong>. Al acceder a nuestro sitio web y utilizar nuestros servicios de valoración y gestión de propiedades en Airbnb, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones.
                             </p>
 
                             <section>
                                 <h2 className="text-xl font-bold text-text-main dark:text-white mb-3">1. Objeto de los Servicios</h2>
                                 <p>
-                                    {SITE_CONFIG.name} ofrece servicios de auditoría, optimización y gestión integral de propiedades para alquiler vacacional exclusivamente en la plataforma Airbnb. Nuestros servicios incluyen, pero no se limitan a, gestión de reservas, limpieza, mantenimiento y marketing digital.
+                                    {SITE_CONFIG.name} ofrece servicios de valoración, optimización y gestión integral de propiedades para alquiler vacacional exclusivamente en la plataforma Airbnb. Nuestros servicios incluyen, pero no se limitan a, gestión de reservas, limpieza, mantenimiento y marketing digital.
                                 </p>
                             </section>
 
                             <section>
-                                <h2 className="text-xl font-bold text-text-main dark:text-white mb-3">2. Auditoría Gratuita</h2>
+                                <h2 className="text-xl font-bold text-text-main dark:text-white mb-3">2. Valoración Gratuita</h2>
                                 <p>
-                                    La auditoría gratuita ofrecida a través del portal "Solicitar Mi Auditoría" es una evaluación diagnóstica sin compromiso contractual inmediato. {SITE_CONFIG.name} se reserva el derecho de seleccionar las propiedades a auditar basándose en criterios de ubicación y potencial de mercado.
+                                    La valoración gratuita ofrecida a través del portal "Solicitar Mi Valoración" es una evaluación diagnóstica sin compromiso contractual inmediato. {SITE_CONFIG.name} se reserva el derecho de seleccionar las propiedades a valorar basándose en criterios de ubicación y potencial de mercado.
                                 </p>
                             </section>
 

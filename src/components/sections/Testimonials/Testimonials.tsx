@@ -116,7 +116,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
                 {/* Estrellas y Meta */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <div className="flex text-gold">
+                    <div className="flex text-gold" role="img" aria-label="Calificación: 5 estrellas">
                         {[...Array(5)].map((_, i) => (
                             <HiStar key={i} className="text-lg fill-current" />
                         ))}

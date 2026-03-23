@@ -30,18 +30,18 @@ export function Hero() {
                     </div>
 
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium text-[#F5F5F5] leading-[1.1] tracking-tight mb-8 drop-shadow-none">
-                        Tu Finca en Villeta puede generar <br />
-                        <span className="italic text-gold font-serif block mt-2">$8M - $15M al Mes</span>
+                        ¿Cuánto Dinero Está Perdiendo <br />
+                        <span className="italic text-gold font-serif block mt-2">Tu Finca Cada Fin de Semana?</span>
                     </h1>
 
                     <p className="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed opacity-90 drop-shadow-md">
-                        Transformamos tu propiedad en la favorita de los huéspedes con gestión Superhost. Calidad 5 estrellas garantizada.
+                        Las fincas que gestionamos generan entre <strong className="text-white font-semibold">$8M y $15M al mes</strong>. Solicita tu valoración gratuita y descúbrelo en 24 horas.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
-                        <Link href="/#auditoria">
+                        <Link href="/#valoracion">
                             <Button className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] bg-[#10221a] text-white px-10 py-5 rounded-[4px] hover:bg-gold hover:text-white hover:-translate-y-1 transition-all duration-500 shadow-xl border border-white/10 text-sm">
-                                Solicitar Auditoría
+                                Solicitar Valoración
                             </Button>
                         </Link>
                         <a href="#servicios">
@@ -50,7 +50,7 @@ export function Hero() {
                             </Button>
                         </a>
                     </div>
-                    <p className="text-[10px] text-white/50 mt-8 tracking-wide uppercase px-1">Diagnóstico de ingresos en 24 horas</p>
+                    <p className="text-[10px] text-white/70 mt-8 tracking-wide uppercase px-1">Diagnóstico de ingresos en 24 horas</p>
                 </div>
             </Container>
         </section>

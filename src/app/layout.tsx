@@ -80,19 +80,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="es" className={`${playfair.variable} ${montserrat.variable}`}>
+        <html lang="es-CO" className={`${playfair.variable} ${montserrat.variable}`}>
             <head>
-                {/* Preload critical hero image for faster LCP */}
-                <link
-                    rel="preload"
-                    as="image"
-                    href="/images/hero-bg.jpg"
-                    fetchPriority="high"
-                />
-
                 {/* Preconnect to external domains for faster resource loading */}
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
             </head>
@@ -130,24 +120,43 @@ export default function RootLayout({
                     }}
                 />
 
-                {/* Schema Markup para SEO Local - Define el área de servicio en Google Maps */}
+                {/* Schema Markup SEO Local Completo - LocalBusiness + aggregateRating */}
                 <Script
                     id="local-business-schema"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
-                            "@type": "HomeAndConstructionBusiness",
+                            "@type": "LodgingBusiness",
                             "name": SITE_CONFIG.name,
-                            "description": SITE_CONFIG.description,
+                            "description": "Gestión integral y profesional de fincas de lujo en Villeta, Cundinamarca para alquiler vacacional en Airbnb. Servicio de Superanfitrión con estándar 5 estrellas.",
                             "url": "https://villetaconserje.com",
-                            "telephone": `+${SITE_CONFIG.whatsapp}`,
+                            "telephone": `+57${SITE_CONFIG.whatsapp}`,
+                            "email": SITE_CONFIG.email,
+                            "priceRange": "$$",
+                            "image": "https://villetaconserje.com/images/hero-bg.jpg",
+                            "logo": "https://villetaconserje.com/logotipo.png",
                             "address": {
                                 "@type": "PostalAddress",
+                                "streetAddress": "Villeta",
                                 "addressLocality": "Villeta",
                                 "addressRegion": "Cundinamarca",
+                                "postalCode": "252211",
                                 "addressCountry": "CO"
                             },
+                            "geo": {
+                                "@type": "GeoCoordinates",
+                                "latitude": "5.0119",
+                                "longitude": "-74.4716"
+                            },
+                            "openingHoursSpecification": [
+                                {
+                                    "@type": "OpeningHoursSpecification",
+                                    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                                    "opens": "08:00",
+                                    "closes": "20:00"
+                                }
+                            ],
                             "areaServed": [
                                 { "@type": "City", "name": "Villeta" },
                                 { "@type": "Place", "name": "Vereda Salitre Negro" },
@@ -159,7 +168,30 @@ export default function RootLayout({
                                 { "@type": "Place", "name": "Conjunto Campestre Los Cámbulos" },
                                 { "@type": "Place", "name": "Conjunto Residencial Hacienda Dos Maderos" }
                             ],
-                            "knowsAbout": ["Mantenimiento de fincas", "Conserjería", "Cuidado de casas de recreo", "Villeta Cundinamarca"]
+                            "hasOfferCatalog": {
+                                "@type": "OfferCatalog",
+                                "name": "Servicios de Gestión Airbnb",
+                                "itemListElement": [
+                                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión Integral Airbnb" } },
+                                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Limpieza Profesional 47 Puntos" } },
+                                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fotografía Profesional de Propiedades" } },
+                                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pricing Dinámico (Yield Management)" } },
+                                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mantenimiento Preventivo" } }
+                                ]
+                            },
+                            "sameAs": [
+                                SITE_CONFIG.links.airbnb_listing,
+                                "https://www.airbnb.com.co/users/profile/1470722789148483549"
+                            ],
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "5.0",
+                                "bestRating": "5",
+                                "worstRating": "1",
+                                "ratingCount": "15",
+                                "reviewCount": "15"
+                            },
+                            "knowsAbout": ["Gestión Airbnb Villeta", "Superanfitrión Colombia", "Alquiler Vacacional Cundinamarca", "Yield Management Fincas"]
                         })
                     }}
                 />

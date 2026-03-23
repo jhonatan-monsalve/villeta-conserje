@@ -16,9 +16,27 @@ const FAQS = [
     }
 ];
 
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQS.map(faq => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
+        }
+    }))
+};
+
 export function FAQ() {
     return (
         <section className="py-16 sm:py-24 bg-white dark:bg-zinc-950" id="faq">
+            {/* FAQPage Schema para Rich Snippets en Google */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             <Container className="max-w-4xl">
                 <h2 className="text-3xl font-bold text-text-main dark:text-white mb-8 text-center">Preguntas Frecuentes</h2>
                 <div className="space-y-4 mb-16">
@@ -40,3 +58,4 @@ export function FAQ() {
         </section>
     );
 }
+

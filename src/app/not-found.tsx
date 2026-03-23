@@ -2,6 +2,15 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 
+export const metadata = {
+    title: "Página no encontrada | Villeta Conserje",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
+
+
 export default function NotFound() {
     return (
         <div className="flex min-h-[70vh] flex-col items-center justify-center py-24">

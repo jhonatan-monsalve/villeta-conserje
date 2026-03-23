@@ -1,0 +1,6 @@
+# Redirects 301 permanentes para SEO
+# Formato: [origen] [destino] [código HTTP]
+
+# Cambio de "auditoria" a "valoracion" (Mar 2026)
+/auditoria    /valoracion    301
+/auditoria/   /valoracion/   301

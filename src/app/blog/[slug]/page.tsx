@@ -129,11 +129,11 @@ export default async function BlogPostDetail({ params }: Props) {
                                 ¿Quiere ver estos resultados en su propiedad?
                             </h3>
                             <p className="text-text-sub dark:text-gray-400 mb-8 max-w-lg mx-auto">
-                                No deje su inversión al azar. Permítanos auditar su finca y diseñar una estrategia de Superanfitrión a su medida.
+                                No deje su inversión al azar. Permítanos valorar su finca y diseñar una estrategia de Superanfitrión a su medida.
                             </p>
-                            <Link href="/#auditoria">
+                            <Link href="/#valoracion">
                                 <Button variant="primary" size="lg" className="px-10">
-                                    Solicitar Mi Auditoría Gratuita
+                                    Solicitar Mi Valoración Gratuita
                                 </Button>
                             </Link>
                         </div>

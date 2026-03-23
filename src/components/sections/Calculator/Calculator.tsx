@@ -46,7 +46,7 @@ export function Calculator() {
                                     onChange={(e) => setRooms(parseInt(e.target.value))}
                                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
                                 />
-                                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                                <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-1">
                                     <span>2</span>
                                     <span>6</span>
                                 </div>

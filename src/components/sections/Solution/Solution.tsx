@@ -6,7 +6,7 @@ import { HiArrowRight } from "react-icons/hi";
 
 const STEPS = [
     {
-        title: "Auditoría Inicial",
+        title: "Valoración Inicial",
         badge: "GRATIS",
         items: ["Visitamos tu propiedad", "Identificamos mejoras", "Propuesta de rentabilidad"]
     },
@@ -69,7 +69,7 @@ export function Solution() {
                     <div className="mt-12 text-center">
                         <a href={SITE_CONFIG.links.whatsapp_audit} target="_blank" rel="noopener noreferrer">
                             <Button variant="secondary" size="lg" className="uppercase tracking-wider gap-2">
-                                Quiero Mi Auditoría Gratuita
+                                Quiero Mi Valoración Gratuita
                                 <HiArrowRight className="text-xl" />
                             </Button>
                         </a>

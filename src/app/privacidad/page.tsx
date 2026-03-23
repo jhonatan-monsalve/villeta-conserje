@@ -5,8 +5,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Política de Privacidad | Villeta Conserje",
+    description: "Consulta la política de privacidad y el tratamiento de datos personales de Villeta Conserje según la Ley 1581 de 2012 de Colombia.",
     alternates: {
         canonical: '/privacidad',
+    },
+    robots: {
+        index: true,
+        follow: false,
     },
 };
 
@@ -36,7 +41,7 @@ export default function PrivacyPolicy() {
                                 <h2 className="text-xl font-bold text-text-main dark:text-white mb-3">2. Finalidad de la Información</h2>
                                 <p>La recolección y tratamiento de sus datos personales tiene las siguientes finalidades:</p>
                                 <ul className="list-disc pl-6 space-y-2">
-                                    <li>Gestionar la solicitud de auditoría de su propiedad.</li>
+                                    <li>Gestionar la solicitud de valoración de su propiedad.</li>
                                     <li>Establecer contacto para coordinar visitas diagnósticas.</li>
                                     <li>Enviar información relevante sobre nuestros servicios de administración de fincas.</li>
                                     <li>Realizar encuestas de satisfacción y mejora del servicio.</li>

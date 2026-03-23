@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
-    trailingSlash: true,
     images: {
         loader: "custom",
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -38,3 +36,8 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// NOTA SEO: La URL /auditoria fue renombrada a /valoracion (Mar 2026).
+// Configura en tu hosting un redirect 301: /auditoria -> /valoracion
+// Netlify: añade en public/_redirects -> /auditoria /valoracion 301
+// Vercel: este redirect se maneja automáticamente con next.config redirects()

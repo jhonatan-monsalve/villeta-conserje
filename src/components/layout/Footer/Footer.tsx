@@ -29,7 +29,7 @@ export function Footer() {
                             <Link href="/#comparativa" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Comparativa</Link>
                             <Link href="/#servicios" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Servicios</Link>
                             <Link href="/#reviews" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Testimonios</Link>
-                            <Link href="/auditoria" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Auditoría</Link>
+                            <Link href="/valoracion" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Valoración</Link>
                         </nav>
                     </div>
 
@@ -38,7 +38,7 @@ export function Footer() {
                         <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Contacto</h4>
                         <div className="flex flex-col gap-4">
                             <a
-                                href={SITE_CONFIG.links.whatsapp_general}
+                                href={SITE_CONFIG.contact.support.whatsappLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 hover:text-primary transition-all group text-sm"
@@ -47,12 +47,12 @@ export function Footer() {
                                 <span className="font-medium">+(57) {SITE_CONFIG.whatsapp}</span>
                             </a>
                             <a
-                                href={`mailto:${SITE_CONFIG.email}`}
+                                href={SITE_CONFIG.contact.support.emailLink}
                                 className="flex items-center gap-3 hover:text-primary transition-all group text-sm"
                                 title="Enviar un correo electrónico"
                             >
                                 <FaEnvelope className="text-gold group-hover:scale-110 transition-transform" size={18} />
-                                <span className="font-medium break-all">{SITE_CONFIG.email}</span>
+                                <span className="font-medium break-all">{SITE_CONFIG.contact.support.email}</span>
                             </a>
                             <div className="flex items-start gap-3 opacity-75 text-sm">
                                 <HiOutlineLocationMarker className="text-xl text-gold mt-0.5 flex-shrink-0" />
@@ -101,9 +101,11 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-zinc-200/60 flex flex-col md:flex-row justify-between items-center gap-6 md:pr-24">
-                    <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-[10px] uppercase tracking-wider font-semibold opacity-50">
+                    <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 text-[10px] uppercase tracking-wider font-semibold opacity-70">
                         <p>© {new Date().getFullYear()} {SITE_CONFIG.name}</p>
                         <div className="flex gap-4 text-[9px]">
+                            <Link href="/login" className="hover:text-primary hover:opacity-100 transition-all">Acceso Propietarios</Link>
+                            <span className="opacity-30">•</span>
                             <Link href="/privacidad" className="hover:text-primary hover:opacity-100 transition-all">Privacidad</Link>
                             <span className="opacity-30">•</span>
                             <Link href="/terminos" className="hover:text-primary hover:opacity-100 transition-all">Términos</Link>
@@ -114,7 +116,7 @@ export function Footer() {
                         href="https://techdetodos.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[8px] opacity-30 hover:opacity-80 hover:text-primary transition-all uppercase tracking-[0.3em] font-black"
+                        className="text-[8px] opacity-40 hover:opacity-80 hover:text-primary transition-all uppercase tracking-[0.3em] font-black"
                     >
                         Desarrollado por Tech de Todos
                     </a>

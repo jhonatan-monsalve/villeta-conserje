@@ -105,25 +105,25 @@ export function ContactForm() {
     };
 
     return (
-        <section className="py-16 sm:py-24 bg-surface-dark relative overflow-hidden" id="auditoria">
+        <section className="py-16 sm:py-24 bg-surface-dark relative overflow-hidden" id="valoracion">
             {/* Background Effect */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
 
             <Container className="relative z-10">
                 <div className="text-center max-w-2xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
-                        Agenda Tu Auditoría Gratuita Ahora
+                        Agenda Tu Valoración Gratuita Ahora
                     </h2>
 
 
                     <p className="text-gray-300 mb-8 text-lg">
-                        Reclame su auditoría de ingresos gratuita. Limitamos esto a 15 propietarios por mes para asegurar la máxima calidad.
+                        Reclame su valoración de ingresos gratuita. Limitamos esto a 15 propietarios por mes para asegurar la máxima calidad.
                     </p>
 
                     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-sm shadow-2xl">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-medium text-gray-400 mb-1" htmlFor="name">Nombre Completo *</label>
+                                <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="name">Nombre Completo *</label>
                                 <input
                                     className="w-full bg-background-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
                                     id="name" name="name" placeholder="Ej: Carlos Rodríguez" type="text"
@@ -131,7 +131,7 @@ export function ContactForm() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-medium text-gray-400 mb-1" htmlFor="phone">Teléfono (WhatsApp) *</label>
+                                <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="phone">Teléfono (WhatsApp) *</label>
                                 <input
                                     className="w-full bg-background-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
                                     id="phone" name="phone" placeholder="300 123 4567" type="tel"
@@ -142,7 +142,7 @@ export function ContactForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-xs font-medium text-gray-400 mb-1" htmlFor="location">Condominio o Vereda *</label>
+                                <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="location">Condominio o Vereda *</label>
                                 <input
                                     className="w-full bg-background-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
                                     id="location" name="location" placeholder="Ej: Payandé, El Recreo" type="text"
@@ -150,7 +150,7 @@ export function ContactForm() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-medium text-gray-400 mb-1" htmlFor="email">Email *</label>
+                                <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="email">Email *</label>
                                 <input
                                     className="w-full bg-background-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
                                     id="email" name="email" placeholder="carlos@ejemplo.com" type="email"
@@ -161,7 +161,7 @@ export function ContactForm() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
                             <div>
-                                <label className="block text-xs font-medium text-gray-400 mb-1" htmlFor="renting_status">¿Actualmente rentas tu finca?</label>
+                                <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="renting_status">¿Actualmente rentas tu finca?</label>
                                 <select
                                     className="w-full bg-background-dark/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
                                     id="renting_status"
@@ -177,7 +177,7 @@ export function ContactForm() {
 
                             {(formData.renting_status === "Si" || formData.renting_status === "A veces") && (
                                 <div className="animate-in fade-in slide-in-from-left-2 duration-300">
-                                    <label className="block text-xs font-medium text-gray-400 mb-1 flex items-center gap-1" htmlFor="property_url">
+                                    <label className="block text-xs font-medium text-gray-200 mb-1 flex items-center gap-1" htmlFor="property_url">
                                         <MdLink className="text-primary" /> URL de la propiedad (Airbnb)
                                     </label>
                                     <input
@@ -216,12 +216,12 @@ export function ContactForm() {
                             )}
                         >
                             <span className="relative z-10 flex items-center justify-center gap-2 font-bold uppercase tracking-wide">
-                                {status === 'idle' && <>Solicitar Mi Auditoría <MdSend className="group-hover:translate-x-1 transition-transform" /></>}
+                                {status === 'idle' && <>Solicitar Mi Valoración <MdSend className="group-hover:translate-x-1 transition-transform" /></>}
                                 {status === 'success' && '¡Enviado con Éxito!'}
                                 {isSubmitting && 'Enviando...'}
                             </span>
                         </Button>
-                        <p className="text-center text-xs text-gray-500 mt-2">Tus datos están seguros. Respuesta en menos de 24h.</p>
+                        <p className="text-center text-xs text-gray-300 mt-2">Tus datos están seguros. Respuesta en menos de 24h.</p>
                     </form>
                 </div>
             </Container>
@@ -253,7 +253,7 @@ export function ContactForm() {
                                 <p className="font-semibold text-gray-800">
                                     En las próximas 24 horas, Yenifer Monsalve o un miembro de nuestro equipo se pondrá en contacto contigo para coordinar una visita diagnóstica a tu finca.
                                 </p>
-                                <p className="text-xs italic text-gray-500">
+                                <p className="text-xs italic text-gray-400">
                                     Mientras tanto, te invitamos a ver cómo transformamos estancias comunes en experiencias de lujo.
                                 </p>
                             </div>
@@ -264,7 +264,7 @@ export function ContactForm() {
                                 </Button>
                                 <button
                                     onClick={closeModal}
-                                    className="text-xs text-gray-500 hover:text-primary transition-colors font-medium"
+                                    className="text-xs text-gray-400 hover:text-primary transition-colors font-medium"
                                 >
                                     Cerrar ventana
                                 </button>
