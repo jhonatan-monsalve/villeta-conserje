@@ -3,7 +3,7 @@ name: Deploy to LatinoAmerica Hosting
 on:
   push:
     branches:
-      - main
+      - main # O el nombre de tu rama principal
 
 jobs:
   build-and-deploy:
@@ -20,7 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Build Next.js
         run: npm run build
@@ -32,8 +32,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: ./
+          server-dir: ./public_html/ # La carpeta estándar en casi todos los hostings cPanel
           protocol: ftp
-          dangerous-clean-slate: true
-          exclude: [ "web.zip" ]
-          log-level: verbose
