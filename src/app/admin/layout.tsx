@@ -1,14 +1,37 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { DashboardSidebar } from '@/components/admin/DashboardSidebar';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-    const cookieStore = cookies();
-    const role = cookieStore.get('user_role')?.value as 'admin' | 'owner' | undefined;
+    const [role, setRole] = useState<'admin' | 'owner' | undefined>(undefined);
+    const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
-    if (!role) redirect('/login');
+    useEffect(() => {
+        // En un export estático, leemos de cookies desde el navegador (cliente)
+        const getCookie = (name: string) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop()?.split(';').shift();
+        };
 
-    // Mock user data by role — in production this comes from DB/session
+        const currentRole = getCookie('user_role') as 'admin' | 'owner' | undefined;
+        
+        if (!currentRole) {
+            router.push('/login');
+        } else {
+            setRole(currentRole);
+            setIsLoading(false);
+        }
+    }, [router]);
+
+    if (isLoading) {
+        return <div className="min-h-screen bg-[#F0EFE9] flex items-center justify-center">Cargando...</div>;
+    }
+
+    // Mock user data by role
     const userData = role === 'admin'
         ? { userName: 'Yenifer Monsalve', propertyName: undefined }
         : { userName: 'Juan Pérez', propertyName: 'Finca El Paraíso' };
@@ -16,11 +39,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
         <div className="flex min-h-screen bg-[#F0EFE9]">
             <DashboardSidebar
-                role={role}
+                role={role!}
                 userName={userData.userName}
                 propertyName={userData.propertyName}
             />
-            {/* Main content — with top padding on mobile for the fixed header */}
             <main className="flex-1 overflow-auto pt-14 lg:pt-0">
                 {children}
             </main>
