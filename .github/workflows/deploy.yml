@@ -35,5 +35,7 @@ jobs:
           server-dir: ./
           protocol: ftp
           dangerous-clean-slate: true
-          exclude: [ "web.zip" ]
+          exclude: |
+            **/web.zip
+            web.zip
           log-level: verbose
