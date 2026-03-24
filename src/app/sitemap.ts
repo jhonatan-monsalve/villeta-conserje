@@ -5,11 +5,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://villetaconserje.com'
 
     // Base pages
-    const routes = ['', '/blog', '/valoracion', '/privacidad', '/terminos'].map((route) => ({
+    const routes = ['', '/blog', '/valoracion', '/administracion-airbnb-villeta', '/privacidad', '/terminos'].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
-        priority: route === '' ? 1 : route === '/valoracion' ? 0.9 : 0.8,
+        priority: route === '' ? 1 : (route === '/valoracion' || route === '/administracion-airbnb-villeta') ? 0.9 : 0.8,
     }))
 
     // Blog posts
