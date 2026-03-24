@@ -1,14 +1,39 @@
+"use client";
+
 import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export function Hero() {
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            requestAnimationFrame(() => {
+                setScrollY(window.scrollY);
+            });
+        };
+        
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Calcula el zoom y parallax. Limita el scale máximo a 1.25 para no perder resolución
+    const scale = Math.min(1 + scrollY * 0.0004, 1.25);
+    const translateY = scrollY * 0.4; // Mueve la imagen hacia abajo para crear parallax
     return (
         <section id="home" className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden bg-stone-900">
             {/* Background Image & Overlay */}
-            <div className="absolute inset-0 z-0">
+            <div 
+                className="absolute inset-0 z-0 will-change-transform"
+                style={{ 
+                    transform: `translate3d(0, ${translateY}px, 0) scale(${scale})`,
+                    transformOrigin: "center center"
+                }}
+            >
                 <ExportedImage
                     src="images/hero-bg.jpg"
                     alt="Luxury villa with pool at sunset in Villeta"

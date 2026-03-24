@@ -85,6 +85,7 @@ export default function RootLayout({
                 {/* Preconnect to external domains for faster resource loading */}
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+                <meta name="msvalidate.01" content="5DB77B5F50340A1EF50C3598226E9E94" />
             </head>
             <body className="font-sans antialiased bg-background text-foreground">
                 {/* Google Tag Manager (noscript) */}
