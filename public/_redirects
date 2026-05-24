@@ -4,3 +4,9 @@
 # Cambio de "auditoria" a "valoracion" (Mar 2026)
 /auditoria    /valoracion    301
 /auditoria/   /valoracion/   301
+
+# Redirecciones para solucionar errores de Google Search Console
+/fincas-de-recreo-en-villeta               /                            301
+/fincas-de-recreo-en-villeta/              /                            301
+/administracion-de-propiedades-de-lujo     /administracion-airbnb-villeta  301
+/administracion-de-propiedades-de-lujo/    /administracion-airbnb-villeta  301

@@ -6,6 +6,11 @@
   RewriteEngine On
   RewriteBase /
 
+  # Redirecciones 301 permanentes para SEO (Google Search Console)
+  RewriteRule ^fincas-de-recreo-en-villeta/?$ / [R=301,L]
+  RewriteRule ^administracion-de-propiedades-de-lujo/?$ /administracion-airbnb-villeta [R=301,L]
+  RewriteRule ^auditoria/?$ /valoracion [R=301,L]
+
   # URLs Limpias: Permite acceder a /blog/articulo en lugar de /blog/articulo.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
