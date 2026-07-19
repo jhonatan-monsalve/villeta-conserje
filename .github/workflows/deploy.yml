@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -37,8 +37,10 @@ jobs:
           local-dir: ./out/
           server-dir: ./public_html/
           protocol: ftp
-          dangerous-clean-slate: true
+          port: 21
+          timeout: 60000
+          log-level: standard
+          security: loose
           exclude: |
             **/web.zip
             web.zip
-          log-level: verbose
