@@ -84,3 +84,35 @@ CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW
   EXECUTE FUNCTION public.handle_new_user();
+
+-- 7. Tabla para estadísticas de Airbnb (Auto-actualizable)
+CREATE TABLE IF NOT EXISTS public.airbnb_listings (
+  id TEXT PRIMARY KEY, -- ID del alojamiento de Airbnb (ej. '1402264507691687773')
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  reviews_count INTEGER NOT NULL DEFAULT 0,
+  rating NUMERIC(3, 2) NOT NULL DEFAULT 0.0,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Habilitar Row Level Security (RLS)
+ALTER TABLE public.airbnb_listings ENABLE ROW LEVEL SECURITY;
+
+-- Política de lectura pública para cualquier visitante de la web (incluso anónimos)
+DROP POLICY IF EXISTS "Lectura pública de estadísticas de Airbnb" ON public.airbnb_listings;
+CREATE POLICY "Lectura pública de estadísticas de Airbnb"
+  ON public.airbnb_listings
+  FOR SELECT
+  USING (true);
+
+-- Sembrar (Seed) la propiedad insignia original "Casa Bambú" si no existe
+INSERT INTO public.airbnb_listings (id, name, url, reviews_count, rating)
+VALUES (
+  '1402264507691687773',
+  'Casa Bambú',
+  'https://www.airbnb.com.co/rooms/1402264507691687773',
+  15,
+  5.0
+)
+ON CONFLICT (id) DO NOTHING;
+

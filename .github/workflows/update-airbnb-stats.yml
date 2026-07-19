@@ -1,0 +1,31 @@
+name: Update Airbnb Reviews Stats
+
+on:
+  schedule:
+    # Se ejecuta cada 12 horas (a las 00:00 y 12:00 UTC)
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+    # Permite la ejecución manual desde la pestaña Actions en GitHub
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Run Airbnb Scraper
+        run: node scripts/update-airbnb-stats.js
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/sections/Contact/ContactForm";
 import { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import Script from "next/script";
+import { AirbnbStatsBadge } from "@/components/sections/AirbnbStatsBadge";
 import {
     MdCalendarMonth, MdCleaningServices, MdEngineering, MdCampaign,
     MdAccountBalance, MdCheckCircle, MdStar, MdLocationOn,
@@ -156,16 +157,7 @@ export default function AdministracionAirbnbVilletaPage() {
                             </a>
                         </div>
 
-                        <div className="flex items-center gap-3 mt-8">
-                            <div className="flex text-gold" role="img" aria-label="Calificación: 5 estrellas">
-                                {[...Array(5)].map((_, i) => (
-                                    <HiStar key={i} className="text-lg" />
-                                ))}
-                            </div>
-                            <span className="text-sm text-gray-400">
-                                {SITE_CONFIG.stats.rating} estrellas · {SITE_CONFIG.stats.reviews} reseñas en Airbnb
-                            </span>
-                        </div>
+                        <AirbnbStatsBadge />
                     </div>
                 </Container>
             </section>
