@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/buttons/Button";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { HiStar, HiArrowRight, HiOutlineSparkles } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
-import { useAirbnbStats } from "@/hooks/useAirbnbStats";
+import { DynamicReviewCount, DynamicRating } from "@/components/ui/DynamicStats";
 
 // Real images extracted from the Airbnb listing for Casa Bambú
 // Colección de imágenes locales para garantizar carga rápida y conversión a WebP mediante next-image-export-optimizer.
@@ -21,12 +21,6 @@ const PROPERTY_IMAGES = [
 
 export function FeaturedProperty() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    const listingId = SITE_CONFIG.links.airbnb_listing.split("/rooms/")[1]?.split("?")[0] || "1402264507691687773";
-    const { stats } = useAirbnbStats(listingId, {
-        reviews: SITE_CONFIG.stats.reviews,
-        rating: SITE_CONFIG.stats.rating
-    });
 
     useEffect(() => {
         // Temporizador para el cambio automático de imágenes cada 2 segundos.
@@ -116,7 +110,7 @@ export function FeaturedProperty() {
                                     <div className="flex items-center gap-0.5 text-[#C9A961] mb-1">
                                         {[...Array(5)].map((_, i) => <HiStar key={i} size={16} className="fill-current" />)}
                                     </div>
-                                    <p className="text-[11px] font-black tracking-tighter text-text-main dark:text-gray-300">{stats.reviews} RESEÑAS {stats.rating.toFixed(1)}★</p>
+                                    <p className="text-[11px] font-black tracking-tighter text-text-main dark:text-gray-300"><DynamicReviewCount /> RESEÑAS <DynamicRating />★</p>
                                 </div>
                             </div>
 

@@ -70,6 +70,8 @@ export const metadata: Metadata = {
     },
 };
 
+import { AirbnbStatsProvider } from '@/contexts/AirbnbStatsContext';
+
 /**
  * RootLayout: Componente que envuelve toda la aplicación.
  * Gestiona el SEO global, scripts de analíticas y la estructura base del DOM.
@@ -197,11 +199,13 @@ export default function RootLayout({
                     }}
                 />
 
-                <Header />
-                {children}
-                <Footer />
-                <FloatingWhatsApp />
-                <CookieConsent />
+                <AirbnbStatsProvider>
+                    <Header />
+                    {children}
+                    <Footer />
+                    <FloatingWhatsApp />
+                    <CookieConsent />
+                </AirbnbStatsProvider>
             </body>
         </html>
     );

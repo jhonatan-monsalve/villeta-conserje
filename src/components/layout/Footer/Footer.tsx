@@ -4,6 +4,7 @@ import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { DynamicReviewCount } from "@/components/ui/DynamicStats";
 
 export function Footer() {
     return (
@@ -93,7 +94,7 @@ export function Footer() {
                                 Superanfitrión Airbnb
                             </p>
                             <p className="text-[11px] opacity-60 leading-relaxed">
-                                15 Reservas atendidas con calificación perfecta.
+                                <DynamicReviewCount /> Reservas atendidas con calificación perfecta.
                             </p>
                         </a>
                     </div>

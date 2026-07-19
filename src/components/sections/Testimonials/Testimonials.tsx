@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/cards/Card";
 import { HiStar } from "react-icons/hi";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { useState } from "react";
+import { DynamicReviewCount, DynamicRating } from "@/components/ui/DynamicStats";
 
 interface Testimonial {
     quote: string;
@@ -44,7 +45,7 @@ export function Testimonials() {
         <section className="py-16 sm:py-24 bg-surface-light dark:bg-surface-dark" id="reviews">
             <Container>
                 <h2 className="text-center text-3xl sm:text-4xl font-display font-bold text-text-main dark:text-white mb-4">
-                    {SITE_CONFIG.stats.reviews} Reservas Atendidas.<br />{SITE_CONFIG.stats.rating} Estrellas en Todas.
+                    <DynamicReviewCount /> Reservas Atendidas.<br /><DynamicRating /> Estrellas en Todas.
                 </h2>
                 <p className="text-center text-text-sub dark:text-gray-400 mb-12 max-w-2xl mx-auto">
                     No gestionamos volumen, gestionamos excelencia. Descubre por qué somos Superanfitriones preferidos en Villeta.
