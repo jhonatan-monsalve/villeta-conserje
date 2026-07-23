@@ -34,8 +34,8 @@ export function useAirbnbStats(listingId: string, fallbackStats: AirbnbStats) {
 
         if (data) {
           setStats({
-            reviews: data.reviews_count,
-            rating: Number(data.rating),
+            reviews: Math.max(data.reviews_count, fallbackStats.reviews),
+            rating: Math.max(Number(data.rating), fallbackStats.rating),
           });
         }
       } catch (err) {

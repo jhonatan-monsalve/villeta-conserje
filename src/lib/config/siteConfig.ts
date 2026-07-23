@@ -43,7 +43,7 @@ export const SITE_CONFIG = {
 
     // Estadísticas clave
     stats: {
-        reviews: 15,
+        reviews: 24,
         rating: 5.0,
         isSuperhost: true,
         propertyType: "Casa Bambú",
