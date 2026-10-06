@@ -6,6 +6,10 @@
   RewriteEngine On
   RewriteBase /
 
+  # Consolidar dominio: www → sin www (evita SEO dividido)
+  RewriteCond %{HTTP_HOST} ^www\.villetaconserje\.com$ [NC]
+  RewriteRule ^(.*)$ https://villetaconserje.com/$1 [R=301,L]
+
   # Redirecciones 301 permanentes para SEO (Google Search Console)
   RewriteRule ^fincas-de-recreo-en-villeta/?$ / [R=301,L]
   RewriteRule ^administracion-de-propiedades-de-lujo/?$ /administracion-airbnb-villeta [R=301,L]

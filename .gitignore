@@ -42,3 +42,7 @@ extract_images.py
 build.log
 build_error.log
 _legacy/
+
+# Google Search Console
+gsc-credentials.json
+gsc-report-*.json
