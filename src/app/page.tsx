@@ -53,8 +53,8 @@ const BlogPreview = dynamic(() => import("@/components/sections/Blog/BlogPreview
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "¿Cuánto Dinero Pierde Tu Finca Cada Fin de Semana? | Villeta Conserje",
-    description: "Las fincas que gestionamos generan entre $8M y $15M al mes en Airbnb Villeta. Solicita tu valoración gratuita y descubre en 24h cuánto puede ganar tu propiedad.",
+    title: "Administración de Fincas e Inmuebles en Villeta | Villeta Conserje",
+    description: "Inmobiliaria especializada en Villeta. Gestionamos el alquiler de tu finca vacacional. Genera entre $8M y $15M al mes en Airbnb. ¡Solicita valoración gratuita!",
     alternates: {
         canonical: '/',
     },

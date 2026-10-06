@@ -65,7 +65,7 @@ export default async function BlogPostDetail({ params }: Props) {
             "name": "Villeta Conserje",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.villetaconserje.com/logotipo.png"
+                "url": "https://villetaconserje.com/logotipo.png"
             }
         },
         "description": post.excerpt
