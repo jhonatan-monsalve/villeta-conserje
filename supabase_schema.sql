@@ -111,7 +111,7 @@ VALUES (
   '1402264507691687773',
   'Casa Bambú',
   'https://www.airbnb.com.co/rooms/1402264507691687773',
-  15,
+  26,
   5.0
 )
 ON CONFLICT (id) DO NOTHING;

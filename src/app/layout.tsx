@@ -191,8 +191,8 @@ export default function RootLayout({
                                 "ratingValue": "5.0",
                                 "bestRating": "5",
                                 "worstRating": "1",
-                                "ratingCount": "15",
-                                "reviewCount": "15"
+                                "ratingCount": "26",
+                                "reviewCount": "26"
                             },
                             "knowsAbout": ["Gestión Airbnb Villeta", "Superanfitrión Colombia", "Alquiler Vacacional Cundinamarca", "Yield Management Fincas"]
                         })
