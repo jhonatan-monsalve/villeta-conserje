@@ -4,43 +4,15 @@ import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { HiStar } from "react-icons/hi";
-import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { useState } from "react";
 import { DynamicReviewCount, DynamicRating } from "@/components/ui/DynamicStats";
-
-interface Testimonial {
-    quote: string;
-    author: string;
-    location: string;
-    image: string;
-    meta?: string;
-}
-
-const TESTIMONIALS: Testimonial[] = [
-    {
-        quote: "Es un lugar increíble, la mejor opción para desconectarse del ruido y muy cerca del río, hace la experiencia aún más acogedora, espero volver en algún momento a este lugar soñado, tiene una atención al detalle única,Jennifer es increíblemente amable y fue muy fácil la comunicación ante cualquier duda respuestas al instante.",
-        author: "Andrea",
-        location: "Bogotá, Colombia",
-        image: "images/testimonial-1.jpg",
-        meta: "Hace 2 semanas · En grupo"
-    },
-    {
-        quote: "Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna..\n\nCabe destacar que la persona de la cocina  muy limpia y cocina delicioso.\n\nSúper mega recomendados",
-        author: "Deivy",
-        location: "Bogotá, Colombia",
-        image: "images/testimonial-2.jpg",
-        meta: "Hace 2 semanas · En grupo"
-    },
-    {
-        quote: "Es una casa hermosa, decorada con el mejor gusto, en un sitio inmejorable en medio de la naturaleza. Ideal para cualquier plan desde el descanso y la desconexión hasta la diversión con familia o amigos. El servicio de Yennifer es impecable, personalizado y lleno de detalles, permitiendo que los huespedes se puedan desentender de todos los temas logísticos para poderse concentrar en disfrutar de un buen descanso. El servicio de alimentación con Mayo también es un punto muy positivo en calidad y servicio.",
-        author: "Karen",
-        location: "Bogotá, Colombia",
-        image: "images/testimonial-3.jpg",
-        meta: "noviembre de 2025 · Con niños"
-    }
-];
+import { useAirbnbReviews, ReviewItem } from "@/hooks/useAirbnbReviews";
+import { SITE_CONFIG } from "@/lib/config/siteConfig";
 
 export function Testimonials() {
+    const listingId = SITE_CONFIG.links.airbnb_listing.split("/rooms/")[1]?.split("?")[0] || "1402264507691687773";
+    const { reviews } = useAirbnbReviews(listingId);
+
     return (
         <section className="py-16 sm:py-24 bg-surface-light dark:bg-surface-dark" id="reviews">
             <Container>
@@ -52,8 +24,8 @@ export function Testimonials() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    {TESTIMONIALS.map((testimonial, index) => (
-                        <TestimonialCard key={index} testimonial={testimonial} />
+                    {reviews.map((testimonial) => (
+                        <TestimonialCard key={testimonial.id} testimonial={testimonial} />
                     ))}
                 </div>
 
@@ -72,7 +44,7 @@ export function Testimonials() {
           15% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(44, 95, 79, 0); }
           30% { transform: scale(1); box-shadow: 0 0 0 0 rgba(44, 95, 79, 0.7); }
           45% { transform: scale(1.08); box-shadow: 0 0 0 15px rgba(44, 95, 79, 0); }
-          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(44, 95, 79, 0); }
+          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(44, 95, 79, 0.7); }
         }
         .heartbeat-button {
           animation: heartbeat 2.5s ease-in-out infinite;
@@ -86,28 +58,38 @@ export function Testimonials() {
     );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+function TestimonialCard({ testimonial }: { testimonial: ReviewItem }) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const isExternalImage = testimonial.image.startsWith('http');
 
     return (
         <div
             className="h-full"
-            onMouseLeave={() => setIsExpanded(false)} // Vuelve al estado inicial al sacar el mouse
+            onMouseLeave={() => setIsExpanded(false)}
         >
             <Card className={`flex flex-col h-full relative p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${isExpanded ? 'h-auto z-10' : ''}`}>
                 <span className="text-4xl text-primary/10 absolute top-6 right-6 font-serif">"</span>
 
                 {/* Info del Autor en la parte superior */}
                 <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative shrink-0 border-2 border-primary/5">
-                        <ExportedImage
-                            src={testimonial.image}
-                            alt={`Retrato de ${testimonial.author}`}
-                            width={56}
-                            height={56}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                        />
+                    <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative shrink-0 border-2 border-primary/10 shadow-sm">
+                        {isExternalImage ? (
+                            <img
+                                src={testimonial.image}
+                                alt={`Retrato de ${testimonial.author}`}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        ) : (
+                            <ExportedImage
+                                src={testimonial.image.replace(/^\//, '')}
+                                alt={`Retrato de ${testimonial.author}`}
+                                width={56}
+                                height={56}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        )}
                     </div>
                     <div>
                         <p className="font-bold text-lg text-text-main dark:text-white group-hover:text-primary transition-colors">{testimonial.author}</p>
@@ -117,47 +99,46 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
                 {/* Estrellas y Meta */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <div className="flex text-gold" role="img" aria-label="Calificación: 5 estrellas">
-                        {[...Array(5)].map((_, i) => (
-                            <HiStar key={i} className="text-lg fill-current" />
+                    <div className="flex text-gold" role="img" aria-label={`Calificación: ${testimonial.rating} estrellas`}>
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                            <HiStar key={i} className="text-lg fill-current text-amber-400" />
                         ))}
                     </div>
                     {testimonial.meta && (
-                        <span className="text-sm font-medium text-text-sub dark:text-gray-400">
+                        <span className="text-xs font-semibold text-text-sub dark:text-gray-400">
                             · {testimonial.meta}
                         </span>
                     )}
                 </div>
 
                 {/* Texto del Testimonio */}
-                <div className="relative flex-grow">
-                    <p className={`text-text-main dark:text-gray-200 italic leading-relaxed transition-all duration-300 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-6'}`}>
+                <div className="relative flex-grow flex flex-col justify-between">
+                    <p className={`text-text-main dark:text-gray-200 italic leading-relaxed transition-all duration-300 whitespace-pre-line ${isExpanded ? '' : 'line-clamp-5'}`}>
                         "{testimonial.quote}"
                     </p>
-                    {isExpanded && (
-                        <div className="mt-4">
-                            <a
-                                href="https://www.airbnb.com.co/users/profile/1470722789148483549?previous_page_name=PdpHomeMarketplace"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm font-bold text-[#FF385C] hover:underline flex items-center gap-1"
+
+                    <div className="mt-4 pt-2 flex items-center justify-between border-t border-gray-100 dark:border-gray-800">
+                        {testimonial.quote.length > 140 && !isExpanded && (
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsExpanded(true);
+                                }}
+                                className="text-xs font-bold text-primary hover:text-primary-dark underline decoration-2 underline-offset-4 focus:outline-none"
                             >
-                                leer en Airbnb
-                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'currentcolor', height: '12px', width: '12px' }}><path d="m26.71 10.21 1.06 1.06a1 1 0 0 1 0 1.41l-14.85 14.86a3 3 0 0 1 -2.13.88l-6.52.01a1 1 0 0 1 -1.01-1.02l.02-6.5a3 3 0 0 1 .88-2.12l14.85-14.86a1 1 0 0 1 1.41 0l1.06 1.06a1 1 0 0 1 0 1.41l-12.33 12.33a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l12.33-12.33a1 1 0 0 1 2.31 -.01zm-13.44 6.31 4.24 4.24 8.49-8.49-4.24-4.24z"></path></svg>
-                            </a>
-                        </div>
-                    )}
-                    {!isExpanded && testimonial.quote.length > 150 && (
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setIsExpanded(true);
-                            }}
-                            className="mt-2 text-sm font-bold text-primary hover:text-primary-dark underline decoration-2 underline-offset-4 focus:outline-none"
+                                Leer más
+                            </button>
+                        )}
+                        <a
+                            href={testimonial.airbnbUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-auto text-xs font-bold text-[#FF385C] hover:underline flex items-center gap-1.5 transition-colors"
                         >
-                            Leer más
-                        </button>
-                    )}
+                            Ver en Airbnb
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'currentcolor', height: '11px', width: '11px' }}><path d="m26.71 10.21 1.06 1.06a1 1 0 0 1 0 1.41l-14.85 14.86a3 3 0 0 1 -2.13.88l-6.52.01a1 1 0 0 1 -1.01-1.02l.02-6.5a3 3 0 0 1 .88-2.12l14.85-14.86a1 1 0 0 1 1.41 0l1.06 1.06a1 1 0 0 1 0 1.41l-12.33 12.33a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l12.33-12.33a1 1 0 0 1 2.31 -.01zm-13.44 6.31 4.24 4.24 8.49-8.49-4.24-4.24z"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </Card>
         </div>

@@ -116,3 +116,66 @@ VALUES (
 )
 ON CONFLICT (id) DO NOTHING;
 
+-- 8. Tabla para comentarios individuales de Airbnb
+CREATE TABLE IF NOT EXISTS public.airbnb_reviews (
+  id TEXT PRIMARY KEY, -- ID o Hash único de la reseña
+  listing_id TEXT REFERENCES public.airbnb_listings(id) ON DELETE CASCADE,
+  author_name TEXT NOT NULL,
+  author_avatar_url TEXT DEFAULT '',
+  author_location TEXT DEFAULT '',
+  rating INTEGER NOT NULL DEFAULT 5,
+  comment TEXT NOT NULL,
+  date_text TEXT DEFAULT '',
+  airbnb_url TEXT NOT NULL DEFAULT 'https://www.airbnb.com.co/rooms/1402264507691687773',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Habilitar RLS en airbnb_reviews
+ALTER TABLE public.airbnb_reviews ENABLE ROW LEVEL SECURITY;
+
+-- Política de lectura pública de reseñas
+DROP POLICY IF EXISTS "Lectura pública de reseñas de Airbnb" ON public.airbnb_reviews;
+CREATE POLICY "Lectura pública de reseñas de Airbnb"
+  ON public.airbnb_reviews
+  FOR SELECT
+  USING (true);
+
+-- Sembrar reseñas iniciales reales de Casa Bambú
+INSERT INTO public.airbnb_reviews (id, listing_id, author_name, author_avatar_url, author_location, rating, comment, date_text, airbnb_url)
+VALUES 
+(
+  'rev_1',
+  '1402264507691687773',
+  'Andrea',
+  '/images/testimonial-1.jpg',
+  'Bogotá, Colombia',
+  5,
+  'Es un lugar increíble, la mejor opción para desconectarse del ruido y muy cerca del río, hace la experiencia aún más acogedora, espero volver en algún momento a este lugar soñado, tiene una atención al detalle única, Jennifer es increíblemente amable y fue muy fácil la comunicación ante cualquier duda respuestas al instante.',
+  'Hace 2 semanas · En grupo',
+  'https://www.airbnb.com.co/rooms/1402264507691687773'
+),
+(
+  'rev_2',
+  '1402264507691687773',
+  'Deivy',
+  '/images/testimonial-2.jpg',
+  'Bogotá, Colombia',
+  5,
+  'Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna.. Cabe destacar que la persona de la cocina muy limpia y cocina delicioso. Súper mega recomendados',
+  'Hace 2 semanas · En grupo',
+  'https://www.airbnb.com.co/rooms/1402264507691687773'
+),
+(
+  'rev_3',
+  '1402264507691687773',
+  'Karen',
+  '/images/testimonial-3.jpg',
+  'Bogotá, Colombia',
+  5,
+  'Es una casa hermosa, decorada con el mejor gusto, en un sitio inmejorable en medio de la naturaleza. Ideal para cualquier plan desde el descanso y la desconexión hasta la diversión con familia o amigos. El servicio de Yenifer es impecable, personalizado y lleno de detalles.',
+  'noviembre de 2025 · Con niños',
+  'https://www.airbnb.com.co/rooms/1402264507691687773'
+)
+ON CONFLICT (id) DO NOTHING;
+
+
