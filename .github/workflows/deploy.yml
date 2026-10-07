@@ -47,20 +47,30 @@ jobs:
           for attempt in 1 2 3; do
             echo "=== Intento de deploy #$attempt ==="
             lftp -e "
-              set ftp:ssl-allow no;
+              set ftp:ssl-allow yes;
+              set ftp:ssl-protect-data yes;
+              set ssl:verify-certificate no;
               set ftp:passive-mode yes;
-              set net:timeout 15;
-              set net:max-retries 10;
-              set net:reconnect-interval-base 5;
-              set net:reconnect-interval-multiplier 1;
-              set net:connection-limit 4;
-              set ftp:sync-mode off;
-              open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER;
-              mirror --reverse --parallel=4 --no-perms --verbose=1 --only-newer ./out/ /public_html/;
+              set net:timeout 30;
+              set net:max-retries 3;
+              open '$FTP_SERVER';
+              user '$FTP_USERNAME' '$FTP_PASSWORD';
+              mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/ /public_html/;
               bye
             " && echo "Deploy exitoso en intento #$attempt" && exit 0
-            echo "Intento #$attempt falló. Esperando 30s antes de reintentar..."
-            sleep 30
+            echo "Intento #$attempt falló. Reintentando en modo sin SSL..."
+            lftp -e "
+              set ftp:ssl-allow no;
+              set ftp:passive-mode yes;
+              set net:timeout 30;
+              set net:max-retries 3;
+              open '$FTP_SERVER';
+              user '$FTP_USERNAME' '$FTP_PASSWORD';
+              mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/ /public_html/;
+              bye
+            " && echo "Deploy exitoso sin SSL en intento #$attempt" && exit 0
+            echo "Intento #$attempt falló. Esperando 15s antes de reintentar..."
+            sleep 15
           done
-          echo "Deploy falló después de 3 intentos"
+          echo "Deploy falló después de los reintentos"
           exit 1
