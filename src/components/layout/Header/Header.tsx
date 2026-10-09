@@ -7,10 +7,10 @@ import { Container } from "@/components/layout/Container";
 import { HiMenu, HiX, HiArrowRight } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 
-// Links principales — sin duplicar el CTA de valoración
+// Links principales — ordenados en la secuencia de scroll de la landing page
 const NAV_LINKS = [
-    { href: "/#servicios",   label: "Servicios",   id: "servicios" },
     { href: "/#comparativa", label: "Comparativa", id: "comparativa" },
+    { href: "/#servicios",   label: "Servicios",   id: "servicios" },
     { href: "/#reviews",     label: "Testimonios", id: "reviews" },
     { href: "/blog",         label: "Blog",        id: "blog-preview" },
     { href: "/#faq",         label: "Preguntas",   id: "faq" },

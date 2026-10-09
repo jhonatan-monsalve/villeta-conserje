@@ -1,54 +1,17 @@
 import dynamic from 'next/dynamic';
 import { Hero } from "@/components/sections/Hero/Hero";
 
-// Dynamic imports for heavy/interactive components to reduce initial bundle size and TBT
-const ScrollReveal = dynamic(() => import("@/components/ui/animations/ScrollReveal").then(mod => mod.ScrollReveal), {
-    ssr: false
-});
-
-const Problem = dynamic(() => import("@/components/sections/Problem/Problem").then(mod => mod.Problem), {
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const Solution = dynamic(() => import("@/components/sections/Solution/Solution").then(mod => mod.Solution), {
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const Comparison = dynamic(() => import("@/components/sections/Comparison/Comparison").then(mod => mod.Comparison), {
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const FeaturedProperty = dynamic(() => import("@/components/sections/FeaturedProperty/FeaturedProperty").then(mod => mod.FeaturedProperty), {
-    loading: () => <div className="min-h-[600px]" />
-});
-
-const Services = dynamic(() => import("@/components/sections/Services/Services").then(mod => mod.Services), {
-    loading: () => <div className="min-h-[500px]" />
-});
-
-const Testimonials = dynamic(() => import("@/components/sections/Testimonials/Testimonials").then(mod => mod.Testimonials), {
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const Calculator = dynamic(() => import("@/components/sections/Calculator/Calculator").then(mod => ({ default: mod.Calculator })), {
-    ssr: false,
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const ContactForm = dynamic(() => import("@/components/sections/Contact/ContactForm").then(mod => ({ default: mod.ContactForm })), {
-    ssr: false,
-    loading: () => <div className="min-h-[500px]" />
-});
-
-const FAQ = dynamic(() => import("@/components/sections/FAQ/FAQ").then(mod => ({ default: mod.FAQ })), {
-    ssr: false,
-    loading: () => <div className="min-h-[400px]" />
-});
-
-const BlogPreview = dynamic(() => import("@/components/sections/Blog/BlogPreview").then(mod => ({ default: mod.BlogPreview })), {
-    ssr: false,
-    loading: () => <div className="min-h-[400px]" />
-});
+import { ScrollReveal } from "@/components/ui/animations/ScrollReveal";
+import { Problem } from "@/components/sections/Problem/Problem";
+import { Solution } from "@/components/sections/Solution/Solution";
+import { Comparison } from "@/components/sections/Comparison/Comparison";
+import { FeaturedProperty } from "@/components/sections/FeaturedProperty/FeaturedProperty";
+import { Services } from "@/components/sections/Services/Services";
+import { Testimonials } from "@/components/sections/Testimonials/Testimonials";
+import { Calculator } from "@/components/sections/Calculator/Calculator";
+import { ContactForm } from "@/components/sections/Contact/ContactForm";
+import { FAQ } from "@/components/sections/FAQ/FAQ";
+import { BlogPreview } from "@/components/sections/Blog/BlogPreview";
 
 import { Metadata } from "next";
 

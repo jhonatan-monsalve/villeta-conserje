@@ -17,10 +17,10 @@ export function ScrollReveal({
     direction = "up"
 }: ScrollRevealProps) {
     const directions = {
-        up: { y: 60, x: 0 },
-        down: { y: -60, x: 0 },
-        left: { x: 60, y: 0 },
-        right: { x: -60, y: 0 },
+        up: { y: 30, x: 0 },
+        down: { y: -30, x: 0 },
+        left: { x: 30, y: 0 },
+        right: { x: -30, y: 0 },
     };
 
     return (
@@ -34,10 +34,10 @@ export function ScrollReveal({
                 y: 0,
                 x: 0
             }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{
-                duration: 0.6,
-                delay: delay * 0.5,
+                duration: 0.5,
+                delay: delay * 0.3,
                 ease: [0.16, 1, 0.3, 1]
             }}
             style={{ width }}
@@ -46,3 +46,4 @@ export function ScrollReveal({
         </motion.div>
     );
 }
+

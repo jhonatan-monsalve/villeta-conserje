@@ -1,6 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+const { createClient } = require('@supabase/supabase-js');
+
+// Cargar dotenv solo si está disponible en entorno local, sin fallar si no existe
+try {
+  require('dotenv').config({ path: '.env.local' });
+} catch (e) {
+  // En GitHub Actions las variables vienen de secrets
+}
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://vmajaymwjzsdlucqcwdl.supabase.co';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -82,3 +87,4 @@ async function syncAirbnbData() {
 }
 
 syncAirbnbData();
+

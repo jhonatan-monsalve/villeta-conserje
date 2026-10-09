@@ -136,7 +136,7 @@ export default function RootLayout({
                             "url": "https://villetaconserje.com",
                             "telephone": `+57${SITE_CONFIG.whatsapp}`,
                             "email": SITE_CONFIG.email,
-                            "priceRange": "$$",
+                            "priceRange": "$$$",
                             "image": "https://villetaconserje.com/images/hero-bg.jpg",
                             "logo": "https://villetaconserje.com/logotipo.png",
                             "address": {

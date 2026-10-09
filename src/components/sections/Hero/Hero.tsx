@@ -3,34 +3,24 @@
 import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
-import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function Hero() {
-    const [scrollY, setScrollY] = useState(0);
+    const { scrollY } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            requestAnimationFrame(() => {
-                setScrollY(window.scrollY);
-            });
-        };
-        
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    // Transformaciones optimizadas por GPU sin causar re-renders de React
+    const scale = useTransform(scrollY, [0, 1000], [1, 1.25]);
+    const translateY = useTransform(scrollY, [0, 1000], [0, 400]);
 
-    // Calcula el zoom y parallax. Limita el scale máximo a 1.25 para no perder resolución
-    const scale = Math.min(1 + scrollY * 0.0004, 1.25);
-    const translateY = scrollY * 0.4; // Mueve la imagen hacia abajo para crear parallax
     return (
-        <section id="home" className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden bg-stone-900">
-            {/* Background Image & Overlay */}
-            <div 
+        <section id="home" className="relative w-full min-h-[100dvh] pt-24 pb-16 sm:pt-36 sm:pb-24 flex items-center overflow-hidden bg-stone-900">
+            {/* Background Image & Parallax con Framer Motion */}
+            <motion.div 
                 className="absolute inset-0 z-0 will-change-transform"
                 style={{ 
-                    transform: `translate3d(0, ${translateY}px, 0) scale(${scale})`,
+                    y: translateY,
+                    scale: scale,
                     transformOrigin: "center center"
                 }}
             >
@@ -42,35 +32,38 @@ export function Hero() {
                     priority
                     fetchPriority="high"
                 />
-                {/* Gradient Overlay: Darker at top for header visibility and bottom for text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80"></div>
-                <div className="absolute inset-0 bg-black/20"></div>
-            </div>
+                {/* Overlays de gradiente para contraste legibilidad */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/90" />
+            </motion.div>
 
             <Container className="relative z-10 w-full">
-                <div className="max-w-4xl pt-40 pb-20"> {/* Aumentado el PT para dar aire al Header */}
-                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-sm bg-white/5 backdrop-blur-md border border-white/10 text-gray-100 text-xs font-medium mb-8 tracking-widest uppercase shadow-lg">
-                        <span className="flex h-1.5 w-1.5 rounded-full bg-gold animate-pulse"></span>
+                <div className="max-w-4xl pt-8 sm:pt-16 pb-8">
+                    {/* Badge Glassmorphism pulido estilo Emil Kowalski */}
+                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-gray-100 text-xs font-medium mb-8 tracking-widest uppercase shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+                        </span>
                         Gestión Premium Airbnb
                     </div>
 
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium text-[#F5F5F5] leading-[1.1] tracking-tight mb-8 drop-shadow-none">
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium text-[#F5F5F5] leading-[1.1] tracking-tight mb-8 drop-shadow-sm">
                         ¿Cuánto Dinero Está Perdiendo <br />
                         <span className="italic text-gold font-serif block mt-2">Tu Finca Cada Fin de Semana?</span>
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed opacity-90 drop-shadow-md">
+                    <p className="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed opacity-90">
                         Las fincas que gestionamos generan entre <strong className="text-white font-semibold">$8M y $15M al mes</strong>. Solicita tu valoración gratuita y descúbrelo en 24 horas.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
                         <Link href="/#valoracion">
-                            <Button className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] bg-[#10221a] text-white px-10 py-5 rounded-[4px] hover:bg-gold hover:text-white hover:-translate-y-1 transition-all duration-500 shadow-xl border border-white/10 text-sm">
+                            <Button className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] bg-[#10221a] text-white px-10 py-5 rounded-[6px] hover:bg-gold hover:text-white transition-all duration-300 shadow-xl border border-white/10 text-sm active:scale-95">
                                 Solicitar Valoración
                             </Button>
                         </Link>
                         <a href="#servicios">
-                            <Button variant="ghost" className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] text-white bg-transparent border border-white/30 px-10 py-5 rounded-[4px] hover:bg-white hover:text-black hover:-translate-y-1 transition-all duration-500 backdrop-blur-sm text-sm">
+                            <Button variant="ghost" className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] text-white bg-transparent border border-white/30 px-10 py-5 rounded-[6px] hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm text-sm active:scale-95">
                                 Ver Cómo Funciona
                             </Button>
                         </a>
@@ -81,3 +74,4 @@ export function Hero() {
         </section>
     );
 }
+

@@ -39,16 +39,24 @@ export function getSortedPostsData(): Omit<BlogPost, 'content'>[] {
     });
 }
 
-export async function getPostData(slug: string): Promise<BlogPost> {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const matterResult = matter(fileContents);
+export async function getPostData(slug: string): Promise<BlogPost | null> {
+    try {
+        const fullPath = path.join(postsDirectory, `${slug}.md`);
+        if (!fs.existsSync(fullPath)) {
+            return null;
+        }
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matterResult = matter(fileContents);
 
-    return {
-        slug,
-        content: matterResult.content,
-        ...(matterResult.data as Omit<BlogPost, 'slug' | 'content'>),
-    };
+        return {
+            slug,
+            content: matterResult.content,
+            ...(matterResult.data as Omit<BlogPost, 'slug' | 'content'>),
+        };
+    } catch (error) {
+        console.error(`Error al leer el post ${slug}:`, error);
+        return null;
+    }
 }
 
 export function getAllPostSlugs() {
