@@ -2,7 +2,9 @@
 # Estas reglas optimizan la entrega de archivos y aseguran el sitio contra ataques comunes.
 
 <IfModule mod_rewrite.c>
-  Options +FollowSymLinks
+  Options -Indexes +FollowSymLinks
+  DirectoryIndex index.html blog.html
+
   RewriteEngine On
   RewriteBase /
 
@@ -15,7 +17,12 @@
   RewriteRule ^administracion-de-propiedades-de-lujo/?$ /administracion-airbnb-villeta [R=301,L]
   RewriteRule ^auditoria/?$ /valoracion [R=301,L]
 
-  # URLs Limpias: Permite acceder a /blog/articulo en lugar de /blog/articulo.html
+  # Si se solicita una carpeta existente (como /blog) y existe un archivo .html con ese nombre (blog.html)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # URLs Limpias: Permite acceder a /articulo en lugar de /articulo.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
