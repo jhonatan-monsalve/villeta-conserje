@@ -37,7 +37,7 @@ jobs:
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
-      # Deploy via lftp detectando inteligentemente si la raíz FTP es public_html o el directorio principal
+      # Deploy via lftp con sincronización dual (raíz y public_html si existe)
       - name: Deploy via FTP
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -55,8 +55,9 @@ jobs:
               set net:max-retries 3;
               open '$FTP_SERVER';
               user '$FTP_USERNAME' '$FTP_PASSWORD';
-              cls -d public_html && cd public_html || echo 'Ya estamos en el directorio raíz web';
+              echo '--- Sincronizando directorio raíz ---';
               mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
+              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ . || echo 'No existe subcarpeta public_html adicional';
               bye
             " && echo "Deploy exitoso en intento #$attempt" && exit 0
 
@@ -68,8 +69,9 @@ jobs:
               set net:max-retries 3;
               open '$FTP_SERVER';
               user '$FTP_USERNAME' '$FTP_PASSWORD';
-              cls -d public_html && cd public_html || echo 'Ya estamos en el directorio raíz web';
+              echo '--- Sincronizando directorio raíz ---';
               mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
+              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ . || echo 'No existe subcarpeta public_html adicional';
               bye
             " && echo "Deploy exitoso sin SSL en intento #$attempt" && exit 0
 
