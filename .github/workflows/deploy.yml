@@ -34,15 +34,47 @@ jobs:
       - name: Copy .htaccess to build output
         run: cp public/.htaccess out/.htaccess
 
-      # Deploy via lftp con reintentos robustos contra timeouts de conexión
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      # Deploy via lftp detectando inteligentemente si la raíz FTP es public_html o el directorio principal
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: /public_html/
-          protocol: ftp
-          port: 21
-          security: loose
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          for attempt in 1 2 3; do
+            echo "=== Intento de deploy #$attempt ==="
+            lftp -e "
+              set ftp:ssl-allow yes;
+              set ftp:ssl-protect-data yes;
+              set ssl:verify-certificate no;
+              set ftp:passive-mode yes;
+              set net:timeout 30;
+              set net:max-retries 3;
+              open '$FTP_SERVER';
+              user '$FTP_USERNAME' '$FTP_PASSWORD';
+              cls -d public_html && cd public_html || echo 'Ya estamos en el directorio raíz web';
+              mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
+              bye
+            " && echo "Deploy exitoso en intento #$attempt" && exit 0
+
+            echo "Intento #$attempt con SSL falló. Reintentando en modo sin SSL..."
+            lftp -e "
+              set ftp:ssl-allow no;
+              set ftp:passive-mode yes;
+              set net:timeout 30;
+              set net:max-retries 3;
+              open '$FTP_SERVER';
+              user '$FTP_USERNAME' '$FTP_PASSWORD';
+              cls -d public_html && cd public_html || echo 'Ya estamos en el directorio raíz web';
+              mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
+              bye
+            " && echo "Deploy exitoso sin SSL en intento #$attempt" && exit 0
+
+            echo "Intento #$attempt falló. Esperando 10s antes de reintentar..."
+            sleep 10
+          done
+          echo "❌ El despliegue por FTP falló tras 3 intentos"
+          exit 1
