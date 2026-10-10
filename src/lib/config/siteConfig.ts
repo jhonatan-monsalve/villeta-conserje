@@ -41,12 +41,64 @@ export const SITE_CONFIG = {
         whatsapp_general: "https://wa.me/573204325845?text=Hola%20%F0%9F%91%8B%2C%20vengo%20desde%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20administraci%C3%B3n%20de%20fincas%20y%20publicaci%C3%B3n%20en%20Airbnb.",
     },
 
+    // Portafolio de Propiedades Administradas
+    properties: [
+        {
+            id: "1402264507691687773",
+            name: "Casa Bambú",
+            slug: "casa-bambu",
+            tagline: "Refugio en el Bosque | Río y Naturaleza",
+            description: "Espectacular finca vacacional rodeada de naturaleza y tranquilidad al lado del río en Villeta, Cundinamarca.",
+            location: "Villeta, Cundinamarca",
+            airbnbUrl: "https://www.airbnb.com.co/rooms/1402264507691687773",
+            isSuperhost: true,
+            defaultRating: 5.0,
+            defaultReviewsCount: 26,
+            features: [
+                "Piscina privada",
+                "Frente al río",
+                "Asador BBQ & Zona verde",
+                "Atención personalizada de anfitrión"
+            ],
+            images: [
+                "images/casa-bambu/bambu-1.jpg",
+                "images/casa-bambu/bambu-2.jpg",
+                "images/casa-bambu/bambu-3.jpg",
+                "images/casa-bambu/bambu-4.jpg",
+            ]
+        },
+        {
+            id: "1787473188757920090",
+            name: "Casa Bellevue",
+            slug: "casa-bellevue",
+            tagline: "Piscina Infinita, Jacuzzi y Vista Panorámica",
+            description: "Finca de gran lujo en Villeta con impresionante piscina infinita, jacuzzi privado y vistas espectaculares a las montañas.",
+            location: "Villeta, Cundinamarca",
+            airbnbUrl: "https://www.airbnb.es/rooms/1787473188757920090",
+            isSuperhost: true,
+            defaultRating: 5.0,
+            defaultReviewsCount: 1,
+            features: [
+                "Piscina infinita con vista",
+                "Jacuzzi hidromasaje privado",
+                "Diseño arquitectónico moderno",
+                "Servicio de conserjería VIP"
+            ],
+            images: [
+                "images/casa-bambu/bambu-1.jpg",
+                "images/casa-bambu/bambu-2.jpg",
+                "images/casa-bambu/bambu-3.jpg",
+                "images/casa-bambu/bambu-4.jpg",
+            ]
+        }
+    ],
+
     // Estadísticas clave
     stats: {
-        reviews: 26,
+        reviews: 27,
         rating: 5.0,
         isSuperhost: true,
-        propertyType: "Casa Bambú",
+        propertyType: "Fincas de Lujo en Villeta",
         income_generated: "$180M+",
     }
 };

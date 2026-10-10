@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getSortedPostsData } from '@/lib/blog'
+import { SITE_CONFIG } from '@/lib/config/siteConfig'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://villetaconserje.com'
@@ -12,6 +13,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : (route === '/valoracion' || route === '/administracion-airbnb-villeta') ? 0.9 : 0.8,
     }))
 
+    // Properties
+    const propertyRoutes = (SITE_CONFIG.properties || []).map((property) => ({
+        url: `${baseUrl}/propiedades/${property.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+    }))
+
     // Blog posts
     const blogPosts = getSortedPostsData().map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
@@ -20,5 +29,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }))
 
-    return [...routes, ...blogPosts]
+    return [...routes, ...propertyRoutes, ...blogPosts]
 }

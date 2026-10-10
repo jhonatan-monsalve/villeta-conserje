@@ -105,13 +105,21 @@ CREATE POLICY "Lectura pública de estadísticas de Airbnb"
   FOR SELECT
   USING (true);
 
--- Sembrar (Seed) la propiedad insignia original "Casa Bambú" si no existe
+-- Sembrar (Seed) las propiedades insignia "Casa Bambú" y "Casa Bellevue" si no existen
 INSERT INTO public.airbnb_listings (id, name, url, reviews_count, rating)
-VALUES (
+VALUES 
+(
   '1402264507691687773',
   'Casa Bambú',
   'https://www.airbnb.com.co/rooms/1402264507691687773',
   26,
+  5.0
+),
+(
+  '1787473188757920090',
+  'Casa Bellevue',
+  'https://www.airbnb.es/rooms/1787473188757920090',
+  1,
   5.0
 )
 ON CONFLICT (id) DO NOTHING;
