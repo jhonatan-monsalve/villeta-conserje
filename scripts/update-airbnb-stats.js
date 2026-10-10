@@ -1,3 +1,5 @@
+const ws = require('ws');
+global.WebSocket = ws;
 const { createClient } = require('@supabase/supabase-js');
 
 // 1. Validar variables de entorno necesarias
@@ -13,6 +15,9 @@ if (!supabaseUrl || !supabaseServiceKey) {
 const supabase = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     persistSession: false
+  },
+  realtime: {
+    transport: ws
   }
 });
 

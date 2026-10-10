@@ -144,6 +144,17 @@ CREATE POLICY "Lectura pública de reseñas de Airbnb"
 INSERT INTO public.airbnb_reviews (id, listing_id, author_name, author_avatar_url, author_location, rating, comment, date_text, airbnb_url)
 VALUES 
 (
+  'rev_katherine',
+  '1402264507691687773',
+  'Katherine',
+  '/images/testimonial-katherine.jpg',
+  'Ginebra, Suiza',
+  5,
+  'Casa Bambu es un lugar muy especial. La casa está muy tranquila arrodeado por arboles y al lado del río. Yennifer era una anfitrión excelente, muy pendiente a todo lo que necesitaremos y también hizo todo lo posible para facilitar el trabajo de organizar un fin de semana con varias familias. Muchas gracias, esperamos volver pronto!!',
+  'Hace 1 semana · Con niños',
+  'https://www.airbnb.com.co/rooms/1402264507691687773'
+),
+(
   'rev_1',
   '1402264507691687773',
   'Andrea',
@@ -162,18 +173,7 @@ VALUES
   'Bogotá, Colombia',
   5,
   'Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna.. Cabe destacar que la persona de la cocina muy limpia y cocina delicioso. Súper mega recomendados',
-  'Hace 2 semanas · En grupo',
-  'https://www.airbnb.com.co/rooms/1402264507691687773'
-),
-(
-  'rev_3',
-  '1402264507691687773',
-  'Karen',
-  '/images/testimonial-3.jpg',
-  'Bogotá, Colombia',
-  5,
-  'Es una casa hermosa, decorada con el mejor gusto, en un sitio inmejorable en medio de la naturaleza. Ideal para cualquier plan desde el descanso y la desconexión hasta la diversión con familia o amigos. El servicio de Yenifer es impecable, personalizado y lleno de detalles.',
-  'noviembre de 2025 · Con niños',
+  'Hace 3 semanas · En grupo',
   'https://www.airbnb.com.co/rooms/1402264507691687773'
 )
 ON CONFLICT (id) DO NOTHING;

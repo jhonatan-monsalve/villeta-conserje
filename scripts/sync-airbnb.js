@@ -1,3 +1,5 @@
+const ws = require('ws');
+global.WebSocket = ws;
 const { createClient } = require('@supabase/supabase-js');
 
 // Cargar dotenv solo si está disponible en entorno local, sin fallar si no existe
@@ -15,7 +17,10 @@ if (!supabaseKey) {
   process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: { persistSession: false },
+  realtime: { transport: ws }
+});
 
 const LISTING_ID = '1402264507691687773';
 const AIRBNB_URL = `https://www.airbnb.com.co/rooms/${LISTING_ID}`;
