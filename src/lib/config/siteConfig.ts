@@ -48,7 +48,7 @@ export const SITE_CONFIG = {
             name: "Casa Bambú",
             slug: "casa-bambu",
             tagline: "Refugio en el Bosque | Río y Naturaleza",
-            description: "Espectacular finca vacacional rodeada de naturaleza y tranquilidad al lado del río en Villeta, Cundinamarca.",
+            description: "Imagina despertar con el suave murmullo del río, la brisa cálida de Villeta y el canto de las aves en lugar del tráfico y el estrés de la ciudad. Casa Bambú es tu refugio privado de descanso y naturaleza en Cundinamarca, diseñado para desconectarte por completo y recargar energías en un clima inmejorable.\n\nDisfruta de amplias zonas verdes, piscina privada de aguas cristalinas bajo el sol templado, asador BBQ al aire libre y senderos de tranquilidad junto al río para compartir momentos memorables en familia o en pareja con total intimidad.\n\nCada rincón ha sido dispuesto bajo el estándar de hospitalidad 5 estrellas de Villeta Conserje: lencería hotelera de alta gama, protocolo de higiene de 47 puntos y anfitrión dedicado.\n\nLas fechas más solicitadas y fines de semana suelen reservarse con semanas de anticipación. Si sientes que ya es momento de regalarte este respiro, permítenos verificar disponibilidad para tus días ideales.",
             location: "Villeta, Cundinamarca",
             airbnbUrl: "https://www.airbnb.com.co/rooms/1402264507691687773",
             isSuperhost: true,
@@ -61,10 +61,16 @@ export const SITE_CONFIG = {
                 "Atención personalizada de anfitrión"
             ],
             images: [
-                "images/casa-bambu/bambu-1.jpg",
-                "images/casa-bambu/bambu-2.jpg",
-                "images/casa-bambu/bambu-3.jpg",
-                "images/casa-bambu/bambu-4.jpg",
+                "/images/casa-bambu/bambu-1.jpg",
+                "/images/casa-bambu/bambu-2.jpg",
+                "/images/casa-bambu/bambu-3.jpg",
+                "/images/casa-bambu/bambu-4.jpg",
+                "/images/casa-bambu/bambu-5.jpg",
+                "/images/casa-bambu/bambu-6.jpg",
+                "/images/casa-bambu/bambu-7.jpg",
+                "/images/casa-bambu/bambu-8.jpg",
+                "/images/casa-bambu/bambu-9.jpg",
+                "/images/casa-bambu/bambu-10.jpg",
             ]
         },
         {
@@ -72,7 +78,7 @@ export const SITE_CONFIG = {
             name: "Casa Bellevue",
             slug: "casa-bellevue",
             tagline: "Piscina Infinita, Jacuzzi y Vista Panorámica",
-            description: "Finca de gran lujo en Villeta con impresionante piscina infinita, jacuzzi privado y vistas espectaculares a las montañas.",
+            description: "Eleva tu descanso a otro nivel en una finca de gran lujo diseñada para cautivar todos tus sentidos. En Casa Bellevue, el atardecer sobre las montañas de Villeta se contempla desde una espectacular piscina infinita y un jacuzzi con hidromasaje privado que parecen flotar sobre el horizonte.\n\nSu arquitectura contemporánea fusiona espacios abiertos, iluminación natural y confort de categoría superior. Un santuario de paz a solo hora y media de Bogotá, ideal para quienes buscan privacidad absoluta, desconexión del ritmo urbano y una experiencia vacacional verdaderamente exclusiva.\n\nAdministrada con la excelencia integral de Villeta Conserje para que tu única preocupación al llegar sea relajarte y disfrutar de un descanso insuperable.\n\nLa exclusividad de esta propiedad hace que su calendario tenga alta demanda. Consulta disponibilidad hoy mismo y asegura tu estadía antes de que se agoten las fechas.",
             location: "Villeta, Cundinamarca",
             airbnbUrl: "https://www.airbnb.es/rooms/1787473188757920090",
             isSuperhost: true,
@@ -85,17 +91,23 @@ export const SITE_CONFIG = {
                 "Servicio de conserjería VIP"
             ],
             images: [
-                "images/casa-bambu/bambu-1.jpg",
-                "images/casa-bambu/bambu-2.jpg",
-                "images/casa-bambu/bambu-3.jpg",
-                "images/casa-bambu/bambu-4.jpg",
+                "/images/casa-bellevue/bellevue-1.jpg",
+                "/images/casa-bellevue/bellevue-2.jpg",
+                "/images/casa-bellevue/bellevue-3.jpg",
+                "/images/casa-bellevue/bellevue-4.jpg",
+                "/images/casa-bellevue/bellevue-5.jpg",
+                "/images/casa-bellevue/bellevue-6.jpg",
+                "/images/casa-bellevue/bellevue-7.jpg",
+                "/images/casa-bellevue/bellevue-8.jpg",
+                "/images/casa-bellevue/bellevue-9.jpg",
+                "/images/casa-bellevue/bellevue-10.jpg",
             ]
         }
     ],
 
     // Estadísticas clave
     stats: {
-        reviews: 27,
+        reviews: 26,
         rating: 5.0,
         isSuperhost: true,
         propertyType: "Fincas de Lujo en Villeta",

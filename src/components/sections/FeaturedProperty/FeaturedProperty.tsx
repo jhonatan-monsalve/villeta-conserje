@@ -6,23 +6,262 @@ import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { Button } from "@/components/ui/buttons/Button";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import { HiStar, HiArrowRight, HiOutlineSparkles } from "react-icons/hi";
+import { HiStar, HiArrowRight, HiOutlineSparkles, HiChevronLeft, HiChevronRight, HiX, HiArrowsExpand } from "react-icons/hi";
 import { MdVerified } from "react-icons/md";
 import { DynamicReviewCount, DynamicRating } from "@/components/ui/DynamicStats";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-export function FeaturedProperty() {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+interface LightboxModalProps {
+    images: string[];
+    propertyName: string;
+    propertySlug: string;
+    initialIndex: number;
+    onClose: () => void;
+}
 
-    const properties = SITE_CONFIG.properties || [];
+function LightboxModal({ images, propertyName, propertySlug, initialIndex, onClose }: LightboxModalProps) {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % 4);
-        }, 3000);
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+            if (e.key === "ArrowLeft") handlePrev();
+            if (e.key === "ArrowRight") handleNext();
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [images.length]);
 
+    const handlePrev = () => {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    const handleNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    };
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 text-white"
+            >
+                {/* Header */}
+                <div className="flex justify-between items-center z-50">
+                    <div>
+                        <span className="text-xs font-black uppercase tracking-widest text-primary">Galería de Fotos Reales</span>
+                        <h3 className="text-lg sm:text-2xl font-display font-bold">{propertyName}</h3>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
+                        aria-label="Cerrar galería"
+                    >
+                        <HiX className="text-2xl" />
+                    </button>
+                </div>
+
+                {/* Main Large Image Container */}
+                <div className="relative flex-1 my-4 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full h-full max-w-5xl max-h-[70vh] rounded-xl overflow-hidden shadow-2xl bg-zinc-950">
+                        {images.map((img, idx) => (
+                            <div
+                                key={idx}
+                                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                                    idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                                }`}
+                            >
+                                <ExportedImage
+                                    src={img}
+                                    alt={`${propertyName} Foto Grande ${idx + 1}`}
+                                    fill
+                                    className="object-contain"
+                                    priority={Math.abs(idx - currentIndex) <= 1}
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    <button
+                        onClick={handlePrev}
+                        className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-black/60 hover:bg-primary text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-110"
+                        aria-label="Foto anterior"
+                    >
+                        <HiChevronLeft className="text-3xl" />
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-black/60 hover:bg-primary text-white flex items-center justify-center backdrop-blur-md transition-all shadow-xl hover:scale-110"
+                        aria-label="Foto siguiente"
+                    >
+                        <HiChevronRight className="text-3xl" />
+                    </button>
+
+                    {/* Counter Badge */}
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/70 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider border border-white/10">
+                        Foto {currentIndex + 1} de {images.length}
+                    </div>
+                </div>
+
+                {/* Thumbnail Navigation Strip & Actions */}
+                <div className="space-y-4 max-w-5xl mx-auto w-full">
+                    <div className="flex gap-2 overflow-x-auto justify-center py-2 px-1 scrollbar-none">
+                        {images.map((img, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentIndex(idx)}
+                                className={`relative w-14 sm:w-16 h-10 sm:h-12 rounded-lg overflow-hidden shrink-0 transition-all border-2 ${
+                                    idx === currentIndex ? "border-primary scale-105 shadow-lg opacity-100" : "border-transparent opacity-50 hover:opacity-80"
+                                }`}
+                            >
+                                <ExportedImage
+                                    src={img}
+                                    alt={`Miniatura ${idx + 1}`}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="flex justify-center gap-4">
+                        <Link href={`/propiedades/${propertySlug}`} onClick={onClose}>
+                            <Button variant="secondary" className="bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 text-sm gap-2">
+                                Ver Ficha Completa de la Finca <HiArrowRight />
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </motion.div>
+        </AnimatePresence>
+    );
+}
+
+interface PropertyCardCarouselProps {
+    images: string[];
+    propertyName: string;
+    propertySlug: string;
+    isPriority?: boolean;
+    onOpenLightbox: (index: number) => void;
+}
+
+function PropertyCardCarousel({ images, propertyName, isPriority = false, onOpenLightbox }: PropertyCardCarouselProps) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        if (isHovered || images.length <= 1) return;
+        // Transición automática suave cada 2.5 segundos para dar tiempo a apreciar cada fotografía
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }, 2500);
         return () => clearInterval(timer);
-    }, []);
+    }, [isHovered, images.length]);
+
+    const handlePrev = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    const handleNext = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    };
+
+    return (
+        <div
+            className="aspect-video w-full overflow-hidden mb-6 rounded-lg relative bg-zinc-900 shadow-inner group/carousel select-none cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => onOpenLightbox(currentIndex)}
+        >
+            {/* Crossfade de imágenes superpuestas sin pantalla negra */}
+            <div className="absolute inset-0">
+                {images.map((img, idx) => (
+                    <div
+                        key={idx}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                            idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                        }`}
+                    >
+                        <ExportedImage
+                            src={img}
+                            alt={`${propertyName} Foto ${idx + 1}`}
+                            fill
+                            className="object-cover group-hover/carousel:scale-105 transition-transform duration-700 ease-out"
+                            priority={isPriority && idx < 2}
+                        />
+                    </div>
+                ))}
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none z-10" />
+
+
+            {/* Counter & Expand Hint */}
+            <div className="absolute top-3 left-3 z-20 bg-black/70 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow border border-white/10 flex items-center gap-1.5">
+                <span>{currentIndex + 1} / {images.length}</span>
+                <span className="text-white/60">·</span>
+                <span className="flex items-center gap-1 text-[10px] text-primary"><HiArrowsExpand /> Ampliar</span>
+            </div>
+
+            {/* Navigation Arrows */}
+            {images.length > 1 && (
+                <>
+                    <button
+                        onClick={handlePrev}
+                        aria-label="Foto anterior"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover/carousel:opacity-100 shadow-md hover:scale-110 active:scale-95"
+                    >
+                        <HiChevronLeft className="text-xl" />
+                    </button>
+                    <button
+                        onClick={handleNext}
+                        aria-label="Foto siguiente"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover/carousel:opacity-100 shadow-md hover:scale-110 active:scale-95"
+                    >
+                        <HiChevronRight className="text-xl" />
+                    </button>
+                </>
+            )}
+
+            {/* Pagination Dots */}
+            {images.length > 1 && (
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 max-w-[80%] overflow-x-auto py-1 px-2.5 rounded-full bg-black/40 backdrop-blur-sm border border-white/10">
+                    {images.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setCurrentIndex(idx);
+                            }}
+                            aria-label={`Ver foto ${idx + 1}`}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                                idx === currentIndex
+                                    ? "w-5 bg-white shadow-md"
+                                    : "w-1.5 bg-white/40 hover:bg-white/70"
+                            }`}
+                        />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
+export function FeaturedProperty() {
+    const properties = SITE_CONFIG.properties || [];
+
+    const [activeLightbox, setActiveLightbox] = useState<{
+        propIdx: number;
+        imageIdx: number;
+    } | null>(null);
 
     return (
         <section className="py-16 sm:py-24 bg-white dark:bg-zinc-950" id="featured-property">
@@ -49,22 +288,14 @@ export function FeaturedProperty() {
                                 </div>
                             </div>
 
-                            {/* Image Container */}
-                            <div className="aspect-video w-full overflow-hidden mb-6 rounded-lg relative bg-zinc-100 dark:bg-zinc-900 shadow-inner">
-                                <ExportedImage
-                                    src={prop.images[0]}
-                                    alt={`${prop.name} Villeta`}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    priority={idx === 0}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-
-                                <div className="absolute bottom-4 left-4 z-20 text-white drop-shadow-md">
-                                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-90">Propiedad Administrada</p>
-                                    <p className="text-sm font-display font-bold">{prop.name}, Villeta</p>
-                                </div>
-                            </div>
+                            {/* Image Carousel Component */}
+                            <PropertyCardCarousel
+                                images={prop.images}
+                                propertyName={prop.name}
+                                propertySlug={prop.slug}
+                                isPriority={idx === 0}
+                                onOpenLightbox={(imgIdx) => setActiveLightbox({ propIdx: idx, imageIdx: imgIdx })}
+                            />
 
                             <div className="space-y-4 px-2 pb-2 flex-grow flex flex-col justify-between">
                                 <div>
@@ -148,6 +379,17 @@ export function FeaturedProperty() {
                     </Card>
                 </div>
             </Container>
+
+            {/* Lightbox Modal Component */}
+            {activeLightbox !== null && (
+                <LightboxModal
+                    images={properties[activeLightbox.propIdx].images}
+                    propertyName={properties[activeLightbox.propIdx].name}
+                    propertySlug={properties[activeLightbox.propIdx].slug}
+                    initialIndex={activeLightbox.imageIdx}
+                    onClose={() => setActiveLightbox(null)}
+                />
+            )}
         </section>
     );
 }
