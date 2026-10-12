@@ -124,7 +124,7 @@ export default function RootLayout({
                 />
 
                 {/* Schema Markup SEO Local Completo - LocalBusiness + aggregateRating */}
-                <Script
+                <script
                     id="local-business-schema"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

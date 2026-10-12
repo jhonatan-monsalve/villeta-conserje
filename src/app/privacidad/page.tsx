@@ -4,7 +4,7 @@ import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Política de Privacidad | Villeta Conserje",
+    title: "Política de Privacidad",
     description: "Consulta la política de privacidad y el tratamiento de datos personales de Villeta Conserje según la Ley 1581 de 2012 de Colombia.",
     alternates: {
         canonical: '/privacidad',

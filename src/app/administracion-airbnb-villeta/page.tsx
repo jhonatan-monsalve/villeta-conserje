@@ -2,7 +2,6 @@ import { Container } from "@/components/layout/Container";
 import { ContactForm } from "@/components/sections/Contact/ContactForm";
 import { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
-import Script from "next/script";
 import { AirbnbStatsBadge } from "@/components/sections/AirbnbStatsBadge";
 import {
     MdCalendarMonth, MdCleaningServices, MdEngineering, MdCampaign,
@@ -15,7 +14,7 @@ import Link from "next/link";
 
 /* ─── SEO Metadata ─── */
 export const metadata: Metadata = {
-    title: "Administración de Airbnb en Villeta Cundinamarca | Villeta Conserje",
+    title: "Administración de Airbnb en Villeta Cundinamarca",
     description: "Gestionamos tu Airbnb en Villeta Cundinamarca. Aumenta tus ingresos sin preocuparte por nada. Servicio completo de administración.",
     keywords: [
         "administración airbnb villeta",
@@ -112,8 +111,8 @@ export default function AdministracionAirbnbVilletaPage() {
     return (
         <main className="min-h-screen bg-background">
             {/* Schema Markup */}
-            <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-            <Script id="service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+            <script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+            <script id="service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
             {/* ═══════════════════════════════════════════
                 HERO — Fondo oscuro premium

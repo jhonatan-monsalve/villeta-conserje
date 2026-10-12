@@ -5,7 +5,6 @@ export interface ReviewItem {
   id: string;
   author: string;
   location: string;
-  image: string;
   rating: number;
   quote: string;
   meta: string;
@@ -17,7 +16,6 @@ const FALLBACK_REVIEWS: ReviewItem[] = [
     id: 'rev_katherine',
     author: 'Katherine',
     location: 'Ginebra, Suiza',
-    image: '/images/testimonial-katherine.jpg',
     rating: 5,
     quote: 'Casa Bambu es un lugar muy especial. La casa está muy tranquila arrodeado por arboles y al lado del río. Yennifer era una anfitrión excelente, muy pendiente a todo lo que necesitaremos y también hizo todo lo posible para facilitar el trabajo de organizar un fin de semana con varias familias. Muchas gracias, esperamos volver pronto!!',
     meta: 'Hace 1 semana · Con niños',
@@ -27,7 +25,6 @@ const FALLBACK_REVIEWS: ReviewItem[] = [
     id: 'rev_1',
     author: 'Andrea',
     location: 'Bogotá, Colombia',
-    image: '/images/testimonial-1.jpg',
     rating: 5,
     quote: 'Es un lugar increíble, la mejor opción para desconectarse del ruido y muy cerca del río, hace la experiencia aún más acogedora, espero volver en algún momento a este lugar soñado, tiene una atención al detalle única, Jennifer es increíblemente amable y fue muy fácil la comunicación ante cualquier duda respuestas al instante.',
     meta: 'Hace 2 semanas · En grupo',
@@ -37,7 +34,6 @@ const FALLBACK_REVIEWS: ReviewItem[] = [
     id: 'rev_2',
     author: 'Deivy',
     location: 'Bogotá, Colombia',
-    image: '/images/testimonial-2.jpg',
     rating: 5,
     quote: 'Un lugar muy divino, todo impecable, súper equipada con excelente ambientación y un anfitrión súper amable... La verdad está en mi top 3 de lugar que volvería a visitar sin duda alguna.. Cabe destacar que la persona de la cocina muy limpia y cocina delicioso. Súper mega recomendados',
     meta: 'Hace 3 semanas · En grupo',
@@ -69,7 +65,6 @@ export function useAirbnbReviews(listingId: string = '1402264507691687773') {
             id: item.id,
             author: item.author_name || 'Huésped de Airbnb',
             location: item.author_location || 'Colombia',
-            image: item.author_avatar_url || '/images/testimonial-1.jpg',
             rating: item.rating || 5,
             quote: item.comment,
             meta: item.date_text || 'Reseña verificada en Airbnb',

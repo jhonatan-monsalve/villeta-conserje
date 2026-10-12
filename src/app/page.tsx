@@ -21,38 +21,6 @@ export const metadata: Metadata = {
     alternates: {
         canonical: '/',
     },
-    other: {
-        "script:ld+json": JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "¿Qué incluye el servicio de limpieza de Villeta Conserje?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Nuestro protocolo de 47 puntos asegura calidad hotelera. Incluye limpieza profunda, lavado de ropa de cama de lujo, reposición de amenidades de baño y desinfección total antes de cada llegada."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "¿Es seguro alquilar mi finca en Villeta a través de Airbnb?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Absolutamente. Realizamos un filtrado estricto de cada huésped verificando identidad y antecedentes. Además, gestionamos depósitos de seguridad y contamos con pólizas de protección para daños."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "¿Cuánto cobra Villeta Conserje por gestionar mi finca en Airbnb?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Cobramos una comisión del 15% sobre los ingresos generados. Usted recibe su pago directamente en su cuenta bancaria de forma transparente y puntual tras cada reserva. Sin costos ocultos."
-                    }
-                }
-            ]
-        })
-    }
 };
 
 export default function Home() {

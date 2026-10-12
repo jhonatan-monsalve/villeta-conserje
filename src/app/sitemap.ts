@@ -5,10 +5,9 @@ import { SITE_CONFIG } from '@/lib/config/siteConfig'
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://villetaconserje.com'
 
-    // Base pages
+    // Base pages (sin lastModified: no hay fecha real de edición y la de compilación engaña a Google)
     const routes = ['', '/blog', '/valoracion', '/administracion-airbnb-villeta', '/privacidad', '/terminos'].map((route) => ({
         url: `${baseUrl}${route}`,
-        lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: route === '' ? 1 : (route === '/valoracion' || route === '/administracion-airbnb-villeta') ? 0.9 : 0.8,
     }))
@@ -16,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Properties
     const propertyRoutes = (SITE_CONFIG.properties || []).map((property) => ({
         url: `${baseUrl}/propiedades/${property.slug}`,
-        lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.9,
     }))

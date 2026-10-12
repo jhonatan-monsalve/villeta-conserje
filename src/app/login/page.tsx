@@ -2,7 +2,7 @@ import React from 'react';
 import { LoginForm } from '@/components/auth/LoginForm';
 
 export const metadata = {
-    title: 'Acceso Propietarios | Villeta Conserje',
+    title: 'Acceso Propietarios',
     description: 'Portal de acceso exclusivo para propietarios de Villeta Conserje.',
     robots: {
         index: false,

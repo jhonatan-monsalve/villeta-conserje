@@ -1,9 +1,8 @@
 "use client";
 
-import ExportedImage from "next-image-export-optimizer";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
-import { HiStar } from "react-icons/hi";
+import { HiStar, HiUser } from "react-icons/hi";
 import { useState } from "react";
 import { DynamicReviewCount, DynamicRating } from "@/components/ui/DynamicStats";
 import { useAirbnbReviews, ReviewItem } from "@/hooks/useAirbnbReviews";
@@ -60,7 +59,6 @@ export function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: ReviewItem }) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const isExternalImage = testimonial.image.startsWith('http');
 
     return (
         <div
@@ -72,24 +70,12 @@ function TestimonialCard({ testimonial }: { testimonial: ReviewItem }) {
 
                 {/* Info del Autor en la parte superior */}
                 <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative shrink-0 border-2 border-primary/10 shadow-sm">
-                        {isExternalImage ? (
-                            <img
-                                src={testimonial.image}
-                                alt={`Retrato de ${testimonial.author}`}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        ) : (
-                            <ExportedImage
-                                src={testimonial.image.replace(/^\//, '')}
-                                alt={`Retrato de ${testimonial.author}`}
-                                width={56}
-                                height={56}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        )}
+                    {/* Avatar genérico: no publicamos fotos de los huéspedes */}
+                    <div
+                        className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 border-2 border-primary/10 shadow-sm"
+                        aria-hidden="true"
+                    >
+                        <HiUser className="text-3xl" />
                     </div>
                     <div>
                         <p className="font-bold text-lg text-text-main dark:text-white group-hover:text-primary transition-colors">{testimonial.author}</p>

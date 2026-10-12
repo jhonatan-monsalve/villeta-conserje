@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 
 // Links principales — ordenados en la secuencia de scroll de la landing page
 const NAV_LINKS = [
+    { href: "/administracion-airbnb-villeta", label: "Administración", id: "administracion" },
     { href: "/#comparativa", label: "Comparativa", id: "comparativa" },
     { href: "/#servicios",   label: "Servicios",   id: "servicios" },
     { href: "/#reviews",     label: "Testimonios", id: "reviews" },
@@ -33,6 +34,11 @@ export function Header() {
     useEffect(() => {
         if (pathname === "/blog" || pathname.startsWith("/blog/")) {
             setActiveSection("blog-preview");
+            return;
+        }
+
+        if (pathname === "/administracion-airbnb-villeta") {
+            setActiveSection("administracion");
             return;
         }
 

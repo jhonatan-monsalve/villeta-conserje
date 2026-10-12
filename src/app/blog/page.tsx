@@ -6,7 +6,7 @@ import { HiArrowRight, HiClock } from "react-icons/hi";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Blog para Dueños de Fincas en Villeta | Villeta Conserje",
+    title: "Blog para Dueños de Fincas en Villeta",
     description: "Descubre estrategias profesionales para maximizar tus ingresos en Airbnb Villeta. Consejos de Superanfitriones sobre gestión, limpieza y rentabilidad de propiedades de lujo.",
     keywords: ["Airbnb Villeta", "Administración de fincas Villeta", "Superanfitrión Colombia", "Rentabilidad alquiler vacacional", "Gestión propiedades lujo"],
     openGraph: {

@@ -27,6 +27,7 @@ export function Footer() {
                         <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Navegación</h4>
                         <nav className="flex flex-col gap-3">
                             <Link href="/#home" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Inicio</Link>
+                            <Link href="/administracion-airbnb-villeta" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Administración Airbnb en Villeta</Link>
                             <Link href="/#comparativa" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Comparativa</Link>
                             <Link href="/#servicios" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Servicios</Link>
                             <Link href="/#reviews" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Testimonios</Link>

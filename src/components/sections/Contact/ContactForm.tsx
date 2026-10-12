@@ -72,9 +72,7 @@ export function ContactForm() {
         // Send email
         const { success } = await emailService.sendForm(e.currentTarget);
 
-        if (success || !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID) {
-            if (!success) console.warn("No EmailJS ID provided, simulating success");
-
+        if (success) {
             setStatus("success");
             setShowModal(true);
             setFormData({
@@ -218,9 +216,19 @@ export function ContactForm() {
                             <span className="relative z-10 flex items-center justify-center gap-2 font-bold uppercase tracking-wide">
                                 {status === 'idle' && <>Solicitar Mi Valoración <MdSend className="group-hover:translate-x-1 transition-transform" /></>}
                                 {status === 'success' && '¡Enviado con Éxito!'}
+                                {status === 'error' && !isSubmitting && <>Reintentar envío <MdSend /></>}
                                 {isSubmitting && 'Enviando...'}
                             </span>
                         </Button>
+                        {status === 'error' && (
+                            <p role="alert" className="flex items-start gap-2 text-sm text-red-200 bg-red-900/40 border border-red-400/40 rounded-lg p-3">
+                                <MdError className="mt-0.5 shrink-0" />
+                                <span>
+                                    No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por{" "}
+                                    <a href={SITE_CONFIG.links.whatsapp_general} target="_blank" rel="noopener noreferrer" className="underline font-semibold">WhatsApp</a>.
+                                </span>
+                            </p>
+                        )}
                         <p className="text-center text-xs text-gray-300 mt-2">Tus datos están seguros. Respuesta en menos de 24h.</p>
                     </form>
                 </div>

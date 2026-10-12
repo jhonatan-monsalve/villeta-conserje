@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
@@ -73,6 +74,9 @@ export function Services() {
                             <p className="text-3xl font-display font-bold text-text-main dark:text-white mb-2">15%</p>
                             <p className="text-sm text-text-sub dark:text-gray-300">De comisión sobre ingresos generados.</p>
                             <p className="text-xs text-text-sub/80 mt-2">Sin costos ocultos.</p>
+                            <Link href="/administracion-airbnb-villeta" className="mt-4 text-sm font-semibold text-primary underline underline-offset-4 hover:opacity-80">
+                                Ver el servicio de administración de Airbnb en Villeta
+                            </Link>
                         </div>
                     </div>
                 </div>

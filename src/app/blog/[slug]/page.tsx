@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const url = `${SITE_CONFIG.url}/blog/${post.slug}`;
 
     return {
-        title: `${post.title} | Villeta Conserje`,
+        title: `${post.title}`,
         description: post.excerpt,
         alternates: {
             canonical: url,

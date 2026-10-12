@@ -4,7 +4,7 @@ import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Términos y Condiciones | Villeta Conserje",
+    title: "Términos y Condiciones",
     description: "Conoce los términos y condiciones del servicio de gestión de fincas de Villeta Conserje en Villeta, Cundinamarca.",
     alternates: {
         canonical: '/terminos',

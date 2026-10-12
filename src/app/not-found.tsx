@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 
 export const metadata = {
-    title: "Página no encontrada | Villeta Conserje",
+    title: "Página no encontrada",
     robots: {
         index: false,
         follow: false,

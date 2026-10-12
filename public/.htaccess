@@ -17,6 +17,10 @@
   RewriteRule ^administracion-de-propiedades-de-lujo/?$ /administracion-airbnb-villeta [R=301,L]
   RewriteRule ^auditoria/?$ /valoracion [R=301,L]
 
+  # Quitar la barra final: /blog/ → /blog (antes daba 404). Solo si existe la página .html
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
   # Si se solicita una carpeta existente (como /blog) y existe un archivo .html con ese nombre (blog.html)
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteCond %{REQUEST_FILENAME}.html -f

@@ -6,7 +6,8 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/admin/', '/login/', '/private/'],
+                // /admin y /login no se bloquean aquí: llevan noindex y Google debe poder leerlo.
+                disallow: ['/private/'],
             },
         ],
         sitemap: 'https://villetaconserje.com/sitemap.xml',

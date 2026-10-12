@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { LuClipboardList, LuSearch, LuSend } from "react-icons/lu";
 
 export const metadata: Metadata = {
-    title: "Valoración Gratuita de tu Finca | Villeta Conserje",
+    title: "Valoración Gratuita de tu Finca",
     description: "Solicita una valoración de ingresos gratuita para tu finca en Villeta. Descubre cuánto puedes ganar en Airbnb con nuestra gestión profesional.",
     keywords: ["valoración airbnb villeta", "rentabilidad fincas villeta", "gestión airbnb colombia", "ingresos alquiler vacacional"],
     alternates: {
