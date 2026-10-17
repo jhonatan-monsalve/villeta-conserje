@@ -67,7 +67,7 @@ export function Solution() {
                     </div>
 
                     <div className="mt-12 text-center">
-                        <a href={SITE_CONFIG.links.whatsapp_general} target="_blank" rel="noopener noreferrer">
+                        <a href="#valoracion">
                             <Button variant="secondary" size="lg" className="uppercase tracking-wider gap-2">
                                 Quiero Mi Valoración Gratuita
                                 <HiArrowRight className="text-xl" />

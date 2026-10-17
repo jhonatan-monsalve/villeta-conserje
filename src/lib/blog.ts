@@ -7,6 +7,8 @@ const postsDirectory = path.join(process.cwd(), 'content/blog');
 export interface BlogPost {
     slug: string;
     title: string;
+    /** Título corto para la etiqueta <title> (opcional; si falta se usa title). */
+    seoTitle?: string;
     excerpt: string;
     date: string;
     image: string;

@@ -86,6 +86,8 @@ export default function PropertyPage({ params }: Props) {
             "addressRegion": "Cundinamarca",
             "addressCountry": "CO"
         },
+        "latitude": property.geo.latitude,
+        "longitude": property.geo.longitude,
         "amenityFeature": property.features.map((feature) => ({
             "@type": "LocationFeatureSpecification",
             "name": feature,
@@ -94,7 +96,18 @@ export default function PropertyPage({ params }: Props) {
         "sameAs": [property.airbnbUrl],
         "containsPlace": {
             "@type": "Accommodation",
-            "additionalType": "EntirePlace"
+            "additionalType": "EntirePlace",
+            "occupancy": {
+                "@type": "QuantitativeValue",
+                "value": property.capacity.guests
+            },
+            "numberOfBedrooms": property.capacity.bedrooms,
+            "numberOfFullBathrooms": Math.floor(property.capacity.bathrooms),
+            "numberOfPartialBathrooms": property.capacity.bathrooms % 1 ? 1 : 0,
+            "bed": {
+                "@type": "BedDetails",
+                "numberOfBeds": property.capacity.beds
+            }
         }
     };
 

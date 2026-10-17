@@ -39,29 +39,30 @@ export function Hero() {
             <Container className="relative z-10 w-full">
                 <div className="max-w-4xl pt-8 sm:pt-16 pb-8">
                     {/* Badge Glassmorphism pulido estilo Emil Kowalski */}
-                    <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-gray-100 text-xs font-medium mb-8 tracking-widest uppercase shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]">
-                        <span className="relative flex h-2 w-2">
+                    {/* H1 con la palabra clave principal, con el estilo del badge */}
+                    <h1 className="font-sans inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-gray-100 text-xs font-medium mb-8 tracking-widest uppercase shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25)]">
+                        <span className="relative flex h-2 w-2" aria-hidden="true">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
                         </span>
-                        Gestión Premium Airbnb
-                    </div>
+                        Administración de Fincas en Airbnb · Villeta
+                    </h1>
 
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium text-[#F5F5F5] leading-[1.1] tracking-tight mb-8 drop-shadow-sm">
+                    <p className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium text-[#F5F5F5] leading-[1.1] tracking-tight mb-8 drop-shadow-sm">
                         ¿Cuánto Dinero Está Perdiendo <br />
                         <span className="italic text-gold font-serif block mt-2">Tu Finca Cada Fin de Semana?</span>
-                    </h1>
+                    </p>
 
                     <p className="text-lg sm:text-xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed opacity-90">
                         Las fincas que gestionamos generan entre <strong className="text-white font-semibold">$8M y $15M al mes</strong>. Solicita tu valoración gratuita y descúbrelo en 24 horas.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
-                        <Link href="/#valoracion">
+                        <a href="#valoracion">
                             <Button className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] bg-[#10221a] text-white px-10 py-5 rounded-[6px] hover:bg-gold hover:text-white transition-all duration-300 shadow-xl border border-white/10 text-sm active:scale-95">
                                 Solicitar Valoración
                             </Button>
-                        </Link>
+                        </a>
                         <a href="#servicios">
                             <Button variant="ghost" className="w-full sm:w-auto font-sans font-semibold uppercase tracking-[0.15em] text-white bg-transparent border border-white/30 px-10 py-5 rounded-[6px] hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm text-sm active:scale-95">
                                 Ver Cómo Funciona

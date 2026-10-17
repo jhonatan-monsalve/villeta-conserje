@@ -371,7 +371,7 @@ export function FeaturedProperty() {
                             ))}
                         </div>
 
-                        <a href="#audit" className="w-full mt-auto">
+                        <a href="#valoracion" className="w-full mt-auto">
                             <Button variant="secondary" fullWidth className="bg-primary hover:bg-primary-dark shadow-xl text-white border-none py-3.5 text-sm font-black uppercase tracking-wider">
                                 Postular Mi Finca
                             </Button>

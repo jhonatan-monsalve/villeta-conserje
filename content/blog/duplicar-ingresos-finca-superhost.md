@@ -1,6 +1,7 @@
 ---
 slug: "duplicar-ingresos-finca-superhost"
 title: "Cómo Duplicar los Ingresos de tu Finca: El Poder del Superanfitrión"
+seoTitle: "Cómo Duplicar los Ingresos de tu Finca en Airbnb"
 excerpt: "Descubre cómo el algoritmo de Airbnb premia la excelencia y cómo esto se traduce directamente en millones adicionales de ingresos mensuales para tu finca en Villeta."
 date: "2026-01-20"
 image: "images/blog/blog-1.jpg"

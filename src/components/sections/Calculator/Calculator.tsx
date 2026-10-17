@@ -116,7 +116,7 @@ export function Calculator() {
                                 </div>
 
                                 <div className="pt-6">
-                                    <a href="#audit" className="block">
+                                    <a href="#valoracion" className="block">
                                         <button className="w-full py-3 bg-white text-primary font-bold text-center rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                                             Solicitar Cálculo Personalizado
                                         </button>

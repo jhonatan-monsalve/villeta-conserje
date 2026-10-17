@@ -17,10 +17,11 @@ export const metadata: Metadata = {
         type: 'website',
         images: [
             {
-                url: '/images/hero-bg.jpg',
+                url: 'https://villetaconserje.com/images/og-villeta-conserje.jpg',
                 width: 1200,
                 height: 630,
                 alt: 'Valoración Gratuita de Finca en Villeta - Villeta Conserje',
+                type: 'image/jpeg',
             }
         ],
     }

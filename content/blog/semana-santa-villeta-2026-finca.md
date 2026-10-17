@@ -1,6 +1,7 @@
 ---
 slug: "semana-santa-villeta-2026-finca"
 title: "Semana Santa en Villeta 2026: Por Qué Tu Finca Tiene Que Estar Lista Antes del 29 de Marzo"
+seoTitle: "Semana Santa 2026 en Villeta: Prepara tu Finca"
 excerpt: "El éxodo de Bogotá ya empezó. Semana Santa 2026 va del 29 de marzo al 5 de abril y las fincas en Villeta se agotan con semanas de antelación. Si tu propiedad todavía no tiene huéspedes confirmados, esto es para ti."
 date: "2026-03-22"
 image: "images/blog/blog-semana-santa-villeta.jpg"

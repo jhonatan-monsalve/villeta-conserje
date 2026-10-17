@@ -22,6 +22,12 @@ interface Property {
     defaultReviewsCount: number;
     features: string[];
     images: string[];
+    capacity: {
+        guests: number;
+        bedrooms: number;
+        beds: number;
+        bathrooms: number;
+    };
 }
 
 interface PropertyDetailClientProps {
@@ -76,6 +82,9 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                         <p className="text-lg text-text-sub dark:text-gray-300 flex items-center gap-2">
                             <HiOutlineLocationMarker className="text-primary text-xl shrink-0" />
                             {property.tagline}
+                        </p>
+                        <p className="mt-2 text-sm font-semibold text-text-main dark:text-gray-200">
+                            {property.capacity.guests} huéspedes · {property.capacity.bedrooms} habitaciones · {property.capacity.beds} camas · {String(property.capacity.bathrooms).replace(".", ",")} baños
                         </p>
                     </div>
 

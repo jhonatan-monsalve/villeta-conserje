@@ -29,7 +29,7 @@ export function Testimonials() {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <a href="#audit" className="inline-block">
+                    <a href="#valoracion" className="inline-block">
                         <button className="heartbeat-button bg-[#2C5F4F] hover:bg-[#10221a] text-white px-10 py-5 rounded-lg shadow-2xl transition-all duration-300 font-bold text-lg">
                             Quiero que mi propiedad sea la próxima de 5 estrellas
                         </button>

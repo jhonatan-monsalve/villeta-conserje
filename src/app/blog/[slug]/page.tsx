@@ -24,9 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!post) return { title: "Artículo no encontrado" };
 
     const url = `${SITE_CONFIG.url}/blog/${post.slug}`;
+    const rawImage = post.image || 'images/og-villeta-conserje.jpg';
+    const imageUrl = rawImage.startsWith('http')
+        ? rawImage
+        : `${SITE_CONFIG.url}/${rawImage.replace(/^\/+/, '')}`;
 
     return {
-        title: `${post.title}`,
+        title: post.seoTitle || post.title,
         description: post.excerpt,
         alternates: {
             canonical: url,
@@ -35,10 +39,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: post.title,
             description: post.excerpt,
             url: url,
-            images: [post.image],
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                }
+            ],
             type: "article",
             publishedTime: post.date,
             authors: [post.author],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.excerpt,
+            images: [imageUrl],
         },
     };
 }
@@ -54,7 +71,7 @@ export default async function BlogPostDetail({ params }: Props) {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": post.title,
-        "image": post.image,
+        "image": new URL(post.image, `${SITE_CONFIG.url}/`).href,
         "datePublished": post.date,
         "author": {
             "@type": "Person",

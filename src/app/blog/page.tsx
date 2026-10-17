@@ -15,10 +15,11 @@ export const metadata: Metadata = {
         url: 'https://villetaconserje.com/blog',
         images: [
             {
-                url: '/images/hero-bg.jpg',
+                url: 'https://villetaconserje.com/images/og-villeta-conserje.jpg',
                 width: 1200,
                 height: 630,
                 alt: 'Blog Villeta Conserje',
+                type: 'image/jpeg',
             }
         ],
         type: "website",

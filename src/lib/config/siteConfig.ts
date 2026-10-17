@@ -6,6 +6,7 @@ export const SITE_CONFIG = {
     name: "Villeta Conserje",
     description: "Administración de Propiedades de Lujo en Airbnb - Villeta",
     url: "https://villetaconserje.com",
+    ogImage: "https://villetaconserje.com/images/og-villeta-conserje.jpg",
 
     // Legacy/General direct access (can be deprecated in favor of specific contacts below)
     whatsapp: "3204325845",
@@ -54,6 +55,14 @@ export const SITE_CONFIG = {
             isSuperhost: true,
             defaultRating: 5.0,
             defaultReviewsCount: 26,
+            capacity: {
+                guests: 14,
+                bedrooms: 4,
+                beds: 10,
+                bathrooms: 4,
+            },
+            // Ubicación de Google Maps: https://maps.app.goo.gl/L8btEiN8Pt1F58ti8
+            geo: { latitude: 5.046077, longitude: -74.4549679 },
             features: [
                 "Piscina privada",
                 "Frente al río",
@@ -84,6 +93,14 @@ export const SITE_CONFIG = {
             isSuperhost: true,
             defaultRating: 5.0,
             defaultReviewsCount: 1,
+            capacity: {
+                guests: 8,
+                bedrooms: 4,
+                beds: 4,
+                bathrooms: 5.5, // 5 baños completos + 1 medio baño
+            },
+            // Ubicación de Google Maps: https://goo.gl/maps/6SDcRWrSqJZhjdjg6
+            geo: { latitude: 5.032984, longitude: -74.442525 },
             features: [
                 "Piscina infinita con vista",
                 "Jacuzzi hidromasaje privado",

@@ -6,7 +6,7 @@ import { AirbnbStatsBadge } from "@/components/sections/AirbnbStatsBadge";
 import {
     MdCalendarMonth, MdCleaningServices, MdEngineering, MdCampaign,
     MdAccountBalance, MdCheckCircle, MdStar, MdLocationOn,
-    MdTrendingUp, MdPersonOff, MdAccessTime, MdThumbDown
+    MdTrendingUp, MdPersonOff, MdAccessTime, MdThumbDown, MdGavel
 } from "react-icons/md";
 import { HiStar } from "react-icons/hi";
 import { FaWhatsapp } from "react-icons/fa";
@@ -33,10 +33,11 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "/images/hero-bg.jpg",
+                url: "https://villetaconserje.com/images/og-villeta-conserje.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Administración de Airbnb en Villeta - Villeta Conserje",
+                type: "image/jpeg",
             },
         ],
     },
@@ -51,6 +52,7 @@ const SERVICIOS = [
     { icon: MdCleaningServices, title: "Limpieza Profesional", desc: "Protocolo de 47 puntos: sábanas de lujo, desinfección completa, reposición de amenidades antes de cada llegada." },
     { icon: MdEngineering, title: "Mantenimiento General", desc: "Supervisión semanal de jardín, piscina y estado general. Reparaciones urgentes en menos de 24 horas." },
     { icon: MdAccountBalance, title: "Optimización de Precios", desc: "Yield management dinámico según temporada, demanda y competencia para maximizar tus ingresos cada mes." },
+    { icon: MdGavel, title: "Trámites Legales", desc: "Si lo necesitas, gestionamos por ti el Registro Nacional de Turismo (RNT) y su renovación anual, la Tarjeta de Registro de Alojamiento, el reporte SIRE a Migración Colombia y la contribución a FONTUR." },
 ];
 
 /* ─── Para quién es ─── */
@@ -70,6 +72,10 @@ const FAQS = [
     {
         q: "¿Tengo que encargarme de algo?",
         a: "No. Nosotros nos encargamos de toda la operación: desde la publicación hasta la limpieza, mantenimiento y atención al huésped.",
+    },
+    {
+        q: "¿Necesito el RNT para alquilar mi finca en Airbnb?",
+        a: "Sí. La Ley 2068 de 2020 exige el Registro Nacional de Turismo para alquilar por menos de 30 días, y Airbnb no permite anuncios en Colombia sin él. Si no lo tienes, nosotros hacemos el trámite y su renovación anual por ti.",
     },
     {
         q: "¿Puedo usar mi propiedad cuando quiera?",

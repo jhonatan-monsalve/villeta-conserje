@@ -1,6 +1,7 @@
 ---
 slug: "cuanto-cuesta-administrar-una-finca-en-villeta"
 title: "¿Cuánto Cuesta Administrar una Finca en Villeta? Guía de Costos y Rentabilidad 2026"
+seoTitle: "¿Cuánto Cuesta Administrar una Finca en Villeta?"
 excerpt: "Descubre los costos reales de mantenimiento, personal y comisión por administración al alquilar tu finca en Airbnb Villeta. Aprende a maximizar tus ingresos mensuales."
 date: "2026-10-10"
 image: "images/hero-bg.jpg"

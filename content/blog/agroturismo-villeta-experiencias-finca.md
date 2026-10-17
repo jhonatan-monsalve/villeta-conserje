@@ -1,6 +1,7 @@
 ---
 slug: "agroturismo-villeta-experiencias-finca"
 title: "Más Allá de la Piscina: 7 Experiencias de Agroturismo en Villeta que Hacen Más Rentables las Fincas"
+seoTitle: "7 Experiencias de Agroturismo en Villeta"
 excerpt: "Descubra por qué las fincas en Villeta que ofrecen experiencias auténticas de agroturismo cobran hasta un 40% más por noche y tienen ocupación casi permanente. Guía completa para propietarios y viajeros."
 date: "2026-03-22"
 image: "images/blog/blog-agroturismo-villeta.jpg"

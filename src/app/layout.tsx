@@ -43,16 +43,17 @@ export const metadata: Metadata = {
         google: "UCf8Je8y8pqqSOtVJ8bhPV-kCRYGLB02Bd4_iu7kTP0",
     },
     openGraph: {
-        title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo`,
-        description: "Maximizamos la rentabilidad de tu propiedad en Villeta con gestión de Superhost profesional.",
+        title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo en Airbnb`,
+        description: "Gestión integral de fincas de lujo en Villeta, Cundinamarca. Maximizamos tus ingresos en Airbnb con servicio 5 estrellas y estándar de Superanfitrión.",
         url: 'https://villetaconserje.com',
         siteName: SITE_CONFIG.name,
         images: [
             {
-                url: '/images/hero-bg.jpg',
+                url: 'https://villetaconserje.com/images/og-villeta-conserje.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Villeta Conserje - Gestión de Fincas de Lujo en Villeta',
+                alt: 'Villeta Conserje - Gestión Profesional de Fincas en Airbnb Villeta',
+                type: 'image/jpeg',
             }
         ],
         locale: 'es_CO',
@@ -60,9 +61,20 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: SITE_CONFIG.name,
-        description: SITE_CONFIG.description,
-        images: ['/images/hero-bg.jpg'],
+        title: `${SITE_CONFIG.name} | Gestión de Fincas en Airbnb`,
+        description: "Administración integral de fincas de lujo en Villeta, Cundinamarca. Especialistas en Airbnb con estándar Superanfitrión.",
+        images: ['https://villetaconserje.com/images/og-villeta-conserje.jpg'],
+    },
+    icons: {
+        icon: [
+            { url: '/favicon.ico', sizes: '48x48' },
+            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        ],
+        apple: [
+            { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+        ],
+        shortcut: '/favicon.ico',
     },
     robots: {
         index: true,
@@ -88,6 +100,12 @@ export default function RootLayout({
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
                 <meta name="msvalidate.01" content="5DB77B5F50340A1EF50C3598226E9E94" />
+
+                {/* Favicons explícitos para Google Search y navegadores */}
+                <link rel="icon" href="/favicon.ico" sizes="48x48" />
+                <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+                <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
             </head>
             <body className="font-sans antialiased bg-background text-foreground">
                 {/* Google Tag Manager (noscript) */}
@@ -123,7 +141,7 @@ export default function RootLayout({
                     }}
                 />
 
-                {/* Schema Markup SEO Local Completo - LocalBusiness + aggregateRating */}
+                {/* Schema Markup SEO Local - LocalBusiness (sin aggregateRating: Google no muestra estrellas autoasignadas) */}
                 <script
                     id="local-business-schema"
                     type="application/ld+json"
@@ -137,7 +155,7 @@ export default function RootLayout({
                             "telephone": `+57${SITE_CONFIG.whatsapp}`,
                             "email": SITE_CONFIG.email,
                             "priceRange": "$$$",
-                            "image": "https://villetaconserje.com/images/hero-bg.jpg",
+                            "image": "https://villetaconserje.com/images/og-villeta-conserje.jpg",
                             "logo": "https://villetaconserje.com/logotipo.png",
                             "address": {
                                 "@type": "PostalAddress",
@@ -186,14 +204,6 @@ export default function RootLayout({
                                 SITE_CONFIG.links.airbnb_listing,
                                 "https://www.airbnb.com.co/users/profile/1470722789148483549"
                             ],
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "5.0",
-                                "bestRating": "5",
-                                "worstRating": "1",
-                                "ratingCount": "26",
-                                "reviewCount": "26"
-                            },
                             "knowsAbout": ["Gestión Airbnb Villeta", "Superanfitrión Colombia", "Alquiler Vacacional Cundinamarca", "Yield Management Fincas"]
                         })
                     }}

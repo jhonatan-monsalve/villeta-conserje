@@ -5,14 +5,24 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { emailService } from "@/lib/api/emailjs/emailService";
 import { MdVerified, MdSend, MdCheckCircle, MdClose, MdLink, MdError } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
 import { cn } from "@/lib/utils";
 
 export function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+    const [status, setStatus] = useState<"idle" | "success">("idle");
     const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [modalMode, setModalMode] = useState<"email" | "whatsapp">("email");
+    const [submittedData, setSubmittedData] = useState<{
+        name: string;
+        phone: string;
+        location: string;
+        email: string;
+        property_url: string;
+        renting_status: string;
+    } | null>(null);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -49,14 +59,42 @@ export function ContactForm() {
             missing.push("Email válido (ejemplo@dominio.com)");
         }
 
-        if ((formData.renting_status === "Si" || formData.renting_status === "A veces") && !formData.property_url.trim()) {
-            missing.push("URL de la propiedad");
-        }
-
         return missing;
     }, [formData]);
 
     const isFormComplete = missingFields.length === 0;
+
+    const generateWhatsAppUrl = (data: {
+        name: string;
+        phone: string;
+        location: string;
+        email: string;
+        property_url?: string;
+        renting_status: string;
+    }) => {
+        const lines = [
+            `Hola Yenifer 👋, quiero solicitar la valoración gratuita de mi finca en Villeta:`,
+            ``,
+            `• *Nombre:* ${data.name || "No especificado"}`,
+            `• *Teléfono:* ${data.phone || "No especificado"}`,
+            `• *Condominio / Vereda:* ${data.location || "No especificado"}`,
+            `• *Renta actualmente:* ${data.renting_status || "No especificado"}`
+        ];
+
+        if (data.property_url?.trim()) {
+            lines.push(`• *Enlace / Airbnb:* ${data.property_url.trim()}`);
+        }
+        if (data.email?.trim()) {
+            lines.push(`• *Email:* ${data.email.trim()}`);
+        }
+
+        lines.push(``);
+        lines.push(`Quedo atento(a) a coordinar la visita diagnóstica. ¡Muchas gracias!`);
+
+        const cleanPhone = SITE_CONFIG.whatsapp.replace(/\D/g, "");
+        const formattedPhone = cleanPhone.startsWith("57") ? cleanPhone : `57${cleanPhone}`;
+        return `https://wa.me/${formattedPhone}?text=${encodeURIComponent(lines.join("\n"))}`;
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -67,12 +105,14 @@ export function ContactForm() {
         }
 
         setIsSubmitting(true);
-        setStatus("idle");
+        const currentData = { ...formData };
+        setSubmittedData(currentData);
 
-        // Send email
+        // Intento de envío por email
         const { success } = await emailService.sendForm(e.currentTarget);
 
         if (success) {
+            setModalMode("email");
             setStatus("success");
             setShowModal(true);
             setFormData({
@@ -85,7 +125,26 @@ export function ContactForm() {
             });
             setHasAttemptedSubmit(false);
         } else {
-            setStatus("error");
+            // Fallback sutil y profesional: canalizar directamente por WhatsApp sin alertar errores técnicos
+            setModalMode("whatsapp");
+            setStatus("success");
+            setShowModal(true);
+
+            // Intentar abrir WhatsApp en pestaña nueva con los datos preconfigurados
+            const waUrl = generateWhatsAppUrl(currentData);
+            if (typeof window !== "undefined") {
+                window.open(waUrl, "_blank");
+            }
+
+            setFormData({
+                name: "",
+                phone: "",
+                location: "",
+                email: "",
+                property_url: "",
+                renting_status: "A veces"
+            });
+            setHasAttemptedSubmit(false);
         }
 
         setIsSubmitting(false);
@@ -97,9 +156,11 @@ export function ContactForm() {
     };
 
     const handleWhatsAppRedirect = () => {
-        const text = `Hola 👋, vengo desde su página web y me gustaría recibir información sobre el servicio de administración de fincas y publicación en Airbnb.
-¿Podrían indicarme cómo funciona y qué necesito para empezar?`;
-        window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+        const targetData = submittedData || formData;
+        const url = generateWhatsAppUrl(targetData);
+        if (typeof window !== "undefined") {
+            window.open(url, "_blank");
+        }
     };
 
     return (
@@ -176,7 +237,7 @@ export function ContactForm() {
                             {(formData.renting_status === "Si" || formData.renting_status === "A veces") && (
                                 <div className="animate-in fade-in slide-in-from-left-2 duration-300">
                                     <label className="block text-xs font-medium text-gray-200 mb-1 flex items-center gap-1" htmlFor="property_url">
-                                        <MdLink className="text-primary" /> URL de la propiedad (Airbnb)
+                                        <MdLink className="text-primary" /> URL de la propiedad o anuncio en Airbnb <span className="text-gray-400 font-normal">(Opcional)</span>
                                     </label>
                                     <input
                                         className="w-full bg-background-dark/50 border border-primary/40 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-primary focus:ring-primary focus:ring-1 outline-none transition-all"
@@ -214,69 +275,122 @@ export function ContactForm() {
                             )}
                         >
                             <span className="relative z-10 flex items-center justify-center gap-2 font-bold uppercase tracking-wide">
-                                {status === 'idle' && <>Solicitar Mi Valoración <MdSend className="group-hover:translate-x-1 transition-transform" /></>}
-                                {status === 'success' && '¡Enviado con Éxito!'}
-                                {status === 'error' && !isSubmitting && <>Reintentar envío <MdSend /></>}
                                 {isSubmitting && 'Enviando...'}
+                                {!isSubmitting && status === 'idle' && <>Solicitar Mi Valoración <MdSend className="group-hover:translate-x-1 transition-transform" /></>}
+                                {!isSubmitting && status === 'success' && '¡Solicitud Recibida!'}
                             </span>
                         </Button>
-                        {status === 'error' && (
-                            <p role="alert" className="flex items-start gap-2 text-sm text-red-200 bg-red-900/40 border border-red-400/40 rounded-lg p-3">
-                                <MdError className="mt-0.5 shrink-0" />
-                                <span>
-                                    No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por{" "}
-                                    <a href={SITE_CONFIG.links.whatsapp_general} target="_blank" rel="noopener noreferrer" className="underline font-semibold">WhatsApp</a>.
-                                </span>
-                            </p>
-                        )}
                         <p className="text-center text-xs text-gray-300 mt-2">Tus datos están seguros. Respuesta en menos de 24h.</p>
                     </form>
                 </div>
             </Container>
 
-            {/* Success Modal */}
+            {/* Confirmation & WhatsApp Modal */}
             {showModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
                     <div className="bg-white rounded-2xl max-w-lg w-full p-8 relative shadow-2xl animate-in zoom-in-95 duration-300 text-black">
                         <button
                             onClick={closeModal}
                             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                            aria-label="Cerrar modal"
                         >
                             <MdClose size={24} />
                         </button>
 
                         <div className="text-center">
-                            <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <MdCheckCircle size={48} />
-                            </div>
+                            {modalMode === "whatsapp" ? (
+                                <>
+                                    <div className="w-20 h-20 bg-emerald-100 text-[#25D366] rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner">
+                                        <FaWhatsapp size={48} />
+                                    </div>
 
-                            <h3 className="text-2xl font-display font-bold text-gray-900 mb-4 px-2">
-                                ¡Gracias por confiar en Villeta Conserje!
-                            </h3>
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 mb-3">
+                                        <FaWhatsapp className="text-emerald-600 text-sm" /> Conexión Directa Prioritaria
+                                    </span>
 
-                            <div className="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
-                                <p>
-                                    Hemos recibido la información de tu propiedad. Un historial de 5 estrellas no se construye por azar, sino con atención al detalle, y así mismo trataremos tu solicitud.
-                                </p>
-                                <p className="font-semibold text-gray-800">
-                                    En las próximas 24 horas, Yenifer Monsalve o un miembro de nuestro equipo se pondrá en contacto contigo para coordinar una visita diagnóstica a tu finca.
-                                </p>
-                                <p className="text-xs italic text-gray-400">
-                                    Mientras tanto, te invitamos a ver cómo transformamos estancias comunes en experiencias de lujo.
-                                </p>
-                            </div>
+                                    <h3 className="text-2xl font-display font-bold text-gray-900 mb-3 px-2">
+                                        ¡Tu solicitud está lista!
+                                    </h3>
 
-                            <div className="mt-8 space-y-3">
-                                <Button fullWidth onClick={handleWhatsAppRedirect} className="gap-2 bg-green-600 hover:bg-green-700 border-none text-white">
-                                    Hablar por WhatsApp Ahora
-                                </Button>
-                                <button
-                                    onClick={closeModal}
-                                    className="text-xs text-gray-400 hover:text-primary transition-colors font-medium"
-                                >
-                                    Cerrar ventana
-                                </button>
-                            </div>
+                                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-4">
+                                        Para garantizarte una respuesta inmediata y personalizada sin tiempos de espera, tu solicitud de valoración será atendida directamente por <strong>WhatsApp</strong> con nuestro equipo de conserjería.
+                                    </p>
+
+                                    {submittedData && (
+                                        <div className="bg-gray-50 border border-gray-200/80 rounded-xl p-3.5 text-left text-xs sm:text-sm space-y-1.5 text-gray-700 mb-5">
+                                            <div className="flex justify-between border-b border-gray-200/60 pb-1">
+                                                <span className="text-gray-500">Propietario:</span>
+                                                <span className="font-semibold text-gray-900">{submittedData.name}</span>
+                                            </div>
+                                            <div className="flex justify-between border-b border-gray-200/60 pb-1">
+                                                <span className="text-gray-500">Ubicación:</span>
+                                                <span className="font-semibold text-gray-900">{submittedData.location}</span>
+                                            </div>
+                                            <div className="flex justify-between border-b border-gray-200/60 pb-1">
+                                                <span className="text-gray-500">Teléfono:</span>
+                                                <span className="font-semibold text-gray-900">{submittedData.phone}</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span className="text-gray-500">Renta actualmente:</span>
+                                                <span className="font-semibold text-gray-900">{submittedData.renting_status}</span>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="space-y-3">
+                                        <Button
+                                            fullWidth
+                                            onClick={handleWhatsAppRedirect}
+                                            className="gap-2 bg-[#25D366] hover:bg-[#20bd5a] border-none text-white font-bold py-3.5 shadow-lg shadow-emerald-600/25 transition-all transform active:scale-95"
+                                        >
+                                            <FaWhatsapp className="text-xl" /> Enviar Solicitud por WhatsApp
+                                        </Button>
+                                        <p className="text-xs text-gray-400">
+                                            Se abrirá WhatsApp con los detalles de tu propiedad listos para enviar a Yenifer Monsalve.
+                                        </p>
+                                        <button
+                                            onClick={closeModal}
+                                            className="text-xs text-gray-400 hover:text-gray-600 transition-colors font-medium block mx-auto pt-1"
+                                        >
+                                            Cerrar ventana
+                                        </button>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <MdCheckCircle size={48} />
+                                    </div>
+
+                                    <h3 className="text-2xl font-display font-bold text-gray-900 mb-4 px-2">
+                                        ¡Gracias por confiar en Villeta Conserje!
+                                    </h3>
+
+                                    <div className="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
+                                        <p>
+                                            Hemos recibido la información de tu propiedad. Un historial de 5 estrellas no se construye por azar, sino con atención al detalle, y así mismo trataremos tu solicitud.
+                                        </p>
+                                        <p className="font-semibold text-gray-800">
+                                            En las próximas 24 horas, Yenifer Monsalve o un miembro de nuestro equipo se pondrá en contacto contigo para coordinar una visita diagnóstica a tu finca.
+                                        </p>
+                                        <p className="text-xs italic text-gray-400">
+                                            Mientras tanto, te invitamos a ver cómo transformamos estancias comunes en experiencias de lujo.
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-8 space-y-3">
+                                        <Button fullWidth onClick={handleWhatsAppRedirect} className="gap-2 bg-green-600 hover:bg-green-700 border-none text-white">
+                                            <FaWhatsapp className="text-lg" /> Hablar por WhatsApp Ahora
+                                        </Button>
+                                        <button
+                                            onClick={closeModal}
+                                            className="text-xs text-gray-400 hover:text-primary transition-colors font-medium"
+                                        >
+                                            Cerrar ventana
+                                        </button>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

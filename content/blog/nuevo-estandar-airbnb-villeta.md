@@ -1,6 +1,7 @@
 ---
 slug: "nuevo-estandar-airbnb-villeta"
 title: "El Nuevo Estándar de Airbnb en Villeta: De Alquiler Casual a Experiencia de Lujo"
+seoTitle: "El Nuevo Estándar de Airbnb en Villeta"
 excerpt: "¿Por qué algunas fincas en Villeta siempre están llenas mientras otras luchan por una reserva al mes? La respuesta está en la profesionalización del servicio. Te mostramos exactamente qué significa gestionar una finca bajo el nuevo estándar."
 date: "2026-01-25"
 image: "images/blog/blog-2.jpg"
