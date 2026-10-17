@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/jhonatan-monsalve/villeta-conserje/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](#licencia)
+[![Derechos Reservados](https://img.shields.io/badge/Derechos-Todos_los_derechos_reservados-red?style=for-the-badge)](#-derechos-de-autor-y-propiedad-intelectual)
 
 ---
 
@@ -28,7 +28,7 @@
 8. [Scripts Disponibles](#-scripts-disponibles)
 9. [Despliegue y CI/CD](#-despliegue-y-cicd)
 10. [Seguridad y Rendimiento](#-seguridad-y-rendimiento)
-11. [Créditos y Licencia](#-créditos-y-licencia)
+11. [Derechos de Autor y Propiedad Intelectual](#-derechos-de-autor-y-propiedad-intelectual)
 
 ---
 
@@ -279,9 +279,13 @@ El repositorio cuenta con integración continua configurada mediante **GitHub Ac
 
 ---
 
-## 📄 Licencia
+## ⚖️ Derechos de Autor y Propiedad Intelectual
 
-Este proyecto está bajo la Licencia **MIT**. Consulta el archivo `LICENSE` para más información.
+© 2026 **Villeta Conserje**. Todos los derechos reservados.
+
+Este proyecto, su código fuente, arquitectura, diseño visual, marcas comerciales, logotipos, textos, material multimedia y elementos gráficos son propiedad exclusiva y privada de **Villeta Conserje** (Yenifer Monsalve).
+
+Queda estrictamente prohibida la reproducción total o parcial, copia, distribución, modificación, descompilación, ingeniería inversa o uso comercial de cualquier componente o contenido de este software sin la autorización previa y por escrito del titular de los derechos.
 
 ---
 
