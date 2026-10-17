@@ -125,16 +125,10 @@ export function ContactForm() {
             });
             setHasAttemptedSubmit(false);
         } else {
-            // Fallback sutil y profesional: canalizar directamente por WhatsApp sin alertar errores técnicos
+            // Fallback sutil y profesional: mostrar ficha de datos en el modal para que el usuario revise y confirme el envío por WhatsApp
             setModalMode("whatsapp");
             setStatus("success");
             setShowModal(true);
-
-            // Intentar abrir WhatsApp en pestaña nueva con los datos preconfigurados
-            const waUrl = generateWhatsAppUrl(currentData);
-            if (typeof window !== "undefined") {
-                window.open(waUrl, "_blank");
-            }
 
             setFormData({
                 name: "",
