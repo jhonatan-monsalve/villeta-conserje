@@ -26,12 +26,20 @@ export function Footer() {
                     <div className="lg:col-span-2 flex flex-col gap-5">
                         <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Navegación</h4>
                         <nav className="flex flex-col gap-3">
-                            <Link href="/#home" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Inicio</Link>
+                            <Link href="/" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Inicio</Link>
                             <Link href="/administracion-airbnb-villeta" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Administración Airbnb en Villeta</Link>
                             <Link href="/#comparativa" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Comparativa</Link>
                             <Link href="/#servicios" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Servicios</Link>
                             <Link href="/#reviews" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Testimonios</Link>
                             <Link href="/valoracion" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Valoración</Link>
+                            <Link href="/blog" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Blog</Link>
+                        </nav>
+                        <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide mt-2">Fincas administradas</h4>
+                        <nav className="flex flex-col gap-3" aria-label="Fincas administradas">
+                            {SITE_CONFIG.properties.map((p) => (
+                                <Link key={p.slug} href={`/propiedades/${p.slug}`} className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">{p.name}</Link>
+                            ))}
+                            <Link href="/blog/requisitos-legales-airbnb-villeta-rnt" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Requisitos legales (RNT)</Link>
                         </nav>
                     </div>
 

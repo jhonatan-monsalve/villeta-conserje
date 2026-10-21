@@ -219,7 +219,7 @@ export function LoginForm() {
                 <div className="mt-4 text-center">
                     <p className="text-xs text-gray-400">
                         ¿Aún no eres cliente?{' '}
-                        <Link href="/#contacto" className="text-[#C9A961] font-bold hover:underline ml-1">
+                        <Link href="/#valoracion" className="text-[#C9A961] font-bold hover:underline ml-1">
                             Contáctanos para gestionar tu finca
                         </Link>
                     </p>

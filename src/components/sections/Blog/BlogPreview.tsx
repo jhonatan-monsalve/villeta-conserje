@@ -37,6 +37,7 @@ export function BlogPreview() {
                                         width={400}
                                         height={250}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        style={{ objectPosition: post.imagePosition || "center" }}
                                     />
                                     <div className="absolute top-3 left-3">
                                         <span className="bg-primary/90 backdrop-blur-sm text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-md">

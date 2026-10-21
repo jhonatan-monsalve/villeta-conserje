@@ -196,6 +196,19 @@ export default function AdministracionAirbnbVilletaPage() {
                             </div>
                         ))}
                     </div>
+
+                    <p className="text-center text-text-sub mt-10 max-w-3xl mx-auto">
+                        ¿Qué trámites exige la ley para alquilar tu finca? Lee nuestra{" "}
+                        <Link href="/blog/requisitos-legales-airbnb-villeta-rnt" className="text-primary font-semibold underline underline-offset-4">guía de requisitos legales (RNT, TRA, SIRE y FONTUR)</Link>
+                        {" "}o conoce las fincas que ya administramos:{" "}
+                        {SITE_CONFIG.properties.map((p, i) => (
+                            <span key={p.slug}>
+                                {i > 0 && " y "}
+                                <Link href={`/propiedades/${p.slug}`} className="text-primary font-semibold underline underline-offset-4">{p.name}</Link>
+                            </span>
+                        ))}
+                        .
+                    </p>
                 </Container>
             </section>
 

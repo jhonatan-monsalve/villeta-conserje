@@ -12,6 +12,8 @@ export interface BlogPost {
     excerpt: string;
     date: string;
     image: string;
+    /** Parte de la imagen que se conserva al recortarla en tarjetas (CSS object-position). */
+    imagePosition?: string;
     author: string;
     readTime: string;
     category: string;
