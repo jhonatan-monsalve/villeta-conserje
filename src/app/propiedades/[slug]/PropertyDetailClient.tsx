@@ -112,9 +112,9 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                         {/* Real Airbnb Photo Gallery (10 Photos) */}
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
-                                <h3 className="text-2xl font-display font-bold text-text-main dark:text-white">
+                                <h2 className="text-2xl font-display font-bold text-text-main dark:text-white">
                                     Galería de Fotos Reales ({property.images.length} fotos)
-                                </h3>
+                                </h2>
                                 <span className="text-xs font-bold text-primary flex items-center gap-1">
                                     <HiArrowsExpand /> Haz clic en cualquier foto para ampliarla
                                 </span>
@@ -147,9 +147,9 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
 
                         {/* Description */}
                         <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm space-y-5">
-                            <h3 className="text-2xl font-display font-bold text-text-main dark:text-white">
+                            <h2 className="text-2xl font-display font-bold text-text-main dark:text-white">
                                 Tu Experiencia de Descanso en {property.name}
-                            </h3>
+                            </h2>
                             <div className="space-y-4 text-text-sub dark:text-gray-300 leading-relaxed text-base sm:text-lg">
                                 {property.description.split('\n\n').map((paragraph, pIdx) => {
                                     const isLast = pIdx === property.description.split('\n\n').length - 1;
@@ -171,9 +171,9 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
 
                         {/* Features List */}
                         <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm space-y-6">
-                            <h3 className="text-2xl font-display font-bold text-text-main dark:text-white">
+                            <h2 className="text-2xl font-display font-bold text-text-main dark:text-white">
                                 Amenidades y Características
-                            </h3>
+                            </h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {property.features.map((feature, idx) => (
                                     <div key={idx} className="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800">
@@ -190,9 +190,9 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                         <div className="bg-white dark:bg-zinc-900 p-8 rounded-2xl border-2 border-primary/30 shadow-xl sticky top-28 space-y-6">
                             <div className="border-b border-zinc-200 dark:border-zinc-800 pb-6">
                                 <span className="text-xs font-black uppercase text-primary tracking-wider">Reserva Directa o Airbnb</span>
-                                <h3 className="text-2xl font-display font-bold text-text-main dark:text-white mt-1">
+                                <h2 className="text-2xl font-display font-bold text-text-main dark:text-white mt-1">
                                     ¿Te gustaría hospedarte aquí?
-                                </h3>
+                                </h2>
                                 <p className="text-sm text-text-sub dark:text-gray-400 mt-2">
                                     Consulta disponibilidad inmediata con nuestro equipo de conserjería o reserva seguro en Airbnb.
                                 </p>

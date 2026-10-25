@@ -24,7 +24,7 @@ export function Footer() {
 
                     {/* Col 2: Navigation - Takes 2 columns */}
                     <div className="lg:col-span-2 flex flex-col gap-5">
-                        <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Navegación</h4>
+                        <h2 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Navegación</h2>
                         <nav className="flex flex-col gap-3">
                             <Link href="/" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Inicio</Link>
                             <Link href="/administracion-airbnb-villeta" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Administración Airbnb en Villeta</Link>
@@ -34,7 +34,7 @@ export function Footer() {
                             <Link href="/valoracion" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Valoración</Link>
                             <Link href="/blog" className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">Blog</Link>
                         </nav>
-                        <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide mt-2">Fincas administradas</h4>
+                        <h2 className="font-display text-[#064e3b] text-base font-semibold tracking-wide mt-2">Fincas administradas</h2>
                         <nav className="flex flex-col gap-3" aria-label="Fincas administradas">
                             {SITE_CONFIG.properties.map((p) => (
                                 <Link key={p.slug} href={`/propiedades/${p.slug}`} className="text-sm hover:text-primary transition-colors hover:translate-x-1 duration-200 w-fit">{p.name}</Link>
@@ -45,7 +45,7 @@ export function Footer() {
 
                     {/* Col 3: Contact & Map - Takes 4 columns */}
                     <div className="lg:col-span-4 flex flex-col gap-5">
-                        <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Contacto</h4>
+                        <h2 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Contacto</h2>
                         <div className="flex flex-col gap-4">
                             <a
                                 href={SITE_CONFIG.contact.support.whatsappLink}
@@ -87,7 +87,7 @@ export function Footer() {
 
                     {/* Col 4: Badge - Takes 3 columns */}
                     <div className="lg:col-span-3 flex flex-col gap-5">
-                        <h4 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Reconocimientos</h4>
+                        <h2 className="font-display text-[#064e3b] text-base font-semibold tracking-wide">Reconocimientos</h2>
                         <a
                             href="https://www.airbnb.com.co/users/profile/1470722789148483549?previous_page_name=PdpHomeMarketplace"
                             target="_blank"
@@ -102,7 +102,7 @@ export function Footer() {
                             <p className="text-xs uppercase tracking-widest text-[#064e3b] font-bold mb-2 group-hover:text-primary transition-colors">
                                 Superanfitrión Airbnb
                             </p>
-                            <p className="text-[11px] opacity-60 leading-relaxed">
+                            <p className="text-[11px] text-zinc-600 leading-relaxed">
                                 <DynamicReviewCount /> Reservas atendidas con calificación perfecta.
                             </p>
                         </a>

@@ -53,7 +53,7 @@ export default function ValoracionPage() {
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
                                 <LuClipboardList className="w-8 h-8" />
                             </div>
-                            <h4 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 1</h4>
+                            <h2 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 1</h2>
                             <p className="text-lg text-text-sub dark:text-gray-400">
                                 Completa el formulario con los detalles clave de tu propiedad.
                             </p>
@@ -64,7 +64,7 @@ export default function ValoracionPage() {
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
                                 <LuSearch className="w-8 h-8" />
                             </div>
-                            <h4 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 2</h4>
+                            <h2 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 2</h2>
                             <p className="text-lg text-text-sub dark:text-gray-400">
                                 Analizamos el mercado y la competencia directa en tu zona.
                             </p>
@@ -75,7 +75,7 @@ export default function ValoracionPage() {
                             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
                                 <LuSend className="w-8 h-8" />
                             </div>
-                            <h4 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 3</h4>
+                            <h2 className="font-bold text-2xl text-text-main dark:text-white mb-3">Paso 3</h2>
                             <p className="text-lg text-text-sub dark:text-gray-400">
                                 Recibes un informe detallado con el potencial de ingresos.
                             </p>

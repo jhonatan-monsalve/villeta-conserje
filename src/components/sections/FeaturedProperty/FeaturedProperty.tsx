@@ -131,7 +131,7 @@ function LightboxModal({ images, propertyName, propertySlug, initialIndex, onClo
                     <div className="flex justify-center gap-4">
                         <Link href={`/propiedades/${propertySlug}`} onClick={onClose}>
                             <Button variant="secondary" className="bg-primary hover:bg-primary-dark text-white font-bold px-6 py-3 text-sm gap-2">
-                                Ver Ficha Completa de la Finca <HiArrowRight />
+                                Ver Ficha Completa de la Finca<span className="sr-only"> {propertyName}</span> <HiArrowRight aria-hidden="true" />
                             </Button>
                         </Link>
                     </div>
@@ -341,7 +341,7 @@ export function FeaturedProperty() {
                                 <div className="space-y-2 pt-2 border-t border-zinc-100 dark:border-zinc-800">
                                     <Link href={`/propiedades/${prop.slug}`} className="block">
                                         <Button variant="secondary" fullWidth className="bg-primary hover:bg-primary-dark text-white font-bold gap-2 text-xs py-3">
-                                            Ver Ficha Completa <HiArrowRight className="text-sm" />
+                                            Ver Ficha Completa<span className="sr-only"> de {prop.name}</span> <HiArrowRight className="text-sm" aria-hidden="true" />
                                         </Button>
                                     </Link>
                                     <a

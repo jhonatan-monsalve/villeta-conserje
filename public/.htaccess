@@ -61,6 +61,9 @@
   # 5. Política de Permisos: Desactiva acceso a hardware no necesario para privacidad del usuario
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
 
-  # 6. Content Security Policy (CSP): Bloquea scripts no autorizados y protege contra Clickjacking avanzado
+  # 6. Aislamiento de origen (COOP): las ventanas abiertas (WhatsApp, Airbnb) no pueden acceder a esta página
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+
+  # 7. Content Security Policy (CSP): Bloquea scripts no autorizados y protege contra Clickjacking avanzado
   Header always set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'self';"
 </IfModule>
