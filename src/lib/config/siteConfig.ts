@@ -54,7 +54,7 @@ export const SITE_CONFIG = {
             airbnbUrl: "https://www.airbnb.com.co/rooms/1402264507691687773",
             isSuperhost: true,
             defaultRating: 5.0,
-            defaultReviewsCount: 26,
+            defaultReviewsCount: 27,
             capacity: {
                 guests: 14,
                 bedrooms: 4,
@@ -124,7 +124,7 @@ export const SITE_CONFIG = {
 
     // Estadísticas clave
     stats: {
-        reviews: 26,
+        reviews: 27,
         rating: 5.0,
         isSuperhost: true,
         propertyType: "Fincas de Lujo en Villeta",

@@ -1,7 +1,7 @@
 "use client";
 
 import ExportedImage from "next-image-export-optimizer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Container } from "@/components/layout/Container";
 import { Card } from "@/components/ui/cards/Card";
 import { Button } from "@/components/ui/buttons/Button";
@@ -145,22 +145,38 @@ interface PropertyCardCarouselProps {
     images: string[];
     propertyName: string;
     propertySlug: string;
-    isPriority?: boolean;
     onOpenLightbox: (index: number) => void;
 }
 
-function PropertyCardCarousel({ images, propertyName, isPriority = false, onOpenLightbox }: PropertyCardCarouselProps) {
+function PropertyCardCarousel({ images, propertyName, onOpenLightbox }: PropertyCardCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Solo se reproduce cuando la tarjeta está en pantalla: así no descarga fotos mientras carga la página
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { rootMargin: "200px" });
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    // Solo se montan la foto actual y sus vecinas (para el crossfade); el resto se descarga cuando toca
+    const isNear = (idx: number) => {
+        const d = Math.abs(idx - currentIndex);
+        return Math.min(d, images.length - d) <= 1;
+    };
 
     useEffect(() => {
-        if (isHovered || images.length <= 1) return;
+        if (!isVisible || isHovered || images.length <= 1) return;
         // Transición automática suave cada 2.5 segundos para dar tiempo a apreciar cada fotografía
         const timer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % images.length);
         }, 2500);
         return () => clearInterval(timer);
-    }, [isHovered, images.length]);
+    }, [isVisible, isHovered, images.length]);
 
     const handlePrev = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -176,6 +192,7 @@ function PropertyCardCarousel({ images, propertyName, isPriority = false, onOpen
 
     return (
         <div
+            ref={containerRef}
             className="aspect-video w-full overflow-hidden mb-6 rounded-lg relative bg-zinc-900 shadow-inner group/carousel select-none cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -183,7 +200,7 @@ function PropertyCardCarousel({ images, propertyName, isPriority = false, onOpen
         >
             {/* Crossfade de imágenes superpuestas sin pantalla negra */}
             <div className="absolute inset-0">
-                {images.map((img, idx) => (
+                {images.map((img, idx) => isNear(idx) && (
                     <div
                         key={idx}
                         className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -194,8 +211,9 @@ function PropertyCardCarousel({ images, propertyName, isPriority = false, onOpen
                             src={img}
                             alt={`${propertyName} Foto ${idx + 1}`}
                             fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 80vw"
                             className="object-cover group-hover/carousel:scale-105 transition-transform duration-700 ease-out"
-                            priority={isPriority && idx < 2}
+                            loading="lazy"
                         />
                     </div>
                 ))}
@@ -293,7 +311,6 @@ export function FeaturedProperty() {
                                 images={prop.images}
                                 propertyName={prop.name}
                                 propertySlug={prop.slug}
-                                isPriority={idx === 0}
                                 onOpenLightbox={(imgIdx) => setActiveLightbox({ propIdx: idx, imageIdx: imgIdx })}
                             />
 

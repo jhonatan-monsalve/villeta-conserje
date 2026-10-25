@@ -67,6 +67,11 @@ function extractAirbnbStats(html) {
     return { rating, reviews, method: 'Regex 2' };
   }
 
+  // Airbnb no publica calificación agregada en anuncios "Nuevos" (menos de 3 reseñas)
+  if (/"starRating":\s*0[,}]/.test(html) || /"reviewCount":\s*0[,}]/.test(html)) {
+    return null;
+  }
+
   throw new Error("No se encontraron la calificación ni el conteo de reseñas en el HTML de Airbnb.");
 }
 
@@ -85,11 +90,12 @@ async function run() {
     }
 
     if (!listings || listings.length === 0) {
-      console.log('No se encontraron propiedades en la tabla airbnb_listings para actualizar.');
-      return;
+      // Antes salía con éxito sin hacer nada: ahora el workflow queda en rojo
+      throw new Error('La tabla airbnb_listings está vacía: no hay propiedades que actualizar. Ejecuta el bloque de airbnb_listings de supabase_schema.sql.');
     }
 
     console.log(`Se encontraron ${listings.length} propiedades a actualizar.`);
+    let failures = 0;
 
     for (const listing of listings) {
       console.log(`\nProcesando propiedad: "${listing.name}" (ID: ${listing.id})`);
@@ -112,28 +118,42 @@ async function run() {
         const html = await response.text();
         const stats = extractAirbnbStats(html);
 
+        if (!stats) {
+          console.warn(`Aviso: "${listing.name}" aún no tiene calificación pública en Airbnb (anuncio nuevo). Se conserva el valor actual.`);
+          continue;
+        }
+
         console.log(`Resultados extraídos exitosamente mediante ${stats.method}:`);
         console.log(`- Calificación: ${stats.rating}`);
         console.log(`- Reseñas: ${stats.reviews}`);
 
         // Actualizar base de datos
-        const { error: updateError } = await supabase
+        const { data: updated, error: updateError } = await supabase
           .from('airbnb_listings')
           .update({
             reviews_count: stats.reviews,
             rating: stats.rating,
             updated_at: new Date().toISOString()
           })
-          .eq('id', listing.id);
+          .eq('id', listing.id)
+          .select('id');
 
         if (updateError) {
           throw new Error(`Error actualizando base de datos para ID ${listing.id}: ${updateError.message}`);
+        }
+        if (!updated || updated.length === 0) {
+          throw new Error(`La actualización de ID ${listing.id} no modificó ninguna fila.`);
         }
 
         console.log(`Base de datos actualizada exitosamente para "${listing.name}".`);
       } catch (err) {
         console.error(`Error procesando propiedad "${listing.name}":`, err.message);
+        failures++;
       }
+    }
+
+    if (failures > 0) {
+      throw new Error(`${failures} propiedad(es) no se pudieron actualizar. Revisa los mensajes anteriores.`);
     }
   } catch (err) {
     console.error('Error fatal durante la ejecución:', err.message);

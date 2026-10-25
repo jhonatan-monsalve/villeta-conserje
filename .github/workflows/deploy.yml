@@ -35,7 +35,17 @@ jobs:
           NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
 
       - name: Copy .htaccess to build output
-        run: cp public/.htaccess out/.htaccess
+        run: |
+          cp public/.htaccess out/.htaccess
+          # Los archivos de _next/static llevan un hash en el nombre y nunca cambian:
+          # se pueden guardar en caché un año (antes el servidor enviaba no-store).
+          cat > out/_next/static/.htaccess <<'HTACCESS'
+          <IfModule mod_headers.c>
+            Header unset Pragma
+            Header unset Expires
+            Header set Cache-Control "public, max-age=31536000, immutable"
+          </IfModule>
+          HTACCESS
 
       - name: Install lftp
         run: sudo apt-get install -y lftp
