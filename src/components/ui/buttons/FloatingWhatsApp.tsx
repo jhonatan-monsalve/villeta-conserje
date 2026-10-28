@@ -12,6 +12,7 @@ export function FloatingWhatsApp() {
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 z-[60] flex items-center group"
                 aria-label="Contactar por WhatsApp"
+                data-track-location="boton-flotante"
             >
                 {/* Desktop/Tablet: Button with text */}
                 <div className="hidden sm:flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-5 py-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group">

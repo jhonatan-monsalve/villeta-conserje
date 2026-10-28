@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/buttons/Button";
 import { emailService } from "@/lib/api/emailjs/emailService";
+import { trackEvent } from "@/lib/analytics";
 import { MdVerified, MdSend, MdCheckCircle, MdClose, MdLink, MdError } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import { SITE_CONFIG } from "@/lib/config/siteConfig";
@@ -112,6 +113,8 @@ export function ContactForm() {
         const { success } = await emailService.sendForm(e.currentTarget);
 
         if (success) {
+            // Solicitud recibida por correo: conversión principal del sitio
+            trackEvent("generate_lead", { method: "formulario", renting_status: currentData.renting_status });
             setModalMode("email");
             setStatus("success");
             setShowModal(true);
@@ -126,6 +129,7 @@ export function ContactForm() {
             setHasAttemptedSubmit(false);
         } else {
             // Fallback sutil y profesional: mostrar ficha de datos en el modal para que el usuario revise y confirme el envío por WhatsApp
+            trackEvent("form_email_error", { method: "formulario" });
             setModalMode("whatsapp");
             setStatus("success");
             setShowModal(true);

@@ -83,6 +83,7 @@ export const metadata: Metadata = {
 };
 
 import { AirbnbStatsProvider } from '@/contexts/AirbnbStatsContext';
+import { ClickTracker } from '@/components/analytics/ClickTracker';
 
 /**
  * RootLayout: Componente que envuelve toda la aplicación.
@@ -215,6 +216,7 @@ export default function RootLayout({
                     <Footer />
                     <FloatingWhatsApp />
                     <CookieConsent />
+                    <ClickTracker />
                 </AirbnbStatsProvider>
             </body>
         </html>
