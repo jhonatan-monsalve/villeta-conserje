@@ -1,0 +1,143 @@
+<!--
+  Plantilla EmailJS: CONFIRMACIÓN AL CLIENTE (Auto-Reply)
+  Pegar en EmailJS → plantilla de Auto-Reply → Edit Content → Code Editor.
+  Variables del formulario: {{name}} {{phone}} {{location}} {{email}} {{renting_status}} {{property_url}}
+  Imagen (logo) servida desde https://villetaconserje.com/images/email/
+-->
+<div style="margin:0;padding:0;background-color:#F2EFE9;">
+  <!-- Texto de vista previa (se ve en la bandeja de entrada, no en el correo) -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#F2EFE9;font-size:1px;line-height:1px;">
+    Recibimos tu solicitud de valoración. En menos de 24 horas te contactamos para conocer tu finca.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F2EFE9;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background-color:#FFFFFF;border-radius:14px;overflow:hidden;word-wrap:break-word;overflow-wrap:break-word;font-family:Georgia,'Times New Roman',serif;">
+
+          <!-- Logo -->
+          <tr>
+            <td align="center" style="background-color:#F8F6F3;padding:26px 24px 18px 24px;border-bottom:3px solid #C9A961;">
+              <a href="https://villetaconserje.com" target="_blank" style="text-decoration:none;">
+                <img src="https://villetaconserje.com/images/email/logo-villeta-conserje.png" width="150" alt="Villeta Conserje" style="display:block;width:150px;max-width:150px;height:auto;border:0;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Titular -->
+          <tr>
+            <td style="background-color:#10221A;padding:26px 24px;">
+              <p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#C9A961;font-weight:bold;">Solicitud recibida</p>
+              <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.25;color:#F8F6F3;font-weight:bold;">
+                Gracias, {{name}}.<br><span style="color:#C9A961;font-style:italic;">Tu finca está en buenas manos.</span>
+              </h1>
+            </td>
+          </tr>
+
+          <!-- Mensaje -->
+          <tr>
+            <td style="padding:28px 24px 8px 24px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;color:#3A3A3A;">
+              <p style="margin:0 0 16px 0;">Hemos recibido tu solicitud de <strong>valoración gratuita</strong> para tu propiedad en <strong>{{location}}</strong>.</p>
+              <p style="margin:0 0 8px 0;">Nuestro equipo ya la está revisando. <strong>En menos de 24 horas</strong> te contactaremos al <strong>{{phone}}</strong> para conocer tu finca y mostrarte cuánto podría generar en Airbnb con una gestión de nivel Superanfitrión.</p>
+            </td>
+          </tr>
+
+          <!-- Qué sigue -->
+          <tr>
+            <td style="padding:16px 24px 8px 24px;">
+              <p style="margin:0 0 14px 0;font-family:Georgia,'Times New Roman',serif;font-size:20px;color:#10221A;font-weight:bold;">¿Qué sigue?</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;">
+                <tr>
+                  <td width="44" valign="top" style="padding:0 0 16px 0;"><div style="width:32px;height:32px;line-height:32px;border-radius:16px;background-color:#2C5F4F;color:#FFFFFF;text-align:center;font-weight:bold;font-size:14px;">1</div></td>
+                  <td valign="top" style="padding:4px 0 16px 0;font-size:15px;line-height:1.6;color:#3A3A3A;"><strong style="color:#10221A;">Te llamamos</strong> para conocer tu finca, su ubicación y tus objetivos.</td>
+                </tr>
+                <tr>
+                  <td width="44" valign="top" style="padding:0 0 16px 0;"><div style="width:32px;height:32px;line-height:32px;border-radius:16px;background-color:#2C5F4F;color:#FFFFFF;text-align:center;font-weight:bold;font-size:14px;">2</div></td>
+                  <td valign="top" style="padding:4px 0 16px 0;font-size:15px;line-height:1.6;color:#3A3A3A;"><strong style="color:#10221A;">Analizamos su potencial</strong>: temporadas, tarifas y la competencia en la zona.</td>
+                </tr>
+                <tr>
+                  <td width="44" valign="top" style="padding:0 0 8px 0;"><div style="width:32px;height:32px;line-height:32px;border-radius:16px;background-color:#C9A961;color:#10221A;text-align:center;font-weight:bold;font-size:14px;">3</div></td>
+                  <td valign="top" style="padding:4px 0 8px 0;font-size:15px;line-height:1.6;color:#3A3A3A;"><strong style="color:#10221A;">Recibes tu valoración</strong>: una estimación de ingresos y el plan para lograrlos.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Respaldo -->
+          <tr>
+            <td style="padding:20px 24px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;background-color:#F8F6F3;border:1px solid #E8E1D2;border-radius:12px;font-family:Arial,Helvetica,sans-serif;">
+                <tr>
+                  <td align="center" width="33%" style="padding:16px 4px;border-right:1px solid #E8E1D2;">
+                    <p style="margin:0;font-family:Georgia,serif;font-size:20px;color:#2C5F4F;font-weight:bold;">5.0 ★</p>
+                    <p style="margin:4px 0 0 0;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:#6B6B6B;">Calificación<br>en Airbnb</p>
+                  </td>
+                  <td align="center" width="34%" style="padding:16px 4px;border-right:1px solid #E8E1D2;">
+                    <p style="margin:0;font-family:Georgia,serif;font-size:20px;color:#2C5F4F;font-weight:bold;">&#127941;</p>
+                    <p style="margin:4px 0 0 0;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:#6B6B6B;">Super-<br>anfitrión</p>
+                  </td>
+                  <td align="center" width="33%" style="padding:16px 4px;">
+                    <p style="margin:0;font-family:Georgia,serif;font-size:20px;color:#2C5F4F;font-weight:bold;">24 h</p>
+                    <p style="margin:4px 0 0 0;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:#6B6B6B;">Tiempo de<br>respuesta</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Botón WhatsApp -->
+          <tr>
+            <td align="center" style="padding:8px 24px 12px 24px;font-family:Arial,Helvetica,sans-serif;">
+              <p style="margin:0 0 16px 0;font-size:15px;line-height:1.6;color:#3A3A3A;">¿Quieres adelantar la conversación?</p>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" bgcolor="#2C5F4F" style="border-radius:999px;">
+                    <a href="https://wa.me/573204325845?text=Hola%2C%20acabo%20de%20enviar%20la%20solicitud%20de%20valoraci%C3%B3n%20de%20mi%20finca" target="_blank" style="display:inline-block;padding:15px 26px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;border-radius:999px;">Escríbenos por WhatsApp</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Recurso útil -->
+          <tr>
+            <td style="padding:20px 24px 28px 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#3A3A3A;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:4px solid #C9A961;">
+                <tr>
+                  <td style="padding:6px 0 6px 16px;">
+                    <strong style="color:#10221A;">Mientras tanto, te puede interesar:</strong><br>
+                    <a href="https://villetaconserje.com/blog/requisitos-legales-airbnb-villeta-rnt" target="_blank" style="color:#2C5F4F;font-weight:bold;">Requisitos legales para alquilar tu finca en Airbnb (RNT, TRA, SIRE)</a>. Si te falta algún trámite, nosotros lo gestionamos por ti.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Firma -->
+          <tr>
+            <td style="padding:0 24px 32px 24px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#3A3A3A;">
+              Un cordial saludo,<br>
+              <strong style="font-family:Georgia,serif;font-size:17px;color:#10221A;">Equipo Villeta Conserje</strong><br>
+              <span style="color:#6B6B6B;font-size:13px;">Administración profesional de fincas en Airbnb · Villeta, Cundinamarca</span>
+            </td>
+          </tr>
+
+          <!-- Pie -->
+          <tr>
+            <td align="center" style="background-color:#10221A;padding:24px 28px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.7;color:#C8D1CC;">
+              <a href="https://villetaconserje.com" target="_blank" style="color:#C9A961;text-decoration:none;font-weight:bold;">villetaconserje.com</a>
+              &nbsp;·&nbsp;
+              <a href="mailto:contacto@villetaconserje.com" style="color:#C8D1CC;text-decoration:none;">contacto@villetaconserje.com</a>
+              &nbsp;·&nbsp;
+              <a href="https://wa.me/573204325845" target="_blank" style="color:#C8D1CC;text-decoration:none;">+57 320 432 5845</a>
+              <br>
+              <span style="color:#8FA39A;">Recibes este correo porque solicitaste una valoración en villetaconserje.com. Tus datos se tratan según nuestra <a href="https://villetaconserje.com/privacidad" target="_blank" style="color:#8FA39A;">política de privacidad</a>.</span>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -51,6 +51,8 @@ jobs:
         run: sudo apt-get install -y lftp
 
       # Deploy via lftp con sincronización dual (raíz y public_html si existe)
+      # _next/static se sube SIN borrar lo anterior: Google guarda páginas antiguas y,
+      # al renderizarlas, pide los JS/CSS de versiones previas (antes daban 404).
       - name: Deploy via FTP
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -69,8 +71,8 @@ jobs:
               open '$FTP_SERVER';
               user '$FTP_USERNAME' '$FTP_PASSWORD';
               echo '--- Sincronizando directorio raíz ---';
-              mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
-              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ . || echo 'No existe subcarpeta public_html adicional';
+              mirror --reverse --delete --exclude-glob _next/static/ --parallel=3 --no-perms --verbose=1 ./out/ . && mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/_next/static/ _next/static;
+              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --exclude-glob _next/static/ --parallel=3 --no-perms --verbose=1 ./out/ . && mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/_next/static/ _next/static || echo 'No existe subcarpeta public_html adicional';
               bye
             " && echo "Deploy exitoso en intento #$attempt" && exit 0
 
@@ -83,8 +85,8 @@ jobs:
               open '$FTP_SERVER';
               user '$FTP_USERNAME' '$FTP_PASSWORD';
               echo '--- Sincronizando directorio raíz ---';
-              mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ .;
-              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --parallel=3 --no-perms --verbose=1 ./out/ . || echo 'No existe subcarpeta public_html adicional';
+              mirror --reverse --delete --exclude-glob _next/static/ --parallel=3 --no-perms --verbose=1 ./out/ . && mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/_next/static/ _next/static;
+              cd public_html 2>/dev/null && echo '--- Sincronizando carpeta public_html ---' && mirror --reverse --delete --exclude-glob _next/static/ --parallel=3 --no-perms --verbose=1 ./out/ . && mirror --reverse --parallel=3 --no-perms --verbose=1 ./out/_next/static/ _next/static || echo 'No existe subcarpeta public_html adicional';
               bye
             " && echo "Deploy exitoso sin SSL en intento #$attempt" && exit 0
 

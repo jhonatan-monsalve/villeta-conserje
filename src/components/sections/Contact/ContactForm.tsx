@@ -178,6 +178,8 @@ export function ContactForm() {
                     </p>
 
                     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-sm shadow-2xl">
+                        {/* Teléfono en formato internacional (573001234567) para los enlaces de WhatsApp del correo de aviso */}
+                        <input type="hidden" name="phone_wa" value={(() => { const d = formData.phone.replace(/\D/g, ""); return d.startsWith("57") ? d : `57${d}`; })()} />
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-xs font-medium text-gray-200 mb-1" htmlFor="name">Nombre Completo *</label>
