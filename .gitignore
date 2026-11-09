@@ -36,6 +36,7 @@ next-env.d.ts
 
 # Project specific temp files
 airbnb.html
+temp*.html
 urls.txt
 urls_utf8.txt
 result_urls.txt

@@ -78,6 +78,7 @@ function LightboxModal({ images, propertyName, propertySlug, initialIndex, onClo
                                     src={img}
                                     alt={`${propertyName} Foto Grande ${idx + 1}`}
                                     fill
+                                    sizes="(max-width: 1024px) 100vw, 1024px"
                                     className="object-contain"
                                     priority={Math.abs(idx - currentIndex) <= 1}
                                 />
@@ -122,6 +123,7 @@ function LightboxModal({ images, propertyName, propertySlug, initialIndex, onClo
                                     src={img}
                                     alt={`Miniatura ${idx + 1}`}
                                     fill
+                                    sizes="64px"
                                     className="object-cover"
                                 />
                             </button>

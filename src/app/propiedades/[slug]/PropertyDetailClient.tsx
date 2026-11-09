@@ -133,6 +133,7 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                                             src={imgUrl}
                                             alt={`${property.name} Foto ${idx + 1}`}
                                             fill
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
                                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                                             priority={idx === 0}
                                         />
@@ -269,6 +270,7 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                                             src={img}
                                             alt={`${property.name} Ampliada ${idx + 1}`}
                                             fill
+                                            sizes="(max-width: 1024px) 100vw, 1024px"
                                             className="object-contain"
                                             priority={Math.abs(idx - (selectedImageIndex ?? 0)) <= 1}
                                         />
@@ -307,6 +309,7 @@ export function PropertyDetailClient({ property }: PropertyDetailClientProps) {
                                         src={img}
                                         alt={`Miniatura ${idx + 1}`}
                                         fill
+                                        sizes="64px"
                                         className="object-cover"
                                     />
                                 </button>

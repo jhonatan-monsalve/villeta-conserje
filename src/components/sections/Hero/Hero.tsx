@@ -28,6 +28,7 @@ export function Hero() {
                     src="images/hero-bg.jpg"
                     alt="Luxury villa with pool at sunset in Villeta"
                     fill
+                    sizes="100vw"
                     className="object-cover"
                     priority
                     fetchPriority="high"

@@ -16,10 +16,18 @@ import { BlogPreview } from "@/components/sections/Blog/BlogPreview";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Administración de Fincas e Inmuebles en Villeta | Villeta Conserje",
-    description: "Inmobiliaria especializada en Villeta. Gestionamos el alquiler de tu finca vacacional. Genera entre $8M y $15M al mes en Airbnb. ¡Solicita valoración gratuita!",
+    title: "Administración de Fincas en Airbnb Villeta | Villeta Conserje",
+    description: "Administración integral de fincas en Villeta. Maximizamos tus ingresos en Airbnb y cuidamos tu propiedad sin complicaciones. ¡Solicita valoración gratuita!",
     alternates: {
         canonical: '/',
+    },
+    openGraph: {
+        title: "Administración de Fincas en Airbnb Villeta | Villeta Conserje",
+        description: "Administración integral de fincas en Villeta. Maximizamos tus ingresos en Airbnb y cuidamos tu propiedad sin complicaciones. ¡Solicita valoración gratuita!",
+    },
+    twitter: {
+        title: "Administración de Fincas en Airbnb Villeta | Villeta Conserje",
+        description: "Administración integral de fincas en Villeta. Maximizamos tus ingresos en Airbnb y cuidamos tu propiedad sin complicaciones. ¡Solicita valoración gratuita!",
     },
 };
 
