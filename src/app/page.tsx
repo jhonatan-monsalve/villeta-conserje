@@ -24,10 +24,25 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Administración de Fincas en Airbnb Villeta | Villeta Conserje",
         description: "Administración integral de fincas en Villeta. Maximizamos tus ingresos en Airbnb y cuidamos tu propiedad sin complicaciones. ¡Solicita valoración gratuita!",
+        url: 'https://villetaconserje.com',
+        siteName: 'Villeta Conserje',
+        images: [
+            {
+                url: 'https://villetaconserje.com/images/og-villeta-conserje.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Villeta Conserje - Gestión Profesional de Fincas en Airbnb Villeta',
+                type: 'image/jpeg',
+            }
+        ],
+        locale: 'es_CO',
+        type: 'website',
     },
     twitter: {
+        card: 'summary_large_image',
         title: "Administración de Fincas en Airbnb Villeta | Villeta Conserje",
         description: "Administración integral de fincas en Villeta. Maximizamos tus ingresos en Airbnb y cuidamos tu propiedad sin complicaciones. ¡Solicita valoración gratuita!",
+        images: ['https://villetaconserje.com/images/og-villeta-conserje.jpg'],
     },
 };
 
