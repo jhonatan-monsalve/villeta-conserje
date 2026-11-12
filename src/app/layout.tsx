@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import dynamic from 'next/dynamic';
 import Script from "next/script";
@@ -31,6 +31,14 @@ const montserrat = Montserrat({
     display: "swap",
 });
 
+export const viewport: Viewport = {
+    themeColor: "#10221a",
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
     metadataBase: new URL('https://villetaconserje.com'),
     title: {
@@ -41,6 +49,14 @@ export const metadata: Metadata = {
     keywords: ["administración de fincas villeta", "airbnb villeta", "gestión propiedades lujo", "superanfitrión airbnb colombia", "turismo villeta"],
     verification: {
         google: "UCf8Je8y8pqqSOtVJ8bhPV-kCRYGLB02Bd4_iu7kTP0",
+    },
+    formatDetection: {
+        telephone: false,
+    },
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: SITE_CONFIG.name,
     },
     openGraph: {
         title: `${SITE_CONFIG.name} | Gestión de Fincas de Lujo en Airbnb`,
@@ -112,7 +128,7 @@ export default function RootLayout({
                 {/* Google Tag Manager (noscript) */}
                 <noscript>
                     <iframe
-                        src="https://www.googletagmanager.com/ns.html?id=GTM-5HFRPSX4"
+                        src="https://www.googletagmanager.com/ns.html?id=GTM-P7XD4G42"
                         height="0"
                         width="0"
                         title="Google Tag Manager"
@@ -135,7 +151,7 @@ export default function RootLayout({
                                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                                })(window,document,'script','dataLayer','GTM-5HFRPSX4');
+                                })(window,document,'script','dataLayer','GTM-P7XD4G42');
                             }, 1000);
                         });
                         `,
